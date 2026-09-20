@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal of the Union — Mock Government (Roleplay)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F2ECDD;
+    --paper:#EAE2CC;
+    --ink:#1B1712;
+    --red:#A6231A;
+    --red-dark:#7A160F;
+    --slate:#3C4A45;
+    --gold:#C9A227;
+    --line: rgba(27,23,18,0.15);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'PT Serif', Georgia, serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', 'Arial Narrow', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    font-weight:600;
+    margin:0;
+  }
+  a{color:var(--red-dark);}
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:2px;
+  }
+  img{max-width:100%;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- Notice bar ---------- */
+  .notice{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Oswald', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    text-align:center;
+    padding:7px 14px;
+  }
+  .notice strong{color:var(--gold);}
+
+  /* ---------- Announcement strip ---------- */
+  .announce{
+    background:#DCD3B6;
+    border-bottom:1px solid var(--line);
+    padding:10px 20px;
+    font-size:0.95rem;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    flex-wrap:wrap;
+  }
+  .announce::before{
+    content:"★";
+    color:var(--red);
+  }
+
+  /* ---------- Header ---------- */
+  header.site-header{
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+  }
+  .header-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:18px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .emblem{width:56px;height:56px;flex-shrink:0;}
+  .brand-text .kicker{
+    font-family:'Oswald', sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    color:var(--slate);
+  }
+  .brand-text h1{font-size:1.4rem; color:var(--red-dark);}
+
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .hotline{font-family:'Oswald', sans-serif; font-size:0.85rem;}
+  .hotline strong{color:var(--red-dark);}
+  .search{
+    display:flex;
+    border:2px solid var(--ink);
+  }
+  .search input{
+    border:none;
+    padding:9px 12px;
+    font-family:'PT Serif', serif;
+    font-size:0.9rem;
+    width:190px;
+    background:#fff;
+  }
+  .search button{
+    background:var(--red);
+    color:var(--cream);
+    border:none;
+    padding:0 16px;
+    font-family:'Oswald', sans-serif;
+    cursor:pointer;
+  }
+  .search button:hover{background:var(--red-dark);}
+
+  /* ---------- Nav ---------- */
+  nav.primary{
+    background:var(--red);
+    border-bottom:3px solid var(--ink);
+  }
+  .nav-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+    display:flex;
+    flex-wrap:wrap;
+  }
+  nav.primary a{
+    color:var(--cream);
+    text-decoration:none;
+    font-family:'Oswald', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:13px 16px;
+    display:inline-block;
+    border-right:1px solid rgba(242,236,221,0.25);
+  }
+  nav.primary a:hover{background:var(--red-dark);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:
+      repeating-linear-gradient(115deg, rgba(27,23,18,0.08) 0 2px, transparent 2px 46px),
+      linear-gradient(100deg, var(--slate) 0%, #2c3733 55%, var(--ink) 100%);
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+  }
+  .hero-star{
+    position:absolute;
+    right:-60px;
+    top:-60px;
+    width:320px;
+    height:320px;
+    opacity:0.12;
+  }
+  .hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:60px 24px 120px;
+    width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .hero-banner{
+    background:var(--red);
+    color:var(--cream);
+    max-width:560px;
+    padding:34px 38px;
+    box-shadow:10px 10px 0 rgba(0,0,0,0.25);
+  }
+  .hero-banner h2{
+    font-size:2.1rem;
+    line-height:1.15;
+    margin-bottom:16px;
+  }
+  .hero-banner p{
+    font-family:'PT Serif', serif;
+    font-size:1.02rem;
+    color:#F2ECDD;
+    margin:0;
+  }
+
+  /* ---------- How do I panel ---------- */
+  .howdo-wrap{
+    max-width:1180px;
+    margin:-90px auto 0;
+    padding:0 24px;
+    position:relative;
+    z-index:3;
+  }
+  .howdo{
+    background:var(--cream);
+    border:3px solid var(--ink);
+  }
+  .howdo-title{
+    padding:22px 30px 6px;
+    font-size:1.3rem;
+    color:var(--ink);
+  }
+  .howdo-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+  }
+  .howdo-grid a{
+    display:block;
+    padding:22px 24px;
+    border-left:4px solid var(--red);
+    border-right:1px solid var(--line);
+    text-decoration:none;
+    color:var(--ink);
+    font-size:0.98rem;
+  }
+  .howdo-grid a:last-child{border-right:none;}
+  .howdo-grid a:hover{background:var(--paper);}
+  .howdo-grid a span{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate);
+    margin-bottom:4px;
+  }
+  @media (max-width:880px){
+    .howdo-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    .howdo-grid{grid-template-columns:1fr;}
+    .howdo-grid a{border-right:none; border-bottom:1px solid var(--line);}
+  }
+
+  /* ---------- Scroll cue ---------- */
+  .scroll-cue{
+    text-align:center;
+    padding:40px 0 10px;
+  }
+  .scroll-cue a{
+    display:inline-block;
+    width:40px;height:40px;
+    border-radius:50%;
+    background:var(--red);
+    color:var(--cream);
+    text-decoration:none;
+    line-height:40px;
+  }
+
+  /* ---------- Sections ---------- */
+  main{max-width:1180px; margin:0 auto; padding:20px 24px 10px;}
+  .section-title{
+    font-size:1.6rem;
+    color:var(--red-dark);
+    border-bottom:3px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:28px;
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:var(--ink);
+    margin-bottom:60px;
+  }
+  .service-card{
+    background:var(--cream);
+    padding:26px 24px;
+  }
+  .service-card .num{
+    font-family:'Oswald', sans-serif;
+    color:var(--gold);
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+  }
+  .service-card h3{
+    font-size:1.05rem;
+    margin:8px 0 10px;
+    color:var(--ink);
+  }
+  .service-card p{
+    font-size:0.92rem;
+    margin:0 0 12px;
+    color:#3a352c;
+  }
+  .service-card a{
+    font-family:'Oswald', sans-serif;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  @media (max-width:880px){
+    .services-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .services-grid{grid-template-columns:1fr;}
+  }
+
+  .split{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    margin-bottom:60px;
+    align-items:start;
+  }
+  @media (max-width:880px){
+    .split{grid-template-columns:1fr;}
+  }
+  .bulletin{
+    border-left:4px solid var(--red);
+    padding-left:20px;
+    margin-bottom:22px;
+  }
+  .bulletin .tag{
+    font-family:'Oswald', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate);
+  }
+  .bulletin h4{
+    font-family:'Oswald', sans-serif;
+    font-size:1.05rem;
+    font-weight:500;
+    margin:4px 0 6px;
+  }
+  .network-box{
+    background:var(--slate);
+    color:var(--cream);
+    padding:28px 26px;
+  }
+  .network-box h3{font-size:1.1rem; margin-bottom:6px;}
+  .network-box p{font-size:0.9rem; color:#dfe4e2; margin:0 0 18px;}
+  .network-list{list-style:none; margin:0; padding:0;}
+  .network-list li{
+    border-top:1px solid rgba(242,236,221,0.2);
+    padding:12px 0;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:0.92rem;
+  }
+  .network-list li:last-child{border-bottom:1px solid rgba(242,236,221,0.2);}
+  .status{
+    font-family:'Oswald', sans-serif;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:2px 8px;
+    align-self:flex-start;
+    white-space:nowrap;
+  }
+  .status.live{background:var(--gold); color:var(--ink);}
+  .status.soon{background:transparent; border:1px solid #9aa8a4; color:#cfd6d3;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#cfc9b8;
+    margin-top:20px;
+  }
+  .footer-inner{
+    max-width:1180px;
+    margin:0 auto;
+    padding:44px 24px 26px;
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr 1fr;
+    gap:30px;
+  }
+  @media (max-width:768px){
+    .footer-inner{grid-template-columns:1fr 1fr;}
+  }
+  .footer-inner h4{
+    font-family:'Oswald', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:12px;
+  }
+  .footer-inner ul{list-style:none; margin:0; padding:0;}
+  .footer-inner li{margin-bottom:8px; font-size:0.9rem;}
+  .footer-inner a{color:#e6e1d2; text-decoration:none;}
+  .footer-inner a:hover{text-decoration:underline;}
+  .footer-disclaimer{
+    border-top:1px solid rgba(242,236,221,0.15);
+    padding:20px 24px 30px;
+    max-width:1180px;
+    margin:0 auto;
+    font-size:0.8rem;
+    color:#a7a191;
+  }
+</style>
+</head>
+<body>
+
+  <div class="notice">
+    <strong>Fictional roleplay project</strong> — this page belongs to a Discord "mock government," not a real state or organization.
+  </div>
+
+  <div class="announce">
+    Elections for the 27th Congress of Deputies are open — cast your vote in <a href="#">#electoral-commission</a>.
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <svg class="emblem" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="47" fill="#A6231A" stroke="#1B1712" stroke-width="3"/>
+          <path d="M50 14 L58.8 38.5 L84.4 38.5 L63.8 53.9 L71.6 78.4 L50 63 L28.4 78.4 L36.2 53.9 L15.6 38.5 L41.2 38.5 Z" fill="#C9A227"/>
+        </svg>
+        <div class="brand-text">
+          <div class="kicker">Portal of the Union · Mock Government</div>
+          <h1>Union Civic Portal</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="hotline">Write to the Praesidium: <strong>#citizen-appeals</strong></div>
+        <form class="search" role="search" onsubmit="return false;">
+          <input type="search" placeholder="Search the portal" aria-label="Search the portal">
+          <button type="submit" aria-label="Search">&#128269;</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <nav class="primary" aria-label="Primary">
+    <div class="nav-inner">
+      <a href="#services">All Services</a>
+      <a href="#">The State &amp; Congress</a>
+      <a href="#">Social Benefits</a>
+      <a href="#">Citizenship &amp; Documents</a>
+      <a href="#">Labor &amp; Economy</a>
+      <a href="#">Travel &amp; Permits</a>
+      <a href="#network">Elections</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <svg class="hero-star" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M50 4 L61.2 37.6 L96.6 37.6 L68.7 58.4 L79.9 92 L50 71.2 L20.1 92 L31.3 58.4 L3.4 37.6 L38.8 37.6 Z" fill="#F2ECDD"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="hero-banner">
+        <h2>Serving the Union, Serving the People</h2>
+        <p>The Civic Portal helps citizens of the Union find benefits, documents, and services — and take part in the life of the Congress.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="howdo-wrap">
+    <div class="howdo">
+      <div class="howdo-title">How do I&hellip;</div>
+      <div class="howdo-grid">
+        <a href="#"><span>Elections</span>Register to vote</a>
+        <a href="#"><span>Housing</span>Request a housing allocation</a>
+        <a href="#"><span>Documents</span>Apply for an internal passport</a>
+        <a href="#"><span>Appeals</span>File a grievance with a Commissariat</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <a href="#services" aria-label="Scroll to services">&#8595;</a>
+  </div>
+
+  <main>
+    <section id="services">
+      <h2 class="section-title">All Topics &amp; Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="num">01</div>
+          <h3>Constitution &amp; Law</h3>
+          <p>Read the founding charter of the Union and the statutes governing citizens and republics.</p>
+          <a href="#">Read the Constitution &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="num">02</div>
+          <h3>Social Benefits</h3>
+          <p>Housing allocations, healthcare access, pensions, and worker entitlements.</p>
+          <a href="#">View benefits &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="num">03</div>
+          <h3>Congress &amp; Deputies</h3>
+          <p>Track sessions of the Congress, read proposed decrees, and see how your deputy voted.</p>
+          <a href="#">Visit the Congress &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="num">04</div>
+          <h3>Citizenship &amp; Documents</h3>
+          <p>Internal passports, registration, and records for citizens of every republic.</p>
+          <a href="#">Manage documents &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="num">05</div>
+          <h3>Labor &amp; Economy</h3>
+          <p>Employment placement, factory and collective assignments, and economic planning reports.</p>
+          <a href="#">Explore the economy &rarr;</a>
+        </div>
+        <div class="service-card">
+          <div class="num">06</div>
+          <h3>Travel &amp; Permits</h3>
+          <p>Internal travel permits between republics and information for visitors to the Union.</p>
+          <a href="#">Plan travel &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="split" id="network">
+      <div>
+        <h2 class="section-title">Bulletin of the Union</h2>
+        <div class="bulletin">
+          <div class="tag">Congress</div>
+          <h4>Notice of the 27th Congress of Deputies</h4>
+          <p>Nominations for Chairman of the Council of Ministers are now open. Citizens may submit questions for the floor debate through the Congress channel.</p>
+        </div>
+        <div class="bulletin">
+          <div class="tag">Social Benefits</div>
+          <h4>Housing allocation cycle now processing</h4>
+          <p>New citizens should file a request through the Commissariat for Housing to be placed in the current allocation round.</p>
+        </div>
+        <div class="bulletin">
+          <div class="tag">Roleplay Notice</div>
+          <h4>Reminder: this is a fictional server activity</h4>
+          <p>All "decrees," "ministries," and "citizens" referenced on this page are part of a Discord roleplay community, not a real government.</p>
+        </div>
+      </div>
+
+      <div class="network-box">
+        <h3>Portal Network</h3>
+        <p>The Union Civic Portal is the first of several linked sites planned for this project.</p>
+        <ul class="network-list">
+          <li>Civic Portal (this site) <span class="status live">Live</span></li>
+          <li>Ministry of Defense — interactive training <span class="status soon">In progress</span></li>
+          <li>State Archive &amp; Constitution library <span class="status soon">Planned</span></li>
+          <li>Congress voting records <span class="status soon">Planned</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4>Union Civic Portal</h4>
+        <p style="font-size:0.88rem; max-width:32ch; color:#cfc9b8;">A roleplay project run by members of a Discord community. Not affiliated with any real government, past or present.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Benefits</a></li>
+          <li><a href="#">Documents</a></li>
+          <li><a href="#">Travel</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Government</h4>
+        <ul>
+          <li><a href="#">Congress</a></li>
+          <li><a href="#">Constitution</a></li>
+          <li><a href="#">Elections</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <ul>
+          <li><a href="#">Discord server</a></li>
+          <li><a href="#">Citizen appeals</a></li>
+          <li><a href="#">Rules of roleplay</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-disclaimer">
+      This website is a fan-made, fictional prop created for a Discord "mock government" roleplay community. It does not represent, endorse, or speak for any real historical or present-day government, party, or state.
+    </div>
+  </footer>
+
+</body>
+</html>
