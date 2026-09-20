@@ -1,1 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Civic portal for the Union mock government roleplay project featuring public services, congress updates, and documents.">
+<meta property="og:title" content="Portal of the Union — USSR Mock Government">
+<meta property="og:description" content="Civic portal for the Union mock government roleplay project featuring public services, congress updates, and documents.">
+<title>Portal of the Union — USSR Mock Government</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --usagov-navy: #112e51;
+    --usagov-navy-dark: #0a1c33;
+    --usagov-blue: #005ea2;
+    --usagov-cyan: #00a3e0;
+    --usagov-cyan-dark: #0084c7;
+    --usagov-cyan-light: #e1f3f8;
+    --usagov-gray-light: #f0f0f0;
+    --usagov-gray-mid: #dfe1e2;
+    --usagov-text: #1b1b1b;
+    --usagov-text-muted: #565c65;
+    --soviet-red: #c01823;
+    --soviet-red-dark: #8c1017;
+    --soviet-gold: #ffc72c;
+    --card-border: #d6d7d9;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--usagov-text);
+    background-color: #ffffff;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--usagov-blue); text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--usagov-navy); }
+  button { font-family: inherit; cursor: pointer; }
+
+  /* -------------------------------------------------------------
+     1. TOPMOST OFFICIAL GOV / ROLEPLAY BANNER
+     ------------------------------------------------------------- */
+  .official-banner {
+    background-color: var(--usagov-gray-light);
+    border-bottom: 1px solid var(--usagov-gray-mid);
+    font-size: 0.78rem;
+    padding: 6px 16px;
+  }
+  .official-banner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .official-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--usagov-text);
+  }
+  .flag-icon {
+    width: 20px;
+    height: 13px;
+    background: var(--soviet-red);
+    position: relative;
+    border-radius: 1px;
+    display: inline-block;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .flag-icon::after {
+    content: '★';
+    position: absolute;
+    color: var(--soviet-gold);
+    font-size: 8px;
+    top: -2px;
+    left: 2px;
+    line-height: 1;
+  }
+  .roleplay-tag {
+    background: #e02424;
+    color: #fff;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .how-you-know-btn {
+    background: none;
+    border: none;
+    color: var(--usagov-blue);
+    font-size: 0.78rem;
+    text-decoration: underline;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
+  }
+  .how-you-know-btn:hover { color: var(--usagov-navy); }
+  .how-you-know-chevron { transition: transform 0.2s ease; display: inline-block; }
+  .how-you-know-btn[aria-expanded="true"] .how-you-know-chevron { transform: rotate(180deg); }
+
+  .how-you-know-panel {
+    display: none;
+    background: #f7f9fa;
+    border-top: 1px solid var(--usagov-gray-mid);
+    padding: 16px 20px;
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+  .how-you-know-panel.open { display: block; }
+  .how-you-know-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 700px) {
+    .how-you-know-grid { grid-template-columns: 1fr; }
+  }
+  .know-item { display: flex; gap: 12px; }
+  .know-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .know-item strong { display: block; color: var(--usagov-navy); margin-bottom: 2px; }
+
+  /* -------------------------------------------------------------
+     2. ANNOUNCEMENT STRIP (Exact USA.gov cyan banner)
+     ------------------------------------------------------------- */
+  .announce-bar {
+    background-color: #d9e8f6;
+    border-bottom: 1px solid #b2d4ee;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    color: #1a395c;
+  }
+  .announce-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .announce-inner a {
+    color: #005ea2;
+    font-weight: 600;
+  }
+  .announce-badge {
+    background: var(--soviet-red);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  /* -------------------------------------------------------------
+     3. MAIN HEADER & SEARCH
+     ------------------------------------------------------------- */
+  .site-header {
+    background: #ffffff;
+    padding: 18px 16px;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand-logo-circle {
+    width: 64px;
+    height: 64px;
+    background: var(--usagov-navy);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(17, 46, 81, 0.25);
+    border: 2px solid var(--soviet-gold);
+    flex-shrink: 0;
+  }
+  .brand-logo-circle .star {
+    color: var(--soviet-gold);
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: -2px;
+  }
+  .brand-logo-circle .abbr {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    line-height: 1;
+  }
+  .brand-logo-circle .sub {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--usagov-cyan);
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .brand-text h1 {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    line-height: 1.2;
+  }
+  .brand-text .tagline {
+    font-size: 0.82rem;
+    color: var(--usagov-text-muted);
+    font-weight: 500;
+  }
+
+  .header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .header-top-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .lang-btn {
+    background: var(--usagov-navy);
+    color: #ffffff;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 4px;
+    transition: background-color 0.15s;
+  }
+  .lang-btn:hover { background: var(--usagov-blue); }
+  .helpline-text {
+    font-size: 0.9rem;
+    color: var(--usagov-navy);
+  }
+  .helpline-text strong {
+    color: var(--soviet-red-dark);
+  }
+
+  .search-form {
+    display: flex;
+    width: 320px;
+    max-width: 100%;
+  }
+  .search-input {
+    flex: 1;
+    border: 1px solid var(--usagov-navy);
+    border-right: none;
+    padding: 9px 12px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
+  .search-input:focus {
+    box-shadow: inset 0 0 0 2px var(--usagov-blue);
+  }
+  .search-btn {
+    background: var(--usagov-cyan);
+    border: 1px solid var(--usagov-navy);
+    border-left: none;
+    color: #ffffff;
+    padding: 0 16px;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    transition: background-color 0.15s;
+  }
+  .search-btn:hover { background: var(--usagov-cyan-dark); }
+
+  /* -------------------------------------------------------------
+     4. PRIMARY NAVIGATION BAR
+     ------------------------------------------------------------- */
+  .primary-nav {
+    background: #ffffff;
+    border-top: 1px solid var(--usagov-gray-mid);
+    border-bottom: 2px solid var(--usagov-navy);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-link {
+    color: var(--usagov-navy);
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 14px;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-link:hover, .nav-link.active {
+    color: var(--usagov-blue);
+    border-bottom-color: var(--usagov-blue);
+    background: rgba(0, 94, 162, 0.04);
+  }
+
+  /* -------------------------------------------------------------
+     5. HERO SECTION (Woven Soviet Flag + USA.gov Cyan Split)
+     ------------------------------------------------------------- */
+  .hero-container {
+    position: relative;
+    background: linear-gradient(135deg, #871017 0%, #a81720 30%, #c01823 48%, #0084c7 75%, #00a3e0 100%);
+    overflow: hidden;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+  }
+  .hero-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 15% 40%, rgba(255, 199, 44, 0.25) 0%, transparent 45%),
+      linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.15) 100%),
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 8px);
+    pointer-events: none;
+  }
+  .hero-flag-graphic {
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 240px;
+    height: 240px;
+    opacity: 0.22;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 50px 20px 90px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+  }
+  @media (max-width: 900px) {
+    .hero-inner { justify-content: center; padding-bottom: 70px; }
+  }
+
+  .hero-card {
+    background: var(--usagov-navy);
+    color: #ffffff;
+    max-width: 540px;
+    width: 100%;
+    padding: 38px 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border-top: 4px solid var(--soviet-gold);
+  }
+  .hero-card h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero-card p {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #e6ecf1;
+    margin-bottom: 22px;
+  }
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--usagov-cyan);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 11px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.15s, transform 0.15s;
+    border: none;
+  }
+  .hero-btn:hover {
+    background: #0084c7;
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  /* -------------------------------------------------------------
+     6. OVERLAPPING "HOW DO I ..." CARD (Exact USA.gov pattern)
+     ------------------------------------------------------------- */
+  .how-do-i-section {
+    background: var(--usagov-navy);
+    position: relative;
+    padding-bottom: 30px;
+  }
+  .how-do-i-wrap {
+    max-width: 1200px;
+    margin: -50px auto 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+  }
+  .how-do-i-card {
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .how-do-i-header {
+    padding: 24px 30px 14px;
+  }
+  .how-do-i-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .how-do-i-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--usagov-gray-mid);
+  }
+  @media (max-width: 900px) {
+    .how-do-i-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 580px) {
+    .how-do-i-grid { grid-template-columns: 1fr; }
+  }
+
+  .how-item {
+    padding: 24px 22px;
+    border-left: 4px solid var(--usagov-cyan);
+    text-decoration: none;
+    color: var(--usagov-navy);
+    font-size: 1.05rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.15s, border-left-color 0.15s;
+    border-right: 1px solid var(--usagov-gray-mid);
+    background: #ffffff;
+    cursor: pointer;
+  }
+  .how-item:last-child { border-right: none; }
+  .how-item:hover {
+    background: var(--usagov-cyan-light);
+    border-left-color: var(--soviet-red);
+    color: var(--usagov-blue);
+  }
+  .how-item-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--usagov-blue);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .how-item-text {
+    line-height: 1.35;
+  }
+  .how-item-arrow {
+    margin-top: 10px;
+    color: var(--usagov-cyan-dark);
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  /* Jump to all topics cue */
+  .jump-cue-container {
+    text-align: center;
+    padding: 28px 16px 14px;
+    color: #ffffff;
+  }
+  .jump-cue-text {
+    color: #ffffff;
+    font-size: 0.96rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .jump-cue-text:hover { color: var(--usagov-cyan); }
+  .jump-cue-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--usagov-cyan);
+    color: #ffffff;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: background-color 0.15s, transform 0.15s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    border: none;
+  }
+  .jump-cue-btn:hover {
+    background: #0084c7;
+    transform: translateY(2px);
+  }
+
+  /* -------------------------------------------------------------
+     7. MAIN TOPICS & SERVICES GRID
+     ------------------------------------------------------------- */
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px 60px;
+  }
+  .section-heading-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--usagov-navy);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    line-height: 1.2;
+  }
+  .search-filter-badge {
+    display: none;
+    background: var(--usagov-cyan-light);
+    color: var(--usagov-navy);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .search-filter-badge.active { display: inline-block; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+  @media (max-width: 960px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    background: #ffffff;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 26px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    position: relative;
+  }
+  .service-card:hover {
+    border-color: var(--usagov-blue);
+    box-shadow: 0 6px 18px rgba(0, 94, 162, 0.12);
+    transform: translateY(-2px);
+  }
+  .service-card-top {
+    margin-bottom: 16px;
+  }
+  .service-card-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--soviet-red);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .service-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .service-card p {
+    font-size: 0.94rem;
+    color: var(--usagov-text-muted);
+    line-height: 1.5;
+  }
+  .service-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--usagov-gray-light);
+    padding-top: 14px;
+    margin-top: 10px;
+  }
+  .service-card-link {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--usagov-blue);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .service-card-link:hover {
+    color: var(--usagov-navy);
+    text-decoration: underline;
+  }
+  .service-action-btn {
+    background: none;
+    border: 1px solid var(--usagov-blue);
+    color: var(--usagov-blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .service-action-btn:hover {
+    background: var(--usagov-blue);
+    color: #ffffff;
+  }
+
+  /* -------------------------------------------------------------
+     8. INTERACTIVE MODALS & TOOLS (Passport, Voting, Appeals, Decrees)
+     ------------------------------------------------------------- */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(17, 46, 81, 0.75);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(2px);
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: #ffffff;
+    max-width: 680px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 6px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    border-top: 6px solid var(--usagov-navy);
+    position: relative;
+    padding: 28px 32px;
+  }
+  .modal-close-btn {
+    position: absolute;
+    top: 18px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--usagov-text-muted);
+    line-height: 1;
+    padding: 4px;
+  }
+  .modal-close-btn:hover { color: var(--usagov-navy); }
+  .modal-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    margin-bottom: 6px;
+  }
+  .modal-subtitle {
+    font-size: 0.88rem;
+    color: var(--usagov-text-muted);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--usagov-gray-mid);
+  }
+
+  .passport-card {
+    background: #fdfaf3;
+    border: 2px solid #5b2828;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 16px 0;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .passport-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #5b2828;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+  .passport-title-ru {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #701c1c;
+    letter-spacing: 0.06em;
+  }
+  .passport-stamp {
+    width: 50px;
+    height: 50px;
+    border: 2px dashed #992222;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #992222;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transform: rotate(-12deg);
+  }
+  .passport-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    font-size: 0.88rem;
+    padding: 4px 0;
+    border-bottom: 1px dotted #ccc;
+  }
+  .passport-label { color: #666; font-family: sans-serif; font-size: 0.75rem; text-transform: uppercase; }
+  .passport-val { font-weight: bold; color: #1a1a1a; }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--usagov-navy);
+    margin-bottom: 6px;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    font-family: inherit;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--usagov-blue);
+    box-shadow: 0 0 0 2px rgba(0, 94, 162, 0.2);
+  }
+  .btn-submit {
+    background: var(--usagov-blue);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-submit:hover { background: var(--usagov-navy); }
+
+  /* -------------------------------------------------------------
+     9. BULLETIN & MULTI-PORTAL ECOSYSTEM SECTION
+     ------------------------------------------------------------- */
+  .portal-ecosystem-section {
+    background: #f7f9fa;
+    border-top: 1px solid var(--usagov-gray-mid);
+    border-bottom: 1px solid var(--usagov-gray-mid);
+    padding: 48px 20px;
+  }
+  .ecosystem-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+  }
+  @media (max-width: 860px) {
+    .ecosystem-inner { grid-template-columns: 1fr; }
+  }
+
+  .bulletin-box h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--usagov-navy);
+    margin-bottom: 20px;
+  }
+  .bulletin-item {
+    border-left: 4px solid var(--soviet-red);
+    background: #ffffff;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .bulletin-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--soviet-red-dark);
+    margin-bottom: 4px;
+  }
+  .bulletin-item h4 {
+    font-size: 1.05rem;
+    color: var(--usagov-navy);
+    margin-bottom: 6px;
+  }
+  .bulletin-item p {
+    font-size: 0.9rem;
+    color: var(--usagov-text-muted);
+  }
+
+  .roadmap-box {
+    background: var(--usagov-navy);
+    color: #ffffff;
+    padding: 30px 28px;
+    border-radius: 4px;
+  }
+  .roadmap-box h3 {
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+  .roadmap-box p {
+    font-size: 0.9rem;
+    color: #ccd7e2;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .roadmap-list {
+    list-style: none;
+  }
+  .roadmap-list li {
+    padding: 12px 0;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.92rem;
+  }
+  .status-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .status-live { background: #00a3e0; color: #fff; }
+  .status-wip { background: var(--soviet-gold); color: #112e51; }
+  .status-plan { background: rgba(255,255,255,0.15); color: #d0dbe5; border: 1px solid rgba(255,255,255,0.3); }
+
+  /* -------------------------------------------------------------
+     10. COMPREHENSIVE USA.GOV STYLE FOOTER
+     ------------------------------------------------------------- */
+  footer {
+    background: var(--usagov-navy-dark);
+    color: #c9d2db;
+    font-size: 0.9rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 20px 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 36px;
+  }
+  @media (max-width: 860px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .footer-inner { grid-template-columns: 1fr; }
+  }
+  .footer-col h4 {
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a {
+    color: #c9d2db;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer-col a:hover {
+    color: var(--usagov-cyan);
+    text-decoration: underline;
+  }
+
+  .footer-disclaimer-wrap {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background: #06111f;
+    padding: 24px 20px 36px;
+  }
+  .footer-disclaimer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .disclaimer-badge {
+    background: #991b1b;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .disclaimer-text {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #9aaec4;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--usagov-navy);
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 4px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    border-left: 4px solid var(--usagov-cyan);
+  }
+  .toast.show { display: flex; animation: slideIn 0.3s ease; }
+  @keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- =============================================================
+       1. OFFICIAL GOV / ROLEPLAY BANNER (with collapsible details)
+       ============================================================= -->
+  <div class="official-banner">
+    <div class="official-banner-inner">
+      <div class="official-banner-left">
+        <span class="flag-icon" aria-hidden="true"></span>
+        <span>An official website of the <strong>USSR Discord Mock Government</strong></span>
+        <span class="roleplay-tag">Roleplay Project</span>
+      </div>
+      <div>
+        <button type="button" class="how-you-know-btn" id="howYouKnowBtn" aria-expanded="false" aria-controls="howYouKnowPanel">
+          Here's how you know <span class="how-you-know-chevron" aria-hidden="true">▾</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-you-know-panel" id="howYouKnowPanel">
+    <div class="how-you-know-grid">
+      <div class="know-item">
+        <div class="know-icon">🎭</div>
+        <div>
+          <strong>Fictional Roleplay Community</strong>
+          This website is an interactive prop crafted for a Discord mock government community. It does not represent any real-world government, political entity, or state. All offices, decrees, and passports are fictional.
+        </div>
+      </div>
+      <div class="know-item">
+        <div class="know-icon">💬</div>
+        <div>
+          <strong>Integrated Discord Government</strong>
+          Official citizen decrees, voting ballots, appeals to the Praesidium, and role advancements take place inside our verified Discord server channels.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       2. ANNOUNCEMENT STRIP (Exact USA.gov cyan alert bar)
+       ============================================================= -->
+  <div class="announce-bar">
+    <div class="announce-inner">
+      <span class="announce-badge">Elections</span>
+      <span>
+        Elections for the <strong>27th Supreme Soviet of Workers' Deputies</strong> are now underway. 
+        <a href="#elections" onclick="openVoterModal()">Check your voter registration</a> or submit questions in <strong>#electoral-commission</strong>.
+      </span>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       3. SITE HEADER (Emblem, Language, Helpline, Live Search)
+       ============================================================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand-group" aria-label="Union Civic Portal Home">
+        <div class="brand-logo-circle">
+          <span class="star">★</span>
+          <span class="abbr">СССР</span>
+          <span class="sub">Portal</span>
+        </div>
+        <div class="brand-text">
+          <h1>Union Civic Portal</h1>
+          <div class="tagline">Official Public Services · Supreme Soviet Mock Government</div>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <div class="header-top-row">
+          <span class="helpline-text">Citizen Praesidium Desk: <strong>#citizen-appeals</strong></span>
+          <button type="button" class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">Русский / English</button>
+        </div>
+        <form class="search-form" role="search" onsubmit="handleSearch(event)">
+          <input type="search" id="searchInput" class="search-input" placeholder="Search Soviet civic services, decrees, benefits..." aria-label="Search services">
+          <button type="submit" class="search-btn" aria-label="Submit search">🔍</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- =============================================================
+       4. PRIMARY NAVIGATION
+       ============================================================= -->
+  <nav class="primary-nav" aria-label="Primary Navigation">
+    <div class="nav-inner">
+      <a href="#services" class="nav-link active" onclick="filterServices('all')">All topics and services</a>
+      <a href="#services" class="nav-link" onclick="filterServices('gov')">The Union &amp; Supreme Soviet</a>
+      <a href="#services" class="nav-link" onclick="filterServices('benefits')">Citizen Benefits &amp; Housing</a>
+      <a href="#services" class="nav-link" onclick="filterServices('passports')">Internal Passports &amp; Propiska</a>
+      <a href="#services" class="nav-link" onclick="filterServices('economy')">Labor &amp; Five-Year Plan</a>
+      <a href="#services" class="nav-link" onclick="filterServices('travel')">Republics &amp; Travel Permits</a>
+      <a href="#services" class="nav-link" onclick="filterServices('voting')">Voting &amp; Elections</a>
+      <a href="#discord" class="nav-link" onclick="openDiscordInfoModal()">Discord Community</a>
+    </div>
+  </nav>
+
+  <!-- =============================================================
+       5. HERO SECTION (Woven Flag / Cyan Split + Floating Dark Card)
+       ============================================================= -->
+  <div class="hero-container">
+    <svg class="hero-flag-graphic" viewBox="0 0 100 100" fill="#ffc72c" aria-hidden="true">
+      <path d="M50 8 L55 22 L70 22 L58 31 L62 45 L50 36 L38 45 L42 31 L30 22 L45 22 Z" opacity="0.6"/>
+      <path d="M48 38 C32 40 22 54 26 70 C28 78 35 84 44 84 C56 84 66 74 68 62 L62 60 C60 70 52 78 42 78 C36 78 31 73 30 67 C27 55 35 44 48 44 Z"/>
+      <rect x="54" y="46" width="34" height="8" rx="2" transform="rotate(45 54 46)"/>
+      <rect x="68" y="58" width="8" height="24" rx="2" transform="rotate(45 68 58)"/>
+    </svg>
+
+    <div class="hero-inner">
+      <div class="hero-card">
+        <h2>Serving the Union, serving the people</h2>
+        <p>The Union Civic Portal helps citizens locate state benefits, internal passports, communal housing allocations, and participate in Supreme Soviet congressional elections.</p>
+        <button type="button" class="hero-btn" onclick="openDiscordInfoModal()">
+          Enter Discord Mock Government &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       6. OVERLAPPING "HOW DO I ..." CARD (Exact USA.gov pattern)
+       ============================================================= -->
+  <div class="how-do-i-section">
+    <div class="how-do-i-wrap">
+      <div class="how-do-i-card">
+        <div class="how-do-i-header">
+          <h3>How do I ...</h3>
+        </div>
+        <div class="how-do-i-grid">
+          <div class="how-item" onclick="openVoterModal()" role="button" tabindex="0">
+            <div>
+              <div class="how-item-badge">★ Elections</div>
+              <div class="how-item-text">Check my voter registration for the 27th Congress</div>
+            </div>
+            <div class="how-item-arrow">Open tool &rarr;</div>
+          </div>
+
+          <div class="how-item" onclick="openPassportModal()" role="button" tabindex="0">
+            <div>
+              <div class="how-item-badge">★ Documents</div>
+              <div class="how-item-text">Get or renew an internal passport (Propiska)</div>
+            </div>
+            <div class="how-item-arrow">Generate passport &rarr;</div>
+          </div>
+
+          <div class="how-item" onclick="openHousingModal()" role="button" tabindex="0">
+            <div>
+              <div class="how-item-badge">★ Housing</div>
+              <div class="how-item-text">Request a municipal housing or flat allocation</div>
+            </div>
+            <div class="how-item-arrow">Check queue &rarr;</div>
+          </div>
+
+          <div class="how-item" onclick="openAppealsModal()" role="button" tabindex="0">
+            <div>
+              <div class="how-item-badge">★ Appeals</div>
+              <div class="how-item-text">File a petition or grievance with a Commissariat</div>
+            </div>
+            <div class="how-item-arrow">File appeal &rarr;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jump to all topics cue (matching arrow in screenshot) -->
+    <div class="jump-cue-container">
+      <a href="#services" class="jump-cue-text">Jump to all topics and services</a>
+      <br>
+      <a href="#services" class="jump-cue-btn" aria-label="Scroll to all services">&darr;</a>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       7. MAIN SERVICES & TOPICS SECTION
+       ============================================================= -->
+  <main id="services">
+    <div class="section-heading-row">
+      <div>
+        <h2 class="section-title" id="servicesHeaderTitle">All Topics and Services</h2>
+        <p style="color:var(--usagov-text-muted); font-size:0.95rem; margin-top:4px;">Browse state departments, public registries, decrees, and roleplay procedures.</p>
+      </div>
+      <div id="searchFilterBadge" class="search-filter-badge">
+        Filtering: <span id="filterLabelText">All</span>
+        <button type="button" onclick="resetFilter()" style="background:none; border:none; margin-left:6px; font-weight:bold; cursor:pointer;">✕</button>
+      </div>
+    </div>
+
+    <div class="services-grid" id="servicesGrid">
+
+      <!-- Card 1 -->
+      <div class="service-card" data-category="gov">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 01 · State</div>
+          <h3>Constitution &amp; Fundamental Law</h3>
+          <p>Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openConstitutionModal()">Read Constitution &rarr;</a>
+          <button class="service-action-btn" onclick="openConstitutionModal()">View Articles</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card" data-category="benefits">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 02 · Social</div>
+          <h3>State Benefits &amp; Sanatorium Vouchers</h3>
+          <p>Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openBenefitsModal()">View entitlements &rarr;</a>
+          <button class="service-action-btn" onclick="openBenefitsModal()">Calculator</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card" data-category="gov voting">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 03 · Congress</div>
+          <h3>Supreme Soviet of Workers' Deputies</h3>
+          <p>Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openDecreesModal()">Inspect Decrees &rarr;</a>
+          <button class="service-action-btn" onclick="openDecreesModal()">Roll Calls</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card" data-category="passports">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 04 · Bureau</div>
+          <h3>Internal Passports &amp; Propiska</h3>
+          <p>Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openPassportModal()">Generate passport &rarr;</a>
+          <button class="service-action-btn" onclick="openPassportModal()">Bureau Desk</button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card" data-category="economy">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 05 · Labor</div>
+          <h3>Labor Book &amp; Gosplan Economy</h3>
+          <p>Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openLaborModal()">View labor ranks &rarr;</a>
+          <button class="service-action-btn" onclick="openLaborModal()">Gosplan</button>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="service-card" data-category="travel">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 06 · Transit</div>
+          <h3>Travel Permits &amp; Republic Visas</h3>
+          <p>Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openTravelModal()">Apply for permit &rarr;</a>
+          <button class="service-action-btn" onclick="openTravelModal()">Transit Desk</button>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="service-card" data-category="benefits">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 07 · Housing</div>
+          <h3>Communal Housing &amp; Urban Allocations</h3>
+          <p>Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openHousingModal()">Housing queue &rarr;</a>
+          <button class="service-action-btn" onclick="openHousingModal()">Inquire</button>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="service-card" data-category="gov">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 08 · Petitions</div>
+          <h3>Praesidium Citizen Appeals Bureau</h3>
+          <p>Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openAppealsModal()">Submit petition &rarr;</a>
+          <button class="service-action-btn" onclick="openAppealsModal()">File Grievance</button>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="service-card" data-category="voting">
+        <div class="service-card-top">
+          <div class="service-card-num">Topic 09 · Elections</div>
+          <h3>Central Electoral Commission</h3>
+          <p>Candidate verification, electoral precincts, secret ballot procedures, and voter turnouts across RSFSR, Ukrainian SSR, and all republics.</p>
+        </div>
+        <div class="service-card-footer">
+          <a href="#services" class="service-card-link" onclick="openVoterModal()">Check registration &rarr;</a>
+          <button class="service-action-btn" onclick="openVoterModal()">Voter Roll</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- =============================================================
+       8. MULTI-SITE ECOSYSTEM & BULLETIN SECTION
+       ============================================================= -->
+  <section class="portal-ecosystem-section" id="network">
+    <div class="ecosystem-inner">
+      <div class="bulletin-box">
+        <h3>Official Praesidium Bulletin</h3>
+        
+        <div class="bulletin-item">
+          <div class="bulletin-tag">★ Supreme Soviet Notice</div>
+          <h4>Convening of the 27th Congress of Deputies</h4>
+          <p>All registered citizen deputies must confirm presence in the <strong>#congress-floor</strong> channel for debate on the new Five-Year Industrial Quota decree.</p>
+        </div>
+
+        <div class="bulletin-item">
+          <div class="bulletin-tag">★ Commissariat of Housing</div>
+          <h4>Spring Housing Allocation Cycle Active</h4>
+          <p>Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.</p>
+        </div>
+
+        <div class="bulletin-item">
+          <div class="bulletin-tag">★ Roleplay Notice</div>
+          <h4>Notice of Server Realism &amp; Fair Participation</h4>
+          <p>Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.</p>
+        </div>
+      </div>
+
+      <!-- Multi-site roadmap block for user expansion plan -->
+      <div class="roadmap-box">
+        <h3>Union Network Sites</h3>
+        <p>This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:</p>
+
+        <ul class="roadmap-list">
+          <li>
+            <span><strong>Civic Portal</strong> (General Services)</span>
+            <span class="status-pill status-live">Live</span>
+          </li>
+          <li>
+            <span><strong>Ministry of Defense</strong> (Interactive Drill)</span>
+            <span class="status-pill status-wip">In Progress</span>
+          </li>
+          <li>
+            <span><strong>State Archive &amp; Constitution</strong></span>
+            <span class="status-pill status-plan">Planned</span>
+          </li>
+          <li>
+            <span><strong>Supreme Soviet Voting Ledger</strong></span>
+            <span class="status-pill status-plan">Planned</span>
+          </li>
+          <li>
+            <span><strong>Gosplan Economic Dashboard</strong></span>
+            <span class="status-pill status-plan">Planned</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       9. MODALS: INTERACTIVE CITIZEN DESKS
+       ============================================================= -->
+
+  <!-- Modal 1: Internal Passport (Propiska) Bureau -->
+  <div class="modal-overlay" id="passportModal" onclick="handleOverlayClick(event, 'passportModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('passportModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title">Internal Passport Bureau (Паспортный Стол)</h3>
+      <div class="modal-subtitle">Generate and verify your official citizen identification for Discord roleplay.</div>
+
+      <div class="form-group">
+        <label class="form-label" for="passDiscordName">Discord Username / Tag</label>
+        <input type="text" id="passDiscordName" class="form-input" placeholder="e.g. ComradeAlex#1917" value="Comrade_Citizen">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="passFullName">Character Full Name (Cyrillic or Latin)</label>
+        <input type="text" id="passFullName" class="form-input" placeholder="e.g. Alexei Ivanovich Smirnov" value="Alexei I. Smirnov">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="passRepublic">Constituent Republic</label>
+        <select id="passRepublic" class="form-select">
+          <option value="Russian SFSR">Russian SFSR (РСФСР)</option>
+          <option value="Ukrainian SSR">Ukrainian SSR (УССР)</option>
+          <option value="Byelorussian SSR">Byelorussian SSR (БССР)</option>
+          <option value="Kazakh SSR">Kazakh SSR (Казахская ССР)</option>
+          <option value="Georgian SSR">Georgian SSR (Грузинская ССР)</option>
+          <option value="Azerbaijan SSR">Azerbaijan SSR (Азербайджанская ССР)</option>
+          <option value="Lithuanian SSR">Lithuanian SSR (Литовская ССР)</option>
+          <option value="Moldavian SSR">Moldavian SSR (Молдавская ССР)</option>
+          <option value="Latvian SSR">Latvian SSR (Латвийская ССР)</option>
+          <option value="Kirghiz SSR">Kirghiz SSR (Киргизская ССР)</option>
+          <option value="Tajik SSR">Tajik SSR (Таджикская ССР)</option>
+          <option value="Armenian SSR">Armenian SSR (Армянская ССР)</option>
+          <option value="Turkmen SSR">Turkmen SSR (Туркменская ССР)</option>
+          <option value="Estonian SSR">Estonian SSR (Эстонская ССР)</option>
+          <option value="Uzbek SSR">Uzbek SSR (Узбекская ССР)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="passOccupation">Social Category / Discord Role</label>
+        <select id="passOccupation" class="form-select">
+          <option value="Industrial Worker (Stakhanovite)">Industrial Worker (Stakhanovite)</option>
+          <option value="Collective Farmer (Kolkhoznik)">Collective Farmer (Kolkhoznik)</option>
+          <option value="Scientific Worker / Academician">Scientific Worker / Academician</option>
+          <option value="Deputy to the Supreme Soviet">Deputy to the Supreme Soviet</option>
+          <option value="Red Army Service Personnel">Red Army Service Personnel</option>
+          <option value="State Railway Employee">State Railway Employee</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn-submit" onclick="generatePassport()">Generate Internal Passport</button>
+
+      <div class="passport-card" id="passportCardPreview">
+        <div class="passport-header">
+          <div>
+            <div class="passport-title-ru">ПАСПОРТ ГРАЖДАНИНА СССР</div>
+            <div style="font-size:0.75rem; color:#5b2828;">UNION OF SOVIET SOCIALIST REPUBLICS</div>
+          </div>
+          <div class="passport-stamp">ОВИР · МВД<br>ПРОПИСКА</div>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Full Name:</span>
+          <span class="passport-val" id="previewName">Alexei I. Smirnov</span>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Discord Identity:</span>
+          <span class="passport-val" id="previewDiscord">Comrade_Citizen</span>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Republic:</span>
+          <span class="passport-val" id="previewRepublic">Russian SFSR (РСФСР)</span>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Social Class:</span>
+          <span class="passport-val" id="previewClass">Industrial Worker (Stakhanovite)</span>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Series / Number:</span>
+          <span class="passport-val" id="previewSerial">XX-МЮ № 849201</span>
+        </div>
+        <div class="passport-row">
+          <span class="passport-label">Registration:</span>
+          <span class="passport-val">VALID · Registered in #citizen-records</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn-submit" style="background:var(--soviet-red);" onclick="copyPassportDetails()">
+        📋 Copy Passport Bio to Clipboard for Discord
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal 2: Voter Registration Checker -->
+  <div class="modal-overlay" id="voterModal" onclick="handleOverlayClick(event, 'voterModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('voterModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title">Central Electoral Commission</h3>
+      <div class="modal-subtitle">Verify your voter roll eligibility for the Supreme Soviet of Workers' Deputies.</div>
+
+      <div class="form-group">
+        <label class="form-label" for="voterSearchInput">Enter your Discord username</label>
+        <input type="text" id="voterSearchInput" class="form-input" placeholder="e.g. ComradeAlex">
+      </div>
+      <button type="button" class="btn-submit" onclick="checkVoterStatus()">Verify Voter Roll</button>
+
+      <div id="voterResultBox" style="margin-top:20px; padding:18px; border-radius:4px; background:#eef6fc; border-left:4px solid var(--usagov-blue); display:none;">
+        <h4 style="color:var(--usagov-navy); margin-bottom:6px;" id="voterResultTitle">Eligible Voter Status: Active</h4>
+        <p style="font-size:0.9rem; color:var(--usagov-text); margin-bottom:10px;" id="voterResultText"></p>
+        <div style="font-size:0.85rem; color:#444; background:#fff; padding:10px; border-radius:3px;">
+          <strong>Next Step:</strong> Head to <strong>#electoral-commission</strong> on Discord when polls open to cast your secret ballot for your constituency candidate.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Housing Allocation Registry -->
+  <div class="modal-overlay" id="housingModal" onclick="handleOverlayClick(event, 'housingModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('housingModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title">Commissariat for Municipal Housing</h3>
+      <div class="modal-subtitle">Regulations, communal apartment square-meter allowances, and waiting list tier lookup.</div>
+
+      <div style="background:#fff7e6; border:1px solid #ffd591; padding:14px; border-radius:4px; margin-bottom:18px; font-size:0.9rem;">
+        <strong>Official Housing Norm:</strong> Standard allocation is 9 m² living space per family member. Priority is awarded to Stakhanovite workers, Supreme Soviet deputies, and large families.
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="housingActivity">Current Server Activity Level</label>
+        <select id="housingActivity" class="form-select">
+          <option value="Tier 1 (Priority)">Active Daily (Stakhanovite Contributor)</option>
+          <option value="Tier 2 (Standard)">Active Weekly (Standard Resident)</option>
+          <option value="Tier 3 (New Arrival)">New Server Member (Probationary Citizen)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Requested Domicile</label>
+        <select class="form-select">
+          <option>Moscow Proletarsky District (Communal 2-Room)</option>
+          <option>Leningrad Vyborg Side (Separate Studio)</option>
+          <option>Kyiv Pechersk District (State Apartment)</option>
+          <option>Minsk Central Prospect (Worker Housing)</option>
+          <option>Novosibirsk Akademgorodok (Research Flat)</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn-submit" onclick="calculateHousing()">Check Allocation Status</button>
+
+      <div id="housingResultBox" style="display:none; margin-top:16px; padding:16px; background:#f0f9eb; border-left:4px solid #52c41a; font-size:0.9rem;">
+        <strong id="housingResultTitle">Application Feasible:</strong>
+        <p id="housingResultMsg" style="margin-top:4px;"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Praesidium Citizen Appeals -->
+  <div class="modal-overlay" id="appealsModal" onclick="handleOverlayClick(event, 'appealsModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('appealsModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title">Praesidium Citizen Appeals Bureau</h3>
+      <div class="modal-subtitle">Submit an official petition or grievance to be reviewed by the Council of Ministers.</div>
+
+      <div class="form-group">
+        <label class="form-label" for="appealTarget">Addressing Commissariat</label>
+        <select id="appealTarget" class="form-select">
+          <option>Commissariat of Internal Affairs (MVD)</option>
+          <option>Commissariat of Justice &amp; Courts</option>
+          <option>Commissariat of Heavy Industry</option>
+          <option>Commissariat of Healthcare &amp; Sanatoriums</option>
+          <option>Praesidium of the Supreme Soviet (Direct)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="appealSubject">Subject of Petition</label>
+        <input type="text" id="appealSubject" class="form-input" placeholder="e.g. Domicile registration request in Leningrad">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="appealText">Citizen Statement / Grievance Details</label>
+        <textarea id="appealText" class="form-textarea" rows="4" placeholder="Describe the situation, citing relevant decrees or server roles..."></textarea>
+      </div>
+
+      <button type="button" class="btn-submit" onclick="submitAppeal()">Generate Discord Appeal Format</button>
+
+      <div id="appealResultBox" style="display:none; margin-top:16px; padding:16px; background:#e6f7ff; border:1px solid #91d5ff; border-radius:4px;">
+        <strong>Official Discord Dispatch Ready:</strong>
+        <textarea id="appealFormattedOutput" class="form-textarea" rows="4" style="margin-top:8px; font-family:monospace; font-size:0.85rem;" readonly></textarea>
+        <button type="button" class="btn-submit" style="margin-top:8px;" onclick="copyAppeal()">Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Discord Server & Community Info -->
+  <div class="modal-overlay" id="discordModal" onclick="handleOverlayClick(event, 'discordModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('discordModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title">USSR Discord Mock Government</h3>
+      <div class="modal-subtitle">Join the premier political roleplay simulation on Discord.</div>
+
+      <div style="font-size:0.95rem; line-height:1.6; color:#333;">
+        <p style="margin-bottom:12px;">Our community simulates the governance, elections, economic planning, and everyday civic life of the Union. Features include:</p>
+        <ul style="margin-left:20px; margin-bottom:18px;">
+          <li><strong>Democratic Centralism &amp; Elections</strong>: Run for deputy seats representing your constituent republic.</li>
+          <li><strong>Interactive Economy</strong>: Trade union tasks, Gosplan production quotas, and Stakhanovite recognition.</li>
+          <li><strong>Internal Passport Bureau</strong>: Register your citizen roleplay persona and obtain verified identity cards.</li>
+          <li><strong>Strict Rules of Fair Roleplay</strong>: A safe, creative hobby space dedicated to political roleplay.</li>
+        </ul>
+        <div style="background:#fff1f0; border:1px solid #ffa39e; padding:12px; border-radius:4px; margin-bottom:16px; font-size:0.85rem;">
+          <strong>Important Roleplay Disclaimer:</strong> This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.
+        </div>
+        <button type="button" class="btn-submit" style="background:var(--soviet-red);" onclick="copyDiscordLink()">
+          📋 Copy Discord Invite Link (#citizen-intake)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Decrees & Constitution Quick Viewer -->
+  <div class="modal-overlay" id="docModal" onclick="handleOverlayClick(event, 'docModal')">
+    <div class="modal-box">
+      <button type="button" class="modal-close-btn" onclick="closeModal('docModal')" aria-label="Close">✕</button>
+      <h3 class="modal-title" id="docModalTitle">Supreme Soviet Document</h3>
+      <div class="modal-subtitle" id="docModalSub">Official Mock Government Legislative Record</div>
+      <div id="docModalBody" style="font-size:0.92rem; line-height:1.65; max-height:55vh; overflow-y:auto; padding-right:8px;"></div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       10. USA.GOV STYLE FOOTER
+       ============================================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <div class="brand-logo-circle" style="width:44px; height:44px;">
+            <span class="star" style="font-size:10px;">★</span>
+            <span class="abbr" style="font-size:0.85rem;">СССР</span>
+          </div>
+          <div>
+            <h4 style="margin:0; font-size:1rem;">Union Civic Portal</h4>
+            <div style="font-size:0.75rem; color:#9ab0c7;">USSR Mock Government</div>
+          </div>
+        </div>
+        <p style="font-size:0.86rem; line-height:1.6; color:#a6b9cc;">
+          An official public information and civic services hub serving citizens of the USSR Discord roleplay simulation.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Public Services</h4>
+        <ul>
+          <li><a href="#services" onclick="openPassportModal()">Internal Passports</a></li>
+          <li><a href="#services" onclick="openHousingModal()">Communal Housing</a></li>
+          <li><a href="#services" onclick="openBenefitsModal()">Sanatorium Vouchers</a></li>
+          <li><a href="#services" onclick="openTravelModal()">Republic Travel Passes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The Soviet State</h4>
+        <ul>
+          <li><a href="#services" onclick="openConstitutionModal()">1936/1977 Constitution</a></li>
+          <li><a href="#services" onclick="openDecreesModal()">Supreme Soviet Decrees</a></li>
+          <li><a href="#services" onclick="openVoterModal()">Electoral Commission</a></li>
+          <li><a href="#services" onclick="openLaborModal()">Gosplan Economic Targets</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Discord Government</h4>
+        <ul>
+          <li><a href="#network" onclick="openDiscordInfoModal()">Discord Server Directory</a></li>
+          <li><a href="#services" onclick="openAppealsModal()">#citizen-appeals</a></li>
+          <li><a href="#network" onclick="openDiscordInfoModal()">Rules of Roleplay</a></li>
+          <li><a href="#services" onclick="toggleLanguage()">Язык / Language</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-disclaimer-wrap">
+      <div class="footer-disclaimer-inner">
+        <span class="disclaimer-badge">MOCK GOVERNMENT DISCLAIMER</span>
+        <div class="disclaimer-text">
+          <strong>Strictly a Fictional Roleplay Project:</strong> This website is an amateur, fan-made interactive prop built for a Discord "mock government" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Element -->
+  <div id="toast" class="toast">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">Notification</span>
+  </div>
+
+  <!-- =============================================================
+       11. EMBEDDED LOGIC (VANILLA JS - NO EXTERNAL LIBS)
+       ============================================================= -->
+  <script>
+    // Collapsible "Here's how you know"
+    const howBtn = document.getElementById('howYouKnowBtn');
+    const howPanel = document.getElementById('howYouKnowPanel');
+    if (howBtn && howPanel) {
+      howBtn.addEventListener('click', () => {
+        const isOpen = howPanel.classList.toggle('open');
+        howBtn.setAttribute('aria-expanded', isOpen);
+      });
+    }
+
+    // Language state
+    let isRussian = false;
+    function toggleLanguage() {
+      isRussian = !isRussian;
+      const langBtn = document.getElementById('langToggleBtn');
+      if (langBtn) {
+        langBtn.textContent = isRussian ? 'English / Русский' : 'Русский / English';
+      }
+      showToast(isRussian ? 'Язык переключен на русский (интерфейс СССР)' : 'Language switched to English (Civic Portal)');
+    }
+
+    // Modal helpers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    function handleOverlayClick(event, id) {
+      if (event.target.id === id) {
+        closeModal(id);
+      }
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Specific modal openers
+    function openPassportModal() { openModal('passportModal'); }
+    function openVoterModal() { openModal('voterModal'); }
+    function openHousingModal() { openModal('housingModal'); }
+    function openAppealsModal() { openModal('appealsModal'); }
+    function openDiscordInfoModal() { openModal('discordModal'); }
+
+    // Toast message
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      if (toast && toastMsg) {
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => { toast.classList.remove('show'); }, 3200);
+      }
+    }
+
+    // Passport generation
+    function generatePassport() {
+      const discord = document.getElementById('passDiscordName').value || 'Comrade_Citizen';
+      const name = document.getElementById('passFullName').value || 'Citizen of the Union';
+      const republic = document.getElementById('passRepublic').value;
+      const occ = document.getElementById('passOccupation').value;
+
+      document.getElementById('previewDiscord').textContent = discord;
+      document.getElementById('previewName').textContent = name;
+      document.getElementById('previewRepublic').textContent = republic;
+      document.getElementById('previewClass').textContent = occ;
+
+      const randomNum = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('previewSerial').textContent = `XX-МЮ № ${randomNum}`;
+      showToast('Internal Passport successfully generated!');
+    }
+
+    function copyPassportDetails() {
+      const discord = document.getElementById('previewDiscord').textContent;
+      const name = document.getElementById('previewName').textContent;
+      const republic = document.getElementById('previewRepublic').textContent;
+      const occ = document.getElementById('previewClass').textContent;
+      const serial = document.getElementById('previewSerial').textContent;
+
+      const text = `**USSR INTERNAL PASSPORT (MOCK GOV)**\n• **Name:** ${name}\n• **Discord:** ${discord}\n• **Republic:** ${republic}\n• **Class/Role:** ${occ}\n• **Serial:** ${serial}\n• **Status:** Verified Citizen (#citizen-records)`;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Passport details copied! Paste into Discord bio or #citizen-records.');
+      }).catch(() => {
+        showToast('Passport details generated!');
+      });
+    }
+
+    // Voter Checker
+    function checkVoterStatus() {
+      const input = document.getElementById('voterSearchInput').value.trim();
+      const resBox = document.getElementById('voterResultBox');
+      const resTitle = document.getElementById('voterResultTitle');
+      const resText = document.getElementById('voterResultText');
+
+      if (!input) {
+        alert('Please enter your Discord username.');
+        return;
+      }
+
+      resBox.style.display = 'block';
+      resTitle.textContent = `Voter Record: ${input} (ELIGIBLE)`;
+      resText.innerHTML = `Citizen <strong>${input}</strong> is registered on the electoral roll for <strong>Precinct № 42 (Workers' Soviet)</strong>. You hold full active suffrage to vote for republic deputies and propose agenda items for the 27th Congress.`;
+      showToast('Voter roll verified.');
+    }
+
+    // Housing calculation
+    function calculateHousing() {
+      const activity = document.getElementById('housingActivity').value;
+      const box = document.getElementById('housingResultBox');
+      const title = document.getElementById('housingResultTitle');
+      const msg = document.getElementById('housingResultMsg');
+
+      box.style.display = 'block';
+      if (activity.includes('Priority')) {
+        title.textContent = 'Status: Expedited State Allocation Granted';
+        msg.textContent = 'Due to verified Stakhanovite activity in Discord, your household is queued in the 1st Priority echelon for a modern multi-room flat.';
+      } else if (activity.includes('Standard')) {
+        title.textContent = 'Status: Active on Municipal Waiting Roll';
+        msg.textContent = 'Estimated allocation timeframe: Next Congressional cycle. Eligible for communal flat with standard 9 m² per person allotment.';
+      } else {
+        title.textContent = 'Status: Temporary Worker Dormitory Assigned';
+        msg.textContent = 'New arrivals are assigned to the district municipal hostel until full citizen tenure (2 weeks active server roleplay) is completed.';
+      }
+      showToast('Housing allocation evaluated.');
+    }
+
+    // Appeals form
+    function submitAppeal() {
+      const target = document.getElementById('appealTarget').value;
+      const subject = document.getElementById('appealSubject').value.trim();
+      const text = document.getElementById('appealText').value.trim();
+
+      if (!subject || !text) {
+        alert('Please provide both a subject and grievance statement.');
+        return;
+      }
+
+      const formatted = `[CITIZEN GRIEVANCE - PRAESIDIUM DESK]\nTO: ${target}\nSUBJECT: ${subject}\nSTATEMENT: ${text}\nDISPATCH: Formatted via Union Civic Portal for #citizen-appeals`;
+      document.getElementById('appealFormattedOutput').value = formatted;
+      document.getElementById('appealResultBox').style.display = 'block';
+      showToast('Appeal dispatch generated. Click Copy to Discord.');
+    }
+
+    function copyAppeal() {
+      const formatted = document.getElementById('appealFormattedOutput').value;
+      navigator.clipboard.writeText(formatted).then(() => {
+        showToast('Copied to clipboard! Paste into Discord #citizen-appeals.');
+      });
+    }
+
+    function copyDiscordLink() {
+      navigator.clipboard.writeText('Discord Mock Government Server - Check Server Invite in Announcement').then(() => {
+        showToast('Discord community details copied to clipboard!');
+      });
+    }
+
+    // Constitution viewer
+    function openConstitutionModal() {
+      document.getElementById('docModalTitle').textContent = 'Constitution of the Union (Fundamental Law)';
+      document.getElementById('docModalSub').textContent = 'Articles on Rights, Obligations, and Republic Sovereignty';
+      document.getElementById('docModalBody').innerHTML = `
+        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 118: Right to Work</h4>
+        <p style="margin-bottom:14px;">Citizens of the Union have the right to work, that is, the right to guaranteed employment and payment for their work in accordance with its quantity and quality. In our Discord server, every citizen has access to trade union roles and production assignments.</p>
+
+        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 119: Right to Rest and Leisure</h4>
+        <p style="margin-bottom:14px;">The right to rest is ensured by the establishment of strict roleplay schedules, weekend cultural events, and sanatorium leisure passes in #cultural-club.</p>
+
+        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 120: Right to Maintenance in Old Age and Sickness</h4>
+        <p style="margin-bottom:14px;">Citizens have the right to maintenance in sickness or loss of capacity to work, provided through free medical services and state dispensary assistance.</p>
+
+        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 134: Universal &amp; Equal Suffrage</h4>
+        <p>Deputies to all Soviets of Workers' Deputies are elected by the citizens on the basis of universal, equal and direct suffrage by secret ballot in the #electoral-commission channel.</p>
+      `;
+      openModal('docModal');
+    }
+
+    function openDecreesModal() {
+      document.getElementById('docModalTitle').textContent = 'Praesidium &amp; Supreme Soviet Decrees';
+      document.getElementById('docModalSub').textContent = 'Active Legislative Decrees in the Mock Government';
+      document.getElementById('docModalBody').innerHTML = `
+        <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+          <strong style="color:var(--soviet-red);">DECREE № 104 / 2026:</strong> <em>On the Reorganization of Municipal Housing Queues</em>
+          <p style="margin-top:6px; font-size:0.88rem;">All citizens holding internal passports are granted priority access to municipal flat allocations. Applications are received directly by the Commissariat for Housing.</p>
+        </div>
+        <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+          <strong style="color:var(--soviet-red);">DECREE № 105 / 2026:</strong> <em>On Universal Participation in the 27th Supreme Soviet</em>
+          <p style="margin-top:6px; font-size:0.88rem;">Electoral commissions are instructed to maintain open candidate registries across all 15 Union Republics without discrimination.</p>
+        </div>
+        <div>
+          <strong style="color:var(--soviet-red);">DECREE № 106 / 2026:</strong> <em>On Stakhanovite Production and Server Activity</em>
+          <p style="margin-top:6px; font-size:0.88rem;">Citizens contributing exceptional organizational, creative, or legislative work are awarded the Order of the Red Banner of Labor role.</p>
+        </div>
+      `;
+      openModal('docModal');
+    }
+
+    function openBenefitsModal() {
+      document.getElementById('docModalTitle').textContent = 'Citizen Entitlements &amp; Sanatorium Bureau';
+      document.getElementById('docModalSub').textContent = 'State Social Security &amp; Welfare';
+      document.getElementById('docModalBody').innerHTML = `
+        <p style="margin-bottom:12px;">Every registered citizen in our mock government has access to state welfare channels:</p>
+        <ul style="margin-left:20px; line-height:1.7;">
+          <li><strong>Sanatorium &amp; Resort Passes</strong>: Vouchers for Black Sea and Crimean resort club lounges in Discord.</li>
+          <li><strong>Dispensary Healthcare</strong>: Free mock clinic checkups and rest permits in #clinic-hospital.</li>
+          <li><strong>Maternity &amp; Family Allowances</strong>: Child stipends and family apartment expansions.</li>
+          <li><strong>Veteran Pensions</strong>: Honorific ranks for long-term server participants.</li>
+        </ul>
+      `;
+      openModal('docModal');
+    }
+
+    function openLaborModal() {
+      document.getElementById('docModalTitle').textContent = 'Gosplan &amp; Labor Bureau (ВЦСПС)';
+      document.getElementById('docModalSub').textContent = 'Employment, Production Quotas, and Trade Unions';
+      document.getElementById('docModalBody').innerHTML = `
+        <p style="margin-bottom:12px;">The Five-Year Plan coordinates our community's creative output and server activities:</p>
+        <ul style="margin-left:20px; line-height:1.7;">
+          <li><strong>Trudovaya Knizhka (Labor Book)</strong>: Your recorded career history from apprentice to Commissariat Deputy.</li>
+          <li><strong>Production Quotas</strong>: Weekly community events, trivia challenges, and debate sessions.</li>
+          <li><strong>Stakhanovite Movement</strong>: Earn honorary roles by surpassing community participation targets.</li>
+        </ul>
+      `;
+      openModal('docModal');
+    }
+
+    function openTravelModal() {
+      document.getElementById('docModalTitle').textContent = 'Inter-Republic Travel Permit Bureau (ОВИР)';
+      document.getElementById('docModalSub').textContent = 'Transit Across the 15 Soviet Republics';
+      document.getElementById('docModalBody').innerHTML = `
+        <p style="margin-bottom:12px;">Citizens traveling between constituent republics (e.g. Russian SFSR to Kazakh SSR or Georgian SSR) may obtain official transit passes for inter-regional roleplay channels.</p>
+        <p>Visit <strong>#passport-desk</strong> on Discord with your internal passport serial number to receive express transit authorization.</p>
+      `;
+      openModal('docModal');
+    }
+
+    // Filter services
+    function filterServices(category) {
+      const cards = document.querySelectorAll('.service-card');
+      const badge = document.getElementById('searchFilterBadge');
+      const label = document.getElementById('filterLabelText');
+      const title = document.getElementById('servicesHeaderTitle');
+
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      const activeNav = Array.from(document.querySelectorAll('.nav-link')).find(l => l.textContent.toLowerCase().includes(category));
+      if (activeNav) activeNav.classList.add('active');
+
+      if (category === 'all') {
+        cards.forEach(c => c.style.display = 'flex');
+        badge.classList.remove('active');
+        title.textContent = 'All Topics and Services';
+        return;
+      }
+
+      badge.classList.add('active');
+      label.textContent = category.toUpperCase();
+      title.textContent = `Topics & Services: ${category.toUpperCase()}`;
+
+      cards.forEach(card => {
+        const cats = card.getAttribute('data-category') || '';
+        if (cats.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function resetFilter() {
+      filterServices('all');
+    }
+
+    // Live search
+    function handleSearch(e) {
+      if (e) e.preventDefault();
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.service-card');
+      const badge = document.getElementById('searchFilterBadge');
+      const label = document.getElementById('filterLabelText');
+
+      if (!q) {
+        resetFilter();
+        return;
+      }
+
+      badge.classList.add('active');
+      label.textContent = `Search: "${q}"`;
+
+      let matchCount = 0;
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(q)) {
+          card.style.display = 'flex';
+          matchCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+      showToast(`Found ${matchCount} services matching "${q}"`);
+    }
+
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        if (e.target.value.trim().length === 0) {
+          resetFilter();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

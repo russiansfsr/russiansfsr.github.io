@@ -1,0 +1,6 @@
+{
+  "name": "Portal of the Union",
+  "description": "Civic portal for the Union mock government roleplay project featuring public services, congress updates, and documents.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
