@@ -126,48 +126,57 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     .how-you-know-grid { grid-template-columns: 1fr; }
   }
   .know-item { display: flex; gap: 12px; }
   .know-icon { font-size: 1.3rem; flex-shrink: 0; }
   .know-item strong { display: block; color: var(--usagov-navy); margin-bottom: 2px; }
-
-  /* -------------------------------------------------------------
-     2. ANNOUNCEMENT STRIP (Exact USA.gov cyan banner)
-     ------------------------------------------------------------- */
-  .announce-bar {
-    background-color: #d9e8f6;
-    border-bottom: 1px solid #b2d4ee;
-    padding: 10px 16px;
-    font-size: 0.95rem;
-    color: #1a395c;
-  }
-  .announce-inner {
-    max-width: 1200px;
-    margin: 0 auto;
+  .know-discord-box {
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #ffffff;
+    border: 1px solid #c5d8ea;
+    border-radius: 4px;
+    padding: 8px 12px;
   }
-  .announce-inner a {
-    color: #005ea2;
-    font-weight: 600;
-  }
-  .announce-badge {
-    background: var(--soviet-red);
-    color: #fff;
-    font-size: 0.72rem;
+  .know-discord-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #5865F2;
+    color: #ffffff !important;
+    text-decoration: none;
     font-weight: 700;
-    text-transform: uppercase;
-    padding: 2px 8px;
+    font-size: 0.82rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .know-discord-link:hover {
+    background: #4752c4;
+    color: #ffffff !important;
+  }
+  .know-discord-copy {
+    background: #edf3f8;
+    color: var(--usagov-navy);
+    border: 1px solid var(--usagov-blue);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 10px;
     border-radius: 3px;
-    letter-spacing: 0.05em;
-    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .know-discord-copy:hover {
+    background: var(--usagov-blue);
+    color: #fff;
   }
 
   /* -------------------------------------------------------------
-     3. MAIN HEADER & SEARCH
+     2. MAIN HEADER & SEARCH
      ------------------------------------------------------------- */
   .site-header {
     background: #ffffff;
@@ -190,9 +199,9 @@
     color: inherit;
   }
   .brand-logo-circle {
-    width: 64px;
-    height: 64px;
-    background: var(--usagov-navy);
+    width: 62px;
+    height: 62px;
+    background: #871017;
     border-radius: 50%;
     display: flex;
     flex-direction: column;
@@ -201,30 +210,26 @@
     color: #ffffff;
     font-family: 'Oswald', sans-serif;
     position: relative;
-    box-shadow: 0 2px 6px rgba(17, 46, 81, 0.25);
+    box-shadow: 0 2px 8px rgba(17, 46, 81, 0.25);
     border: 2px solid var(--soviet-gold);
     flex-shrink: 0;
+    padding: 3px;
+    overflow: hidden;
   }
-  .brand-logo-circle .star {
-    color: var(--soviet-gold);
-    font-size: 14px;
-    line-height: 1;
-    margin-bottom: -2px;
+  .brand-emblem-svg {
+    width: 36px;
+    height: 36px;
+    display: block;
+    margin-top: 2px;
   }
   .brand-logo-circle .abbr {
-    font-size: 1.15rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    color: #ffffff;
+    letter-spacing: 0.1em;
+    color: var(--soviet-gold);
     line-height: 1;
-  }
-  .brand-logo-circle .sub {
-    font-size: 0.55rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--usagov-cyan);
-    line-height: 1;
-    margin-top: 2px;
+    margin-top: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   }
   .brand-text h1 {
     font-family: 'Public Sans', sans-serif;
@@ -303,7 +308,7 @@
   .search-btn:hover { background: var(--usagov-cyan-dark); }
 
   /* -------------------------------------------------------------
-     4. PRIMARY NAVIGATION BAR
+     3. PRIMARY NAVIGATION BAR
      ------------------------------------------------------------- */
   .primary-nav {
     background: #ffffff;
@@ -318,28 +323,44 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 8px;
+    gap: 2px;
   }
-  .nav-inner::-webkit-scrollbar { display: none; }
   .nav-link {
     color: var(--usagov-navy);
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-decoration: none;
-    padding: 12px 14px;
+    padding: 11px 12px;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
     transition: all 0.15s;
+    border-radius: 2px 2px 0 0;
+    display: inline-flex;
+    align-items: center;
   }
   .nav-link:hover, .nav-link.active {
     color: var(--usagov-blue);
     border-bottom-color: var(--usagov-blue);
     background: rgba(0, 94, 162, 0.04);
   }
+  @media (max-width: 860px) {
+    .nav-inner {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      scrollbar-width: thin;
+      padding: 0 4px;
+    }
+    .nav-link {
+      padding: 10px 10px;
+      font-size: 0.84rem;
+    }
+  }
 
   /* -------------------------------------------------------------
-     5. HERO SECTION (Woven Soviet Flag + USA.gov Cyan Split)
+     4. HERO SECTION (Woven Soviet Flag + USA.gov Cyan Split)
      ------------------------------------------------------------- */
   .hero-container {
     position: relative;
@@ -364,10 +385,11 @@
     left: 40px;
     top: 50%;
     transform: translateY(-50%);
-    width: 240px;
-    height: 240px;
-    opacity: 0.22;
+    width: 250px;
+    height: 250px;
+    opacity: 0.28;
     pointer-events: none;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
   }
   .hero-inner {
     max-width: 1200px;
@@ -1001,12 +1023,12 @@
     <div class="official-banner-inner">
       <div class="official-banner-left">
         <span class="flag-icon" aria-hidden="true"></span>
-        <span>An official website of the <strong>USSR Discord Mock Government</strong></span>
-        <span class="roleplay-tag">Roleplay Project</span>
+        <span data-i18n="banner_title">An official website of the <strong>USSR Discord Mock Government</strong></span>
+        <span class="roleplay-tag" data-i18n="banner_tag">Roleplay Project</span>
       </div>
       <div>
         <button type="button" class="how-you-know-btn" id="howYouKnowBtn" aria-expanded="false" aria-controls="howYouKnowPanel">
-          Here's how you know <span class="how-you-know-chevron" aria-hidden="true">▾</span>
+          <span data-i18n="banner_know_btn">Here's how you know</span> <span class="how-you-know-chevron" aria-hidden="true">▾</span>
         </button>
       </div>
     </div>
@@ -1017,57 +1039,66 @@
       <div class="know-item">
         <div class="know-icon">🎭</div>
         <div>
-          <strong>Fictional Roleplay Community</strong>
-          This website is an interactive prop crafted for a Discord mock government community. It does not represent any real-world government, political entity, or state. All offices, decrees, and passports are fictional.
+          <strong data-i18n="know_1_title">Fictional Roleplay Community</strong>
+          <span data-i18n="know_1_body">This website is an interactive prop crafted for a Discord mock government community. It does not represent any real-world government, political entity, or state. All offices, decrees, and passports are fictional.</span>
         </div>
       </div>
       <div class="know-item">
         <div class="know-icon">💬</div>
         <div>
-          <strong>Integrated Discord Government</strong>
-          Official citizen decrees, voting ballots, appeals to the Praesidium, and role advancements take place inside our verified Discord server channels.
+          <strong data-i18n="know_2_title">Official Discord Mock Government Server</strong>
+          <span data-i18n="know_2_body">Official citizen decrees, voting ballots, housing allocations, and ministerial appointments take place inside our verified Discord server community.</span>
+          <div class="know-discord-box">
+            <a href="https://discord.gg/XUcX9tgc5u" target="_blank" rel="noopener noreferrer" class="know-discord-link" id="knowDiscordLink">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+              <span>Join Discord: discord.gg/XUcX9tgc5u</span>
+            </a>
+            <button type="button" class="know-discord-copy" onclick="copyDiscordLinkDirect('https://discord.gg/XUcX9tgc5u')">
+              Copy Invite Link
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- =============================================================
-       2. ANNOUNCEMENT STRIP (Exact USA.gov cyan alert bar)
-       ============================================================= -->
-  <div class="announce-bar">
-    <div class="announce-inner">
-      <span class="announce-badge">Elections</span>
-      <span>
-        Elections for the <strong>27th Supreme Soviet of Workers' Deputies</strong> are now underway. 
-        <a href="#elections" onclick="openVoterModal()">Check your voter registration</a> or submit questions in <strong>#electoral-commission</strong>.
-      </span>
-    </div>
-  </div>
-
-  <!-- =============================================================
-       3. SITE HEADER (Emblem, Language, Helpline, Live Search)
+       2. SITE HEADER (Emblem, Language, Helpline, Live Search)
        ============================================================= -->
   <header class="site-header">
     <div class="header-inner">
       <a href="#" class="brand-group" aria-label="Union Civic Portal Home">
-        <div class="brand-logo-circle">
-          <span class="star">★</span>
+        <div class="brand-logo-circle" title="State Emblem of the USSR">
+          <svg viewBox="0 0 100 100" class="brand-emblem-svg" aria-hidden="true">
+            <!-- Five-pointed Gold Star -->
+            <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+            <!-- Hammer Handle -->
+            <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+            <!-- Hammer Head -->
+            <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+            <polygon points="77,39 80,36 84,40 81,43" fill="#e5ad1e" stroke="#d49b10" stroke-width="0.5" />
+            <polygon points="56,28 53,31 49,27 52,24" fill="#e5ad1e" stroke="#d49b10" stroke-width="0.5" />
+            <!-- Sickle Blade -->
+            <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+            <!-- Sickle Handle -->
+            <rect x="42.5" y="72" width="6" height="3" rx="0.5" fill="#d49b10" stroke="#b37e00" stroke-width="0.5" />
+            <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+          </svg>
           <span class="abbr">СССР</span>
-          <span class="sub">Portal</span>
         </div>
         <div class="brand-text">
-          <h1>Union Civic Portal</h1>
-          <div class="tagline">Official Public Services · Supreme Soviet Mock Government</div>
+          <h1 data-i18n="brand_title">Union Civic Portal</h1>
+          <div class="tagline" data-i18n="brand_tagline">Official Public Services · Supreme Soviet Mock Government</div>
         </div>
       </a>
 
       <div class="header-actions">
         <div class="header-top-row">
-          <span class="helpline-text">Citizen Praesidium Desk: <strong>#citizen-appeals</strong></span>
+          <span class="helpline-text"><span data-i18n="header_helpline">Citizen Praesidium Desk:</span> <strong>#citizen-appeals</strong></span>
           <button type="button" class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">Русский / English</button>
         </div>
         <form class="search-form" role="search" onsubmit="handleSearch(event)">
-          <input type="search" id="searchInput" class="search-input" placeholder="Search Soviet civic services, decrees, benefits..." aria-label="Search services">
+          <input type="search" id="searchInput" class="search-input" placeholder="Search Soviet civic services, decrees, benefits..." aria-label="Search services" data-i18n-placeholder="search_placeholder">
           <button type="submit" class="search-btn" aria-label="Submit search">🔍</button>
         </form>
       </div>
@@ -1075,37 +1106,44 @@
   </header>
 
   <!-- =============================================================
-       4. PRIMARY NAVIGATION
+       3. PRIMARY NAVIGATION
        ============================================================= -->
   <nav class="primary-nav" aria-label="Primary Navigation">
     <div class="nav-inner">
-      <a href="#services" class="nav-link active" onclick="filterServices('all')">All topics and services</a>
-      <a href="#services" class="nav-link" onclick="filterServices('gov')">The Union &amp; Supreme Soviet</a>
-      <a href="#services" class="nav-link" onclick="filterServices('benefits')">Citizen Benefits &amp; Housing</a>
-      <a href="#services" class="nav-link" onclick="filterServices('passports')">Internal Passports &amp; Propiska</a>
-      <a href="#services" class="nav-link" onclick="filterServices('economy')">Labor &amp; Five-Year Plan</a>
-      <a href="#services" class="nav-link" onclick="filterServices('travel')">Republics &amp; Travel Permits</a>
-      <a href="#services" class="nav-link" onclick="filterServices('voting')">Voting &amp; Elections</a>
-      <a href="#discord" class="nav-link" onclick="openDiscordInfoModal()">Discord Community</a>
+      <a href="#services" class="nav-link active" onclick="filterServices('all')" data-i18n="nav_all">All topics and services</a>
+      <a href="#services" class="nav-link" onclick="filterServices('gov')" data-i18n="nav_gov">The Union &amp; Supreme Soviet</a>
+      <a href="#services" class="nav-link" onclick="filterServices('benefits')" data-i18n="nav_benefits">Citizen Benefits &amp; Housing</a>
+      <a href="#services" class="nav-link" onclick="filterServices('passports')" data-i18n="nav_passports">Internal Passports &amp; Propiska</a>
+      <a href="#services" class="nav-link" onclick="filterServices('economy')" data-i18n="nav_economy">Labor &amp; Five-Year Plan</a>
+      <a href="#services" class="nav-link" onclick="filterServices('travel')" data-i18n="nav_travel">Republics &amp; Travel Permits</a>
+      <a href="#discord" class="nav-link" onclick="openDiscordInfoModal()" data-i18n="nav_discord">Discord Community</a>
     </div>
   </nav>
 
   <!-- =============================================================
-       5. HERO SECTION (Woven Flag / Cyan Split + Floating Dark Card)
+       4. HERO SECTION (Woven Flag / Cyan Split + Floating Dark Card)
        ============================================================= -->
   <div class="hero-container">
     <svg class="hero-flag-graphic" viewBox="0 0 100 100" fill="#ffc72c" aria-hidden="true">
-      <path d="M50 8 L55 22 L70 22 L58 31 L62 45 L50 36 L38 45 L42 31 L30 22 L45 22 Z" opacity="0.6"/>
-      <path d="M48 38 C32 40 22 54 26 70 C28 78 35 84 44 84 C56 84 66 74 68 62 L62 60 C60 70 52 78 42 78 C36 78 31 73 30 67 C27 55 35 44 48 44 Z"/>
-      <rect x="54" y="46" width="34" height="8" rx="2" transform="rotate(45 54 46)"/>
-      <rect x="68" y="58" width="8" height="24" rx="2" transform="rotate(45 68 58)"/>
+      <!-- Authentic Soviet Gold Star -->
+      <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" />
+      <!-- Hammer -->
+      <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" />
+      <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" />
+      <polygon points="77,39 80,36 84,40 81,43" />
+      <polygon points="56,28 53,31 49,27 52,24" />
+      <!-- Sickle Blade -->
+      <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" />
+      <!-- Sickle Handle -->
+      <rect x="42.5" y="72" width="6" height="3" rx="0.5" />
+      <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" />
     </svg>
 
     <div class="hero-inner">
       <div class="hero-card">
-        <h2>Serving the Union, serving the people</h2>
-        <p>The Union Civic Portal helps citizens locate state benefits, internal passports, communal housing allocations, and participate in Supreme Soviet congressional elections.</p>
-        <button type="button" class="hero-btn" onclick="openDiscordInfoModal()">
+        <h2 data-i18n="hero_title">Serving the Union, serving the people</h2>
+        <p data-i18n="hero_subtitle">The Union Civic Portal helps citizens locate state benefits, internal passports, communal housing allocations, and participate in Supreme Soviet mock government affairs.</p>
+        <button type="button" class="hero-btn" onclick="openDiscordInfoModal()" data-i18n="hero_cta">
           Enter Discord Mock Government &rarr;
         </button>
       </div>
@@ -1113,53 +1151,53 @@
   </div>
 
   <!-- =============================================================
-       6. OVERLAPPING "HOW DO I ..." CARD (Exact USA.gov pattern)
+       5. OVERLAPPING "HOW DO I ..." CARD (Exact USA.gov pattern)
        ============================================================= -->
   <div class="how-do-i-section">
     <div class="how-do-i-wrap">
       <div class="how-do-i-card">
         <div class="how-do-i-header">
-          <h3>How do I ...</h3>
+          <h3 data-i18n="how_do_i_heading">How do I ...</h3>
         </div>
         <div class="how-do-i-grid">
-          <div class="how-item" onclick="openVoterModal()" role="button" tabindex="0">
+          <div class="how-item" onclick="openDecreesModal()" role="button" tabindex="0">
             <div>
-              <div class="how-item-badge">★ Elections</div>
-              <div class="how-item-text">Check my voter registration for the 27th Congress</div>
+              <div class="how-item-badge" data-i18n="how_item_1_badge">★ Directives</div>
+              <div class="how-item-text" data-i18n="how_item_1_text">Read Supreme Soviet decrees &amp; legislative acts</div>
             </div>
-            <div class="how-item-arrow">Open tool &rarr;</div>
+            <div class="how-item-arrow" data-i18n="how_item_1_btn">Read decrees &rarr;</div>
           </div>
 
           <div class="how-item" onclick="openPassportModal()" role="button" tabindex="0">
             <div>
-              <div class="how-item-badge">★ Documents</div>
-              <div class="how-item-text">Get or renew an internal passport (Propiska)</div>
+              <div class="how-item-badge" data-i18n="how_item_2_badge">★ Documents</div>
+              <div class="how-item-text" data-i18n="how_item_2_text">Get or renew an internal passport (Propiska)</div>
             </div>
-            <div class="how-item-arrow">Generate passport &rarr;</div>
+            <div class="how-item-arrow" data-i18n="how_item_2_btn">Generate passport &rarr;</div>
           </div>
 
           <div class="how-item" onclick="openHousingModal()" role="button" tabindex="0">
             <div>
-              <div class="how-item-badge">★ Housing</div>
-              <div class="how-item-text">Request a municipal housing or flat allocation</div>
+              <div class="how-item-badge" data-i18n="how_item_3_badge">★ Housing</div>
+              <div class="how-item-text" data-i18n="how_item_3_text">Request a municipal housing or flat allocation</div>
             </div>
-            <div class="how-item-arrow">Check queue &rarr;</div>
+            <div class="how-item-arrow" data-i18n="how_item_3_btn">Check queue &rarr;</div>
           </div>
 
           <div class="how-item" onclick="openAppealsModal()" role="button" tabindex="0">
             <div>
-              <div class="how-item-badge">★ Appeals</div>
-              <div class="how-item-text">File a petition or grievance with a Commissariat</div>
+              <div class="how-item-badge" data-i18n="how_item_4_badge">★ Appeals</div>
+              <div class="how-item-text" data-i18n="how_item_4_text">File a petition or grievance with a Commissariat</div>
             </div>
-            <div class="how-item-arrow">File appeal &rarr;</div>
+            <div class="how-item-arrow" data-i18n="how_item_4_btn">File appeal &rarr;</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Jump to all topics cue (matching arrow in screenshot) -->
+    <!-- Jump to all topics cue -->
     <div class="jump-cue-container">
-      <a href="#services" class="jump-cue-text">Jump to all topics and services</a>
+      <a href="#services" class="jump-cue-text" data-i18n="jump_cue_text">Jump to all topics and services</a>
       <br>
       <a href="#services" class="jump-cue-btn" aria-label="Scroll to all services">&darr;</a>
     </div>
@@ -1171,11 +1209,11 @@
   <main id="services">
     <div class="section-heading-row">
       <div>
-        <h2 class="section-title" id="servicesHeaderTitle">All Topics and Services</h2>
-        <p style="color:var(--usagov-text-muted); font-size:0.95rem; margin-top:4px;">Browse state departments, public registries, decrees, and roleplay procedures.</p>
+        <h2 class="section-title" id="servicesHeaderTitle" data-i18n="services_heading">All Topics and Services</h2>
+        <p style="color:var(--usagov-text-muted); font-size:0.95rem; margin-top:4px;" data-i18n="services_subheading">Browse state departments, public registries, decrees, and roleplay procedures.</p>
       </div>
       <div id="searchFilterBadge" class="search-filter-badge">
-        Filtering: <span id="filterLabelText">All</span>
+        <span data-i18n="filtering_prefix">Filtering:</span> <span id="filterLabelText">All</span>
         <button type="button" onclick="resetFilter()" style="background:none; border:none; margin-left:6px; font-weight:bold; cursor:pointer;">✕</button>
       </div>
     </div>
@@ -1185,117 +1223,117 @@
       <!-- Card 1 -->
       <div class="service-card" data-category="gov">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 01 · State</div>
-          <h3>Constitution &amp; Fundamental Law</h3>
-          <p>Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.</p>
+          <div class="service-card-num" data-i18n="card_1_num">Topic 01 · State</div>
+          <h3 data-i18n="card_1_title">Constitution &amp; Fundamental Law</h3>
+          <p data-i18n="card_1_desc">Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openConstitutionModal()">Read Constitution &rarr;</a>
-          <button class="service-action-btn" onclick="openConstitutionModal()">View Articles</button>
+          <a href="#services" class="service-card-link" onclick="openConstitutionModal()" data-i18n="card_1_link">Read Constitution &rarr;</a>
+          <button class="service-action-btn" onclick="openConstitutionModal()" data-i18n="card_1_btn">View Articles</button>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="service-card" data-category="benefits">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 02 · Social</div>
-          <h3>State Benefits &amp; Sanatorium Vouchers</h3>
-          <p>Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.</p>
+          <div class="service-card-num" data-i18n="card_2_num">Topic 02 · Social</div>
+          <h3 data-i18n="card_2_title">State Benefits &amp; Sanatorium Vouchers</h3>
+          <p data-i18n="card_2_desc">Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openBenefitsModal()">View entitlements &rarr;</a>
-          <button class="service-action-btn" onclick="openBenefitsModal()">Calculator</button>
+          <a href="#services" class="service-card-link" onclick="openBenefitsModal()" data-i18n="card_2_link">View entitlements &rarr;</a>
+          <button class="service-action-btn" onclick="openBenefitsModal()" data-i18n="card_2_btn">Calculator</button>
         </div>
       </div>
 
       <!-- Card 3 -->
-      <div class="service-card" data-category="gov voting">
+      <div class="service-card" data-category="gov">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 03 · Congress</div>
-          <h3>Supreme Soviet of Workers' Deputies</h3>
-          <p>Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.</p>
+          <div class="service-card-num" data-i18n="card_3_num">Topic 03 · Congress</div>
+          <h3 data-i18n="card_3_title">Supreme Soviet of Workers' Deputies</h3>
+          <p data-i18n="card_3_desc">Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openDecreesModal()">Inspect Decrees &rarr;</a>
-          <button class="service-action-btn" onclick="openDecreesModal()">Roll Calls</button>
+          <a href="#services" class="service-card-link" onclick="openDecreesModal()" data-i18n="card_3_link">Inspect Decrees &rarr;</a>
+          <button class="service-action-btn" onclick="openDecreesModal()" data-i18n="card_3_btn">Roll Calls</button>
         </div>
       </div>
 
       <!-- Card 4 -->
       <div class="service-card" data-category="passports">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 04 · Bureau</div>
-          <h3>Internal Passports &amp; Propiska</h3>
-          <p>Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.</p>
+          <div class="service-card-num" data-i18n="card_4_num">Topic 04 · Bureau</div>
+          <h3 data-i18n="card_4_title">Internal Passports &amp; Propiska</h3>
+          <p data-i18n="card_4_desc">Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openPassportModal()">Generate passport &rarr;</a>
-          <button class="service-action-btn" onclick="openPassportModal()">Bureau Desk</button>
+          <a href="#services" class="service-card-link" onclick="openPassportModal()" data-i18n="card_4_link">Generate passport &rarr;</a>
+          <button class="service-action-btn" onclick="openPassportModal()" data-i18n="card_4_btn">Bureau Desk</button>
         </div>
       </div>
 
       <!-- Card 5 -->
       <div class="service-card" data-category="economy">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 05 · Labor</div>
-          <h3>Labor Book &amp; Gosplan Economy</h3>
-          <p>Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.</p>
+          <div class="service-card-num" data-i18n="card_5_num">Topic 05 · Labor</div>
+          <h3 data-i18n="card_5_title">Labor Book &amp; Gosplan Economy</h3>
+          <p data-i18n="card_5_desc">Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openLaborModal()">View labor ranks &rarr;</a>
-          <button class="service-action-btn" onclick="openLaborModal()">Gosplan</button>
+          <a href="#services" class="service-card-link" onclick="openLaborModal()" data-i18n="card_5_link">View labor ranks &rarr;</a>
+          <button class="service-action-btn" onclick="openLaborModal()" data-i18n="card_5_btn">Gosplan</button>
         </div>
       </div>
 
       <!-- Card 6 -->
       <div class="service-card" data-category="travel">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 06 · Transit</div>
-          <h3>Travel Permits &amp; Republic Visas</h3>
-          <p>Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.</p>
+          <div class="service-card-num" data-i18n="card_6_num">Topic 06 · Transit</div>
+          <h3 data-i18n="card_6_title">Travel Permits &amp; Republic Visas</h3>
+          <p data-i18n="card_6_desc">Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openTravelModal()">Apply for permit &rarr;</a>
-          <button class="service-action-btn" onclick="openTravelModal()">Transit Desk</button>
+          <a href="#services" class="service-card-link" onclick="openTravelModal()" data-i18n="card_6_link">Apply for permit &rarr;</a>
+          <button class="service-action-btn" onclick="openTravelModal()" data-i18n="card_6_btn">Transit Desk</button>
         </div>
       </div>
 
       <!-- Card 7 -->
       <div class="service-card" data-category="benefits">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 07 · Housing</div>
-          <h3>Communal Housing &amp; Urban Allocations</h3>
-          <p>Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.</p>
+          <div class="service-card-num" data-i18n="card_7_num">Topic 07 · Housing</div>
+          <h3 data-i18n="card_7_title">Communal Housing &amp; Urban Allocations</h3>
+          <p data-i18n="card_7_desc">Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openHousingModal()">Housing queue &rarr;</a>
-          <button class="service-action-btn" onclick="openHousingModal()">Inquire</button>
+          <a href="#services" class="service-card-link" onclick="openHousingModal()" data-i18n="card_7_link">Housing queue &rarr;</a>
+          <button class="service-action-btn" onclick="openHousingModal()" data-i18n="card_7_btn">Inquire</button>
         </div>
       </div>
 
       <!-- Card 8 -->
       <div class="service-card" data-category="gov">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 08 · Petitions</div>
-          <h3>Praesidium Citizen Appeals Bureau</h3>
-          <p>Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.</p>
+          <div class="service-card-num" data-i18n="card_8_num">Topic 08 · Petitions</div>
+          <h3 data-i18n="card_8_title">Praesidium Citizen Appeals Bureau</h3>
+          <p data-i18n="card_8_desc">Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openAppealsModal()">Submit petition &rarr;</a>
-          <button class="service-action-btn" onclick="openAppealsModal()">File Grievance</button>
+          <a href="#services" class="service-card-link" onclick="openAppealsModal()" data-i18n="card_8_link">Submit petition &rarr;</a>
+          <button class="service-action-btn" onclick="openAppealsModal()" data-i18n="card_8_btn">File Grievance</button>
         </div>
       </div>
 
       <!-- Card 9 -->
-      <div class="service-card" data-category="voting">
+      <div class="service-card" data-category="gov">
         <div class="service-card-top">
-          <div class="service-card-num">Topic 09 · Elections</div>
-          <h3>Central Electoral Commission</h3>
-          <p>Candidate verification, electoral precincts, secret ballot procedures, and voter turnouts across RSFSR, Ukrainian SSR, and all republics.</p>
+          <div class="service-card-num" data-i18n="card_9_num">Topic 09 · Archives</div>
+          <h3 data-i18n="card_9_title">Central Electoral Commission &amp; Roll</h3>
+          <p data-i18n="card_9_desc">Candidate verification, electoral precincts, secret ballot procedures, and voter rolls across RSFSR, Ukrainian SSR, and all republics.</p>
         </div>
         <div class="service-card-footer">
-          <a href="#services" class="service-card-link" onclick="openVoterModal()">Check registration &rarr;</a>
-          <button class="service-action-btn" onclick="openVoterModal()">Voter Roll</button>
+          <a href="#services" class="service-card-link" onclick="openVoterModal()" data-i18n="card_9_link">Check registration &rarr;</a>
+          <button class="service-action-btn" onclick="openVoterModal()" data-i18n="card_9_btn">Voter Roll</button>
         </div>
       </div>
 
@@ -1308,52 +1346,52 @@
   <section class="portal-ecosystem-section" id="network">
     <div class="ecosystem-inner">
       <div class="bulletin-box">
-        <h3>Official Praesidium Bulletin</h3>
+        <h3 data-i18n="bulletin_title">Official Praesidium Bulletin</h3>
         
         <div class="bulletin-item">
-          <div class="bulletin-tag">★ Supreme Soviet Notice</div>
-          <h4>Convening of the 27th Congress of Deputies</h4>
-          <p>All registered citizen deputies must confirm presence in the <strong>#congress-floor</strong> channel for debate on the new Five-Year Industrial Quota decree.</p>
+          <div class="bulletin-tag" data-i18n="bulletin_1_tag">★ Civic Intake Notice</div>
+          <h4 data-i18n="bulletin_1_title">Citizen Registry &amp; Passport Desk Open</h4>
+          <p data-i18n="bulletin_1_desc">All new arrivals on Discord are invited to establish internal passports, register their domicile propiska, and select a constituent Soviet Republic.</p>
         </div>
 
         <div class="bulletin-item">
-          <div class="bulletin-tag">★ Commissariat of Housing</div>
-          <h4>Spring Housing Allocation Cycle Active</h4>
-          <p>Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.</p>
+          <div class="bulletin-tag" data-i18n="bulletin_2_tag">★ Commissariat of Housing</div>
+          <h4 data-i18n="bulletin_2_title">Spring Housing Allocation Cycle Active</h4>
+          <p data-i18n="bulletin_2_desc">Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.</p>
         </div>
 
         <div class="bulletin-item">
-          <div class="bulletin-tag">★ Roleplay Notice</div>
-          <h4>Notice of Server Realism &amp; Fair Participation</h4>
-          <p>Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.</p>
+          <div class="bulletin-tag" data-i18n="bulletin_3_tag">★ Roleplay Notice</div>
+          <h4 data-i18n="bulletin_3_title">Notice of Server Realism &amp; Fair Participation</h4>
+          <p data-i18n="bulletin_3_desc">Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.</p>
         </div>
       </div>
 
       <!-- Multi-site roadmap block for user expansion plan -->
       <div class="roadmap-box">
-        <h3>Union Network Sites</h3>
-        <p>This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:</p>
+        <h3 data-i18n="roadmap_title">Union Network Sites</h3>
+        <p data-i18n="roadmap_sub">This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:</p>
 
         <ul class="roadmap-list">
           <li>
-            <span><strong>Civic Portal</strong> (General Services)</span>
-            <span class="status-pill status-live">Live</span>
+            <span><strong data-i18n="site_1_name">Civic Portal</strong> <span data-i18n="site_1_desc">(General Services)</span></span>
+            <span class="status-pill status-live" data-i18n="status_live">Live</span>
           </li>
           <li>
-            <span><strong>Ministry of Defense</strong> (Interactive Drill)</span>
-            <span class="status-pill status-wip">In Progress</span>
+            <span><strong data-i18n="site_2_name">Ministry of Defense</strong> <span data-i18n="site_2_desc">(Interactive Drill)</span></span>
+            <span class="status-pill status-wip" data-i18n="status_wip">In Progress</span>
           </li>
           <li>
-            <span><strong>State Archive &amp; Constitution</strong></span>
-            <span class="status-pill status-plan">Planned</span>
+            <span><strong data-i18n="site_3_name">State Archive &amp; Constitution</strong></span>
+            <span class="status-pill status-plan" data-i18n="status_plan">Planned</span>
           </li>
           <li>
-            <span><strong>Supreme Soviet Voting Ledger</strong></span>
-            <span class="status-pill status-plan">Planned</span>
+            <span><strong data-i18n="site_4_name">Supreme Soviet Voting Ledger</strong></span>
+            <span class="status-pill status-plan" data-i18n="status_plan">Planned</span>
           </li>
           <li>
-            <span><strong>Gosplan Economic Dashboard</strong></span>
-            <span class="status-pill status-plan">Planned</span>
+            <span><strong data-i18n="site_5_name">Gosplan Economic Dashboard</strong></span>
+            <span class="status-pill status-plan" data-i18n="status_plan">Planned</span>
           </li>
         </ul>
       </div>
@@ -1573,11 +1611,17 @@
           <li><strong>Strict Rules of Fair Roleplay</strong>: A safe, creative hobby space dedicated to political roleplay.</li>
         </ul>
         <div style="background:#fff1f0; border:1px solid #ffa39e; padding:12px; border-radius:4px; margin-bottom:16px; font-size:0.85rem;">
-          <strong>Important Roleplay Disclaimer:</strong> This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.
+          <strong data-i18n="discord_disclaimer_title">Important Roleplay Disclaimer:</strong> <span data-i18n="discord_disclaimer_text">This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.</span>
         </div>
-        <button type="button" class="btn-submit" style="background:var(--soviet-red);" onclick="copyDiscordLink()">
-          📋 Copy Discord Invite Link (#citizen-intake)
-        </button>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a href="https://discord.gg/XUcX9tgc5u" target="_blank" rel="noopener noreferrer" class="btn-submit" style="background:#5865F2; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; flex:1; min-width:200px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            <span data-i18n="discord_join_btn">Join Discord Server</span>
+          </a>
+          <button type="button" class="btn-submit" style="background:var(--soviet-red); flex:1; min-width:180px;" onclick="copyDiscordLinkDirect('https://discord.gg/XUcX9tgc5u')">
+            <span data-i18n="discord_copy_btn">📋 Copy Discord Invite Link</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1599,56 +1643,65 @@
     <div class="footer-inner">
       <div class="footer-col">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
-          <div class="brand-logo-circle" style="width:44px; height:44px;">
-            <span class="star" style="font-size:10px;">★</span>
-            <span class="abbr" style="font-size:0.85rem;">СССР</span>
+          <div class="brand-logo-circle" style="width:46px; height:46px; padding:2px;">
+            <svg viewBox="0 0 100 100" style="width:26px; height:26px; display:block;" aria-hidden="true">
+              <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+              <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+              <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+              <polygon points="77,39 80,36 84,40 81,43" fill="#e5ad1e" />
+              <polygon points="56,28 53,31 49,27 52,24" fill="#e5ad1e" />
+              <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+              <rect x="42.5" y="72" width="6" height="3" rx="0.5" fill="#d49b10" />
+              <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" fill="#ffc72c" />
+            </svg>
+            <span class="abbr" style="font-size:0.55rem; margin-top:0;">СССР</span>
           </div>
           <div>
-            <h4 style="margin:0; font-size:1rem;">Union Civic Portal</h4>
-            <div style="font-size:0.75rem; color:#9ab0c7;">USSR Mock Government</div>
+            <h4 style="margin:0; font-size:1rem;" data-i18n="brand_title">Union Civic Portal</h4>
+            <div style="font-size:0.75rem; color:#9ab0c7;" data-i18n="footer_sub">USSR Mock Government</div>
           </div>
         </div>
-        <p style="font-size:0.86rem; line-height:1.6; color:#a6b9cc;">
+        <p style="font-size:0.86rem; line-height:1.6; color:#a6b9cc;" data-i18n="footer_desc">
           An official public information and civic services hub serving citizens of the USSR Discord roleplay simulation.
         </p>
       </div>
 
       <div class="footer-col">
-        <h4>Public Services</h4>
+        <h4 data-i18n="footer_col1_title">Public Services</h4>
         <ul>
-          <li><a href="#services" onclick="openPassportModal()">Internal Passports</a></li>
-          <li><a href="#services" onclick="openHousingModal()">Communal Housing</a></li>
-          <li><a href="#services" onclick="openBenefitsModal()">Sanatorium Vouchers</a></li>
-          <li><a href="#services" onclick="openTravelModal()">Republic Travel Passes</a></li>
+          <li><a href="#services" onclick="openPassportModal()" data-i18n="footer_col1_1">Internal Passports</a></li>
+          <li><a href="#services" onclick="openHousingModal()" data-i18n="footer_col1_2">Communal Housing</a></li>
+          <li><a href="#services" onclick="openBenefitsModal()" data-i18n="footer_col1_3">Sanatorium Vouchers</a></li>
+          <li><a href="#services" onclick="openTravelModal()" data-i18n="footer_col1_4">Republic Travel Passes</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>The Soviet State</h4>
+        <h4 data-i18n="footer_col2_title">The Soviet State</h4>
         <ul>
-          <li><a href="#services" onclick="openConstitutionModal()">1936/1977 Constitution</a></li>
-          <li><a href="#services" onclick="openDecreesModal()">Supreme Soviet Decrees</a></li>
-          <li><a href="#services" onclick="openVoterModal()">Electoral Commission</a></li>
-          <li><a href="#services" onclick="openLaborModal()">Gosplan Economic Targets</a></li>
+          <li><a href="#services" onclick="openConstitutionModal()" data-i18n="footer_col2_1">1936/1977 Constitution</a></li>
+          <li><a href="#services" onclick="openDecreesModal()" data-i18n="footer_col2_2">Supreme Soviet Decrees</a></li>
+          <li><a href="#services" onclick="openVoterModal()" data-i18n="footer_col2_3">Electoral Roll Archive</a></li>
+          <li><a href="#services" onclick="openLaborModal()" data-i18n="footer_col2_4">Gosplan Economic Targets</a></li>
         </ul>
       </div>
 
       <div class="footer-col">
-        <h4>Discord Government</h4>
+        <h4 data-i18n="footer_col3_title">Discord Government</h4>
         <ul>
-          <li><a href="#network" onclick="openDiscordInfoModal()">Discord Server Directory</a></li>
-          <li><a href="#services" onclick="openAppealsModal()">#citizen-appeals</a></li>
-          <li><a href="#network" onclick="openDiscordInfoModal()">Rules of Roleplay</a></li>
-          <li><a href="#services" onclick="toggleLanguage()">Язык / Language</a></li>
+          <li><a href="#network" onclick="openDiscordInfoModal()" data-i18n="footer_col3_1">Discord Server Directory</a></li>
+          <li><a href="#services" onclick="openAppealsModal()" data-i18n="footer_col3_2">#citizen-appeals</a></li>
+          <li><a href="#network" onclick="openDiscordInfoModal()" data-i18n="footer_col3_3">Rules of Roleplay</a></li>
+          <li><a href="#services" onclick="toggleLanguage()" data-i18n="footer_col3_4">Язык / Language</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-disclaimer-wrap">
       <div class="footer-disclaimer-inner">
-        <span class="disclaimer-badge">MOCK GOVERNMENT DISCLAIMER</span>
+        <span class="disclaimer-badge" data-i18n="disclaimer_badge">MOCK GOVERNMENT DISCLAIMER</span>
         <div class="disclaimer-text">
-          <strong>Strictly a Fictional Roleplay Project:</strong> This website is an amateur, fan-made interactive prop built for a Discord "mock government" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines.
+          <strong data-i18n="disclaimer_bold">Strictly a Fictional Roleplay Project:</strong> <span data-i18n="disclaimer_text">This website is an amateur, fan-made interactive prop built for a Discord "mock government" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines.</span>
         </div>
       </div>
     </div>
@@ -1674,14 +1727,313 @@
       });
     }
 
-    // Language state
+    // Language state and translations
     let isRussian = false;
-    function toggleLanguage() {
-      isRussian = !isRussian;
+
+    const translations = {
+      en: {
+        official_banner_badge: "★ Official Mock Government Website",
+        official_banner_text: "An official website of the USSR Mock Government on Discord",
+        how_you_know_btn: "Here's how you know",
+        how_you_know_panel_bold: "Official Mock Government Simulation Server:",
+        how_you_know_panel_text: "This portal is attached to our active Discord political roleplay community. State services, internal identification documents, and decrees correspond to active roleplay channels in the server.",
+        how_you_know_panel_invite: "Discord Invite:",
+        brand_title: "Union Civic Portal",
+        brand_sub: "Union of Soviet Socialist Republics · Mock Government",
+        nav_all: "All Topics",
+        nav_constitution: "Constitution & Law",
+        nav_social: "Benefits & Social",
+        nav_passports: "Passports & Propiska",
+        nav_republics: "Republics & Travel",
+        nav_labor: "Labor & Gosplan",
+        nav_bulletin: "Praesidium Bulletin",
+        nav_discord: "Discord Server",
+        hero_flag_alt: "State Flag of the USSR",
+        hero_tag: "★ USSR CENTRAL CIVIC PORTAL",
+        hero_title: "Official information and services of the Soviet State",
+        hero_subtitle: "The central civic registry for the USSR Discord mock government: internal passports, propiska domicile records, Supreme Soviet decrees, labor books, and sanatorium vouchers.",
+        search_input_placeholder: "Search services, commissariats, rights, forms, or decrees...",
+        search_btn: "Search",
+        popular_label: "Popular topics:",
+        how_item_1_badge: "★ Constitution",
+        how_item_1_text: "Fundamental law, civil rights, and republic sovereignty",
+        how_item_1_btn: "Read articles &rarr;",
+        how_item_2_badge: "★ Internal Passport",
+        how_item_2_text: "Generate an official citizen propiska and identification card",
+        how_item_2_btn: "Generate passport &rarr;",
+        how_item_3_badge: "★ Housing",
+        how_item_3_text: "Request a municipal housing or flat allocation",
+        how_item_3_btn: "Check queue &rarr;",
+        how_item_4_badge: "★ Appeals",
+        how_item_4_text: "File a petition or grievance with a Commissariat",
+        how_item_4_btn: "File appeal &rarr;",
+        jump_cue_text: "Jump to all topics and services",
+        services_heading: "All Topics and Services",
+        services_subheading: "Browse state departments, public registries, decrees, and roleplay procedures.",
+        filtering_prefix: "Filtering:",
+        card_1_num: "Topic 01 · State",
+        card_1_title: "Constitution & Fundamental Law",
+        card_1_desc: "Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.",
+        card_1_link: "Read Constitution &rarr;",
+        card_1_btn: "View Articles",
+        card_2_num: "Topic 02 · Social",
+        card_2_title: "State Benefits & Sanatorium Vouchers",
+        card_2_desc: "Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.",
+        card_2_link: "View entitlements &rarr;",
+        card_2_btn: "Calculator",
+        card_3_num: "Topic 03 · Congress",
+        card_3_title: "Supreme Soviet of Workers' Deputies",
+        card_3_desc: "Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.",
+        card_3_link: "Inspect Decrees &rarr;",
+        card_3_btn: "Roll Calls",
+        card_4_num: "Topic 04 · Bureau",
+        card_4_title: "Internal Passports & Propiska",
+        card_4_desc: "Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.",
+        card_4_link: "Generate passport &rarr;",
+        card_4_btn: "Bureau Desk",
+        card_5_num: "Topic 05 · Labor",
+        card_5_title: "Labor Book & Gosplan Economy",
+        card_5_desc: "Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.",
+        card_5_link: "View labor ranks &rarr;",
+        card_5_btn: "Gosplan",
+        card_6_num: "Topic 06 · Transit",
+        card_6_title: "Travel Permits & Republic Visas",
+        card_6_desc: "Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.",
+        card_6_link: "Apply for permit &rarr;",
+        card_6_btn: "Transit Desk",
+        card_7_num: "Topic 07 · Housing",
+        card_7_title: "Communal Housing & Urban Allocations",
+        card_7_desc: "Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.",
+        card_7_link: "Housing queue &rarr;",
+        card_7_btn: "Inquire",
+        card_8_num: "Topic 08 · Petitions",
+        card_8_title: "Praesidium Citizen Appeals Bureau",
+        card_8_desc: "Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.",
+        card_8_link: "Submit petition &rarr;",
+        card_8_btn: "File Grievance",
+        card_9_num: "Topic 09 · Archives",
+        card_9_title: "Central Electoral Commission & Roll",
+        card_9_desc: "Candidate verification, electoral precincts, secret ballot procedures, and voter rolls across RSFSR, Ukrainian SSR, and all republics.",
+        card_9_link: "Check registration &rarr;",
+        card_9_btn: "Voter Roll",
+        bulletin_title: "Official Praesidium Bulletin",
+        bulletin_1_tag: "★ Civic Intake Notice",
+        bulletin_1_title: "Citizen Registry & Passport Desk Open",
+        bulletin_1_desc: "All new arrivals on Discord are invited to establish internal passports, register their domicile propiska, and select a constituent Soviet Republic.",
+        bulletin_2_tag: "★ Commissariat of Housing",
+        bulletin_2_title: "Spring Housing Allocation Cycle Active",
+        bulletin_2_desc: "Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.",
+        bulletin_3_tag: "★ Roleplay Notice",
+        bulletin_3_title: "Notice of Server Realism & Fair Participation",
+        bulletin_3_desc: "Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.",
+        roadmap_title: "Union Network Sites",
+        roadmap_sub: "This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:",
+        site_1_name: "Civic Portal",
+        site_1_desc: "(General Services)",
+        status_live: "Live",
+        site_2_name: "Ministry of Defense",
+        site_2_desc: "(Interactive Drill)",
+        status_wip: "In Progress",
+        site_3_name: "State Archive & Constitution",
+        status_plan: "Planned",
+        site_4_name: "Supreme Soviet Voting Ledger",
+        site_5_name: "Gosplan Economic Dashboard",
+        discord_disclaimer_title: "Important Roleplay Disclaimer:",
+        discord_disclaimer_text: "This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.",
+        discord_join_btn: "Join Discord Server",
+        discord_copy_btn: "📋 Copy Discord Invite Link",
+        footer_sub: "USSR Mock Government",
+        footer_desc: "An official public information and civic services hub serving citizens of the USSR Discord roleplay simulation.",
+        footer_col1_title: "Public Services",
+        footer_col1_1: "Internal Passports",
+        footer_col1_2: "Communal Housing",
+        footer_col1_3: "Sanatorium Vouchers",
+        footer_col1_4: "Republic Travel Passes",
+        footer_col2_title: "The Soviet State",
+        footer_col2_1: "1936/1977 Constitution",
+        footer_col2_2: "Supreme Soviet Decrees",
+        footer_col2_3: "Electoral Roll Archive",
+        footer_col2_4: "Gosplan Economic Targets",
+        footer_col3_title: "Discord Government",
+        footer_col3_1: "Discord Server Directory",
+        footer_col3_2: "#citizen-appeals",
+        footer_col3_3: "Rules of Roleplay",
+        footer_col3_4: "Язык / Language",
+        disclaimer_badge: "MOCK GOVERNMENT DISCLAIMER",
+        disclaimer_bold: "Strictly a Fictional Roleplay Project:",
+        disclaimer_text: "This website is an amateur, fan-made interactive prop built for a Discord \"mock government\" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines."
+      },
+      ru: {
+        official_banner_badge: "★ Официальный портал",
+        official_banner_text: "Официальный веб-сайт ролевого правительства СССР в Discord",
+        how_you_know_btn: "Как проверить подлинность",
+        how_you_know_panel_bold: "Официальный сервер моделирования государственного управления:",
+        how_you_know_panel_text: "Данный портал привязан к нашему сообществу в Discord. Все государственные услуги, удостоверения личности и указы синхронизированы с ролевыми каналами сервера.",
+        how_you_know_panel_invite: "Приглашение в Discord:",
+        brand_title: "Государственный Гражданский Портал",
+        brand_sub: "Союз Советских Социалистических Республик · Ролевое Правительство",
+        nav_all: "Все темы",
+        nav_constitution: "Конституция и право",
+        nav_social: "Льготы и путёвки",
+        nav_passports: "Паспорта и прописка",
+        nav_republics: "Республики и поездки",
+        nav_labor: "Госплан и труд",
+        nav_bulletin: "Вестник Президиума",
+        nav_discord: "Сервер Discord",
+        hero_flag_alt: "Государственный флаг СССР",
+        hero_tag: "★ ЕДИНЫЙ ЦЕНТР ГОСУДАРСТВЕННЫХ УСЛУГ СССР",
+        hero_title: "Официальные услуги и сведения органов государственной власти",
+        hero_subtitle: "Центральный гражданский реестр для ролевого моделирования СССР в Discord: внутренние паспорта, прописка, указы Верховного Совета, трудовые книжки и путёвки.",
+        search_input_placeholder: "Поиск услуг, наркоматов, прав, бланков или указов...",
+        search_btn: "Поиск",
+        popular_label: "Частые запросы:",
+        how_item_1_badge: "★ Конституция",
+        how_item_1_text: "Основные законы, права трудящихся и суверенитет союзных республик",
+        how_item_1_btn: "Читать статьи &rarr;",
+        how_item_2_badge: "★ Паспортный стол",
+        how_item_2_text: "Оформить удостоверение личности гражданина и прописку",
+        how_item_2_btn: "Оформить паспорт &rarr;",
+        how_item_3_badge: "★ Жильё",
+        how_item_3_text: "Подать запрос на получение квартиры или муниципальной комнаты",
+        how_item_3_btn: "Проверить очередь &rarr;",
+        how_item_4_badge: "★ Жалобы",
+        how_item_4_text: "Направить петицию или обращение в Народный Комиссариат",
+        how_item_4_btn: "Подать обращение &rarr;",
+        jump_cue_text: "Перейти ко всем темам и услугам",
+        services_heading: "Все темы и государственные услуги",
+        services_subheading: "Перечень народных комиссариатов, реестров, декретов и ролевых процедур.",
+        filtering_prefix: "Фильтр:",
+        card_1_num: "Тема 01 · Государство",
+        card_1_title: "Конституция и Основной Закон",
+        card_1_desc: "Основополагающие законы Союза: гарантированные права на труд, отдых, бесплатное здравоохранение и суверенитет 15 союзных республик.",
+        card_1_link: "Читать Конституцию &rarr;",
+        card_1_btn: "Статьи закона",
+        card_2_num: "Тема 02 · Социальная сфера",
+        card_2_title: "Государственные льготы и путёвки",
+        card_2_desc: "Бесплатное диспансерное обслуживание, пособия на детей, пенсии по нетрудоспособности и профсоюзные путёвки на курорты Чёрного моря.",
+        card_2_link: "Посмотреть льготы &rarr;",
+        card_2_btn: "Расчёт льгот",
+        card_3_num: "Тема 03 · Верховный Совет",
+        card_3_title: "Верховный Совет депутатов трудящихся",
+        card_3_desc: "Законодательный календарь Совета Союза и Совета Национальностей, стенограммы прений, поимённые голосования и проекты указов.",
+        card_3_link: "Изучить указы &rarr;",
+        card_3_btn: "Протоколы",
+        card_4_num: "Тема 04 · Паспортный стол",
+        card_4_title: "Внутренние паспорта и прописка",
+        card_4_desc: "Выдача общегражданского внутреннего паспорта, оформление постоянной прописки, записи актов гражданского состояния (ЗАГС) и учёт граждан.",
+        card_4_link: "Оформить паспорт &rarr;",
+        card_4_btn: "Стол прописки",
+        card_5_num: "Тема 05 · Труд",
+        card_5_title: "Трудовая книжка и Госплан",
+        card_5_desc: "Учёт трудового стажа, распределение на заводы и в колхозы, стахановские знаки отличия и плановые задания пятилетки.",
+        card_5_link: "Посмотреть разряды &rarr;",
+        card_5_btn: "Госплан",
+        card_6_num: "Тема 06 · Сообщение",
+        card_6_title: "Проездные документы и разрешения ОВИР",
+        card_6_desc: "Межреспубликанские проездные документы по 15 союзным республикам, железнодорожные билеты и правила приёма делегаций соцстран.",
+        card_6_link: "Запросить пропуск &rarr;",
+        card_6_btn: "Отдел ОВИР",
+        card_7_num: "Тема 07 · Жильё",
+        card_7_title: "Коммунальное жильё и городские ордера",
+        card_7_desc: "Очередь на государственное жильё, санитарная норма жилой площади на человека и инспекции наркомата коммунального хозяйства.",
+        card_7_link: "Очередь на жильё &rarr;",
+        card_7_btn: "Запрос ордера",
+        card_8_num: "Тема 08 · Обращения",
+        card_8_title: "Бюро приёма жалоб и петиций Президиума",
+        card_8_desc: "Подача официальных заявлений, сообщений о нарушениях на местах и персональных жалоб непосредственно в Совет Министров.",
+        card_8_link: "Подать заявление &rarr;",
+        card_8_btn: "Подать жалобу",
+        card_9_num: "Тема 09 · Архивы",
+        card_9_title: "Центральная избирательная комиссия и реестр",
+        card_9_desc: "Проверка списков избирателей, участковые комиссии, процедура тайного голосования и учёт явки по РСФСР, УССР и другим союзным республикам.",
+        card_9_link: "Проверить регистрацию &rarr;",
+        card_9_btn: "Список избирателей",
+        bulletin_title: "Официальный вестник Президиума",
+        bulletin_1_tag: "★ Гражданский приём",
+        bulletin_1_title: "Регистрация граждан и паспортный стол открыты",
+        bulletin_1_desc: "Всем новым участникам в Discord предлагается оформить внутренний паспорт, зарегистрировать прописку и выбрать союзную республику.",
+        bulletin_2_tag: "★ Наркомат коммунального хозяйства",
+        bulletin_2_title: "Весеннее распределение жилого фонда открыто",
+        bulletin_2_desc: "Граждане со стажем на сервере более 3 недель могут подавать заявления на предоставление отдельной комнаты в Москве и Ленинграде.",
+        bulletin_3_tag: "★ Правила моделирования",
+        bulletin_3_title: "Соблюдение реализма и правил сервера",
+        bulletin_3_desc: "Напоминаем, что политические дебаты, выборы и назначения на посты осуществляются строго по правилам ролевого правительства сервера.",
+        roadmap_title: "Сайты государственной сети",
+        roadmap_sub: "Данный Гражданский портал — центральный узел моделирования правительства СССР. По мере развития сервера запускаются смежные порталы:",
+        site_1_name: "Гражданский портал",
+        site_1_desc: "(Общие услуги)",
+        status_live: "Работает",
+        site_2_name: "Министерство обороны",
+        site_2_desc: "(Интерактивные учения)",
+        status_wip: "В разработке",
+        site_3_name: "Государственный архив и Конституция",
+        status_plan: "В планах",
+        site_4_name: "Книга голосований Верховного Совета",
+        site_5_name: "Экономический дашборд Госплана",
+        discord_disclaimer_title: "Важное уведомление о ролевом проекте:",
+        discord_disclaimer_text: "Это исключительно вымышленный творческий сервер для политического моделирования. Не допускаются враждебные высказывания, экстремизм и претензии на реальные государственные полномочия.",
+        discord_join_btn: "Присоединиться к серверу Discord",
+        discord_copy_btn: "📋 Скопировать приглашение в Discord",
+        footer_sub: "Ролевое правительство в Discord",
+        footer_desc: "Официальный портал общественной информации и государственных услуг для участников ролевого моделирования СССР в Discord.",
+        footer_col1_title: "Государственные услуги",
+        footer_col1_1: "Внутренние паспорта",
+        footer_col1_2: "Коммунальное жильё",
+        footer_col1_3: "Санаторные путёвки",
+        footer_col1_4: "Проездные билеты",
+        footer_col2_title: "Советское государство",
+        footer_col2_1: "Конституция 1936/1977 гг.",
+        footer_col2_2: "Указы Верховного Совета",
+        footer_col2_3: "Архив списков избирателей",
+        footer_col2_4: "Плановые показатели Госплана",
+        footer_col3_title: "Правительство Discord",
+        footer_col3_1: "Каталог каналов сервера",
+        footer_col3_2: "Приёмная жалоб (#citizen-appeals)",
+        footer_col3_3: "Правила ролевой игры",
+        footer_col3_4: "Язык / Language",
+        disclaimer_badge: "УВЕДОМЛЕНИЕ О РОЛЕВОМ МОДЕЛИРОВАНИИ",
+        disclaimer_bold: "Исключительно творческий проект:",
+        disclaimer_text: "Данный сайт является любительским интерактивным реквизитом, созданным специально для ролевого сообщества «mock government» в Discord. Он НЕ связан и НЕ представляет какие-либо реальные страны, прошлые режимы, государственные органы или действующие политические партии. Все материалы, бланки и документы служат исключительно целям творческой симуляции."
+      }
+    };
+
+    function applyLanguage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.documentElement.lang = lang;
+
+      // Update all elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      // Update search input placeholder
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput && dict.search_input_placeholder) {
+        searchInput.placeholder = dict.search_input_placeholder;
+      }
+
+      // Update flag alt attribute
+      const flagImg = document.getElementById('heroFlagImg');
+      if (flagImg && dict.hero_flag_alt) {
+        flagImg.setAttribute('aria-label', dict.hero_flag_alt);
+      }
+
+      // Update toggle button text
       const langBtn = document.getElementById('langToggleBtn');
       if (langBtn) {
-        langBtn.textContent = isRussian ? 'English / Русский' : 'Русский / English';
+        langBtn.textContent = lang === 'ru' ? 'English' : 'Русский';
       }
+    }
+
+    function toggleLanguage() {
+      isRussian = !isRussian;
+      const targetLang = isRussian ? 'ru' : 'en';
+      applyLanguage(targetLang);
       showToast(isRussian ? 'Язык переключен на русский (интерфейс СССР)' : 'Language switched to English (Civic Portal)');
     }
 
@@ -1730,6 +2082,20 @@
       }
     }
 
+    // Direct Discord Invite copy helper
+    function copyDiscordLinkDirect(url) {
+      const link = url || 'https://discord.gg/XUcX9tgc5u';
+      navigator.clipboard.writeText(link).then(() => {
+        showToast(isRussian ? 'Ссылка-приглашение скопирована: ' + link : 'Discord invite copied: ' + link);
+      }).catch(() => {
+        showToast('Discord: ' + link);
+      });
+    }
+
+    function copyDiscordLink() {
+      copyDiscordLinkDirect('https://discord.gg/XUcX9tgc5u');
+    }
+
     // Passport generation
     function generatePassport() {
       const discord = document.getElementById('passDiscordName').value || 'Comrade_Citizen';
@@ -1744,7 +2110,7 @@
 
       const randomNum = Math.floor(100000 + Math.random() * 900000);
       document.getElementById('previewSerial').textContent = `XX-МЮ № ${randomNum}`;
-      showToast('Internal Passport successfully generated!');
+      showToast(isRussian ? 'Внутренний паспорт успешно сгенерирован!' : 'Internal Passport successfully generated!');
     }
 
     function copyPassportDetails() {
@@ -1756,9 +2122,9 @@
 
       const text = `**USSR INTERNAL PASSPORT (MOCK GOV)**\n• **Name:** ${name}\n• **Discord:** ${discord}\n• **Republic:** ${republic}\n• **Class/Role:** ${occ}\n• **Serial:** ${serial}\n• **Status:** Verified Citizen (#citizen-records)`;
       navigator.clipboard.writeText(text).then(() => {
-        showToast('Passport details copied! Paste into Discord bio or #citizen-records.');
+        showToast(isRussian ? 'Данные паспорта скопированы! Вставьте в биографию или в #citizen-records.' : 'Passport details copied! Paste into Discord bio or #citizen-records.');
       }).catch(() => {
-        showToast('Passport details generated!');
+        showToast(isRussian ? 'Паспорт сформирован!' : 'Passport details generated!');
       });
     }
 
@@ -1770,14 +2136,20 @@
       const resText = document.getElementById('voterResultText');
 
       if (!input) {
-        alert('Please enter your Discord username.');
+        alert(isRussian ? 'Пожалуйста, введите ваш ник в Discord.' : 'Please enter your Discord username.');
         return;
       }
 
       resBox.style.display = 'block';
-      resTitle.textContent = `Voter Record: ${input} (ELIGIBLE)`;
-      resText.innerHTML = `Citizen <strong>${input}</strong> is registered on the electoral roll for <strong>Precinct № 42 (Workers' Soviet)</strong>. You hold full active suffrage to vote for republic deputies and propose agenda items for the 27th Congress.`;
-      showToast('Voter roll verified.');
+      if (isRussian) {
+        resTitle.textContent = `Запись в списках избирателей: ${input} (ДЕЙСТВИТЕЛЬНА)`;
+        resText.innerHTML = `Товарищ <strong>${input}</strong> внесён(а) в списки избирателей <strong>Избирательного участка № 42 (Совет рабочих депутатов)</strong>. Вы обладаете активным избирательным правом для голосования за кандидатов в депутаты и внесения предложений в повестку дня.`;
+        showToast('Данные избирателя подтверждены.');
+      } else {
+        resTitle.textContent = `Voter Record: ${input} (ELIGIBLE)`;
+        resText.innerHTML = `Citizen <strong>${input}</strong> is registered on the electoral roll for <strong>Precinct № 42 (Workers' Soviet)</strong>. You hold full active suffrage to vote for republic deputies and propose agenda items.`;
+        showToast('Voter roll verified.');
+      }
     }
 
     // Housing calculation
@@ -1789,16 +2161,16 @@
 
       box.style.display = 'block';
       if (activity.includes('Priority')) {
-        title.textContent = 'Status: Expedited State Allocation Granted';
-        msg.textContent = 'Due to verified Stakhanovite activity in Discord, your household is queued in the 1st Priority echelon for a modern multi-room flat.';
+        title.textContent = isRussian ? 'Статус: Предоставлено внеочередное распределение' : 'Status: Expedited State Allocation Granted';
+        msg.textContent = isRussian ? 'В связи с подтверждённой ударной (стахановской) активностью на сервере, вашей семье предоставляется приоритетное право на отдельную благоустроенную квартиру.' : 'Due to verified Stakhanovite activity in Discord, your household is queued in the 1st Priority echelon for a modern multi-room flat.';
       } else if (activity.includes('Standard')) {
-        title.textContent = 'Status: Active on Municipal Waiting Roll';
-        msg.textContent = 'Estimated allocation timeframe: Next Congressional cycle. Eligible for communal flat with standard 9 m² per person allotment.';
+        title.textContent = isRussian ? 'Статус: Включён в общую городскую очередь' : 'Status: Active on Municipal Waiting Roll';
+        msg.textContent = isRussian ? 'Ориентировочный срок предоставления: следующий сессионный цикл. Право на комнату по норме 9 кв. м на человека.' : 'Estimated allocation timeframe: Next Congressional cycle. Eligible for communal flat with standard 9 m² per person allotment.';
       } else {
-        title.textContent = 'Status: Temporary Worker Dormitory Assigned';
-        msg.textContent = 'New arrivals are assigned to the district municipal hostel until full citizen tenure (2 weeks active server roleplay) is completed.';
+        title.textContent = isRussian ? 'Статус: Предоставлено место в общежитии' : 'Status: Temporary Worker Dormitory Assigned';
+        msg.textContent = isRussian ? 'Вновь прибывшим гражданам предоставляется койко-место в ведомственном общежитии до завершения вводного периода (2 недели активности).' : 'New arrivals are assigned to the district municipal hostel until full citizen tenure (2 weeks active server roleplay) is completed.';
       }
-      showToast('Housing allocation evaluated.');
+      showToast(isRussian ? 'Заявление на жильё рассмотрено.' : 'Housing allocation evaluated.');
     }
 
     // Appeals form
@@ -1808,105 +2180,172 @@
       const text = document.getElementById('appealText').value.trim();
 
       if (!subject || !text) {
-        alert('Please provide both a subject and grievance statement.');
+        alert(isRussian ? 'Пожалуйста, укажите тему и суть обращения.' : 'Please provide both a subject and grievance statement.');
         return;
       }
 
       const formatted = `[CITIZEN GRIEVANCE - PRAESIDIUM DESK]\nTO: ${target}\nSUBJECT: ${subject}\nSTATEMENT: ${text}\nDISPATCH: Formatted via Union Civic Portal for #citizen-appeals`;
       document.getElementById('appealFormattedOutput').value = formatted;
       document.getElementById('appealResultBox').style.display = 'block';
-      showToast('Appeal dispatch generated. Click Copy to Discord.');
+      showToast(isRussian ? 'Обращение сформировано. Нажмите «Скопировать в Discord».' : 'Appeal dispatch generated. Click Copy to Discord.');
     }
 
     function copyAppeal() {
       const formatted = document.getElementById('appealFormattedOutput').value;
       navigator.clipboard.writeText(formatted).then(() => {
-        showToast('Copied to clipboard! Paste into Discord #citizen-appeals.');
-      });
-    }
-
-    function copyDiscordLink() {
-      navigator.clipboard.writeText('Discord Mock Government Server - Check Server Invite in Announcement').then(() => {
-        showToast('Discord community details copied to clipboard!');
+        showToast(isRussian ? 'Скопировано! Вставьте в канал #citizen-appeals в Discord.' : 'Copied to clipboard! Paste into Discord #citizen-appeals.');
       });
     }
 
     // Constitution viewer
     function openConstitutionModal() {
-      document.getElementById('docModalTitle').textContent = 'Constitution of the Union (Fundamental Law)';
-      document.getElementById('docModalSub').textContent = 'Articles on Rights, Obligations, and Republic Sovereignty';
-      document.getElementById('docModalBody').innerHTML = `
-        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 118: Right to Work</h4>
-        <p style="margin-bottom:14px;">Citizens of the Union have the right to work, that is, the right to guaranteed employment and payment for their work in accordance with its quantity and quality. In our Discord server, every citizen has access to trade union roles and production assignments.</p>
+      if (isRussian) {
+        document.getElementById('docModalTitle').textContent = 'Конституция СССР (Основной Закон)';
+        document.getElementById('docModalSub').textContent = 'Статьи об основных правах, обязанностях и суверенитете союзных республик';
+        document.getElementById('docModalBody').innerHTML = `
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Статья 118: Право на труд</h4>
+          <p style="margin-bottom:14px;">Граждане СССР имеют право на труд, то есть право на получение гарантированной работы с оплатой их труда в соответствии с его количеством и качеством. На нашем сервере Discord каждый участник имеет доступ к профсоюзным ролям и трудовым заданиям.</p>
 
-        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 119: Right to Rest and Leisure</h4>
-        <p style="margin-bottom:14px;">The right to rest is ensured by the establishment of strict roleplay schedules, weekend cultural events, and sanatorium leisure passes in #cultural-club.</p>
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Статья 119: Право на отдых</h4>
+          <p style="margin-bottom:14px;">Право на отдых обеспечивается установлением расписания ролевых мероприятий, выходными культурными клубами и путёвками в санатории в канале #cultural-club.</p>
 
-        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 120: Right to Maintenance in Old Age and Sickness</h4>
-        <p style="margin-bottom:14px;">Citizens have the right to maintenance in sickness or loss of capacity to work, provided through free medical services and state dispensary assistance.</p>
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Статья 120: Право на материальное обеспечение</h4>
+          <p style="margin-bottom:14px;">Граждане имеют право на материальное обеспечение в старости, а также в случае болезни и потери трудоспособности через бесплатную помощь и государственные диспансеры.</p>
 
-        <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 134: Universal &amp; Equal Suffrage</h4>
-        <p>Deputies to all Soviets of Workers' Deputies are elected by the citizens on the basis of universal, equal and direct suffrage by secret ballot in the #electoral-commission channel.</p>
-      `;
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Статья 134: Всеобщее, равное и прямое избирательное право</h4>
+          <p>Выборы депутатов во все Советы депутатов трудящихся производятся гражданами на основе всеобщего, равного и прямого избирательного права при тайном голосовании в канале #electoral-commission.</p>
+        `;
+      } else {
+        document.getElementById('docModalTitle').textContent = 'Constitution of the Union (Fundamental Law)';
+        document.getElementById('docModalSub').textContent = 'Articles on Rights, Obligations, and Republic Sovereignty';
+        document.getElementById('docModalBody').innerHTML = `
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 118: Right to Work</h4>
+          <p style="margin-bottom:14px;">Citizens of the Union have the right to work, that is, the right to guaranteed employment and payment for their work in accordance with its quantity and quality. In our Discord server, every citizen has access to trade union roles and production assignments.</p>
+
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 119: Right to Rest and Leisure</h4>
+          <p style="margin-bottom:14px;">The right to rest is ensured by the establishment of strict roleplay schedules, weekend cultural events, and sanatorium leisure passes in #cultural-club.</p>
+
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 120: Right to Maintenance in Old Age and Sickness</h4>
+          <p style="margin-bottom:14px;">Citizens have the right to maintenance in sickness or loss of capacity to work, provided through free medical services and state dispensary assistance.</p>
+
+          <h4 style="color:var(--usagov-navy); margin-bottom:8px;">Article 134: Universal &amp; Equal Suffrage</h4>
+          <p>Deputies to all Soviets of Workers' Deputies are elected by the citizens on the basis of universal, equal and direct suffrage by secret ballot in the #electoral-commission channel.</p>
+        `;
+      }
       openModal('docModal');
     }
 
     function openDecreesModal() {
-      document.getElementById('docModalTitle').textContent = 'Praesidium &amp; Supreme Soviet Decrees';
-      document.getElementById('docModalSub').textContent = 'Active Legislative Decrees in the Mock Government';
-      document.getElementById('docModalBody').innerHTML = `
-        <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
-          <strong style="color:var(--soviet-red);">DECREE № 104 / 2026:</strong> <em>On the Reorganization of Municipal Housing Queues</em>
-          <p style="margin-top:6px; font-size:0.88rem;">All citizens holding internal passports are granted priority access to municipal flat allocations. Applications are received directly by the Commissariat for Housing.</p>
-        </div>
-        <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
-          <strong style="color:var(--soviet-red);">DECREE № 105 / 2026:</strong> <em>On Universal Participation in the 27th Supreme Soviet</em>
-          <p style="margin-top:6px; font-size:0.88rem;">Electoral commissions are instructed to maintain open candidate registries across all 15 Union Republics without discrimination.</p>
-        </div>
-        <div>
-          <strong style="color:var(--soviet-red);">DECREE № 106 / 2026:</strong> <em>On Stakhanovite Production and Server Activity</em>
-          <p style="margin-top:6px; font-size:0.88rem;">Citizens contributing exceptional organizational, creative, or legislative work are awarded the Order of the Red Banner of Labor role.</p>
-        </div>
-      `;
+      if (isRussian) {
+        document.getElementById('docModalTitle').textContent = 'Указы Президиума Верховного Совета';
+        document.getElementById('docModalSub').textContent = 'Действующие законодательные акты ролевого правительства';
+        document.getElementById('docModalBody').innerHTML = `
+          <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+            <strong style="color:var(--soviet-red);">УКАЗ № 104:</strong> <em>О порядке распределения жилого фонда</em>
+            <p style="margin-top:6px; font-size:0.88rem;">Все граждане с подтверждёнными внутренними паспортами имеют право на постановку на городской учёт. Заявления принимаются непосредственно Наркоматом коммунального хозяйства.</p>
+          </div>
+          <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+            <strong style="color:var(--soviet-red);">УКАЗ № 105:</strong> <em>Об открытых списках избирателей</em>
+            <p style="margin-top:6px; font-size:0.88rem;">Избирательным комиссиям 15 союзных республик предписано вести открытую регистрацию граждан для участия в выборах в Совет Союза и Совет Национальностей.</p>
+          </div>
+          <div>
+            <strong style="color:var(--soviet-red);">УКАЗ № 106:</strong> <em>О стахановском движении и активности участников</em>
+            <p style="margin-top:6px; font-size:0.88rem;">Участникам, внёсшим особый вклад в организационную, законотворческую и творческую работу сервера, присваивается почётный орден Трудового Красного Знамени.</p>
+          </div>
+        `;
+      } else {
+        document.getElementById('docModalTitle').textContent = 'Praesidium &amp; Supreme Soviet Decrees';
+        document.getElementById('docModalSub').textContent = 'Active Legislative Decrees in the Mock Government';
+        document.getElementById('docModalBody').innerHTML = `
+          <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+            <strong style="color:var(--soviet-red);">DECREE № 104:</strong> <em>On the Reorganization of Municipal Housing Queues</em>
+            <p style="margin-top:6px; font-size:0.88rem;">All citizens holding internal passports are granted access to municipal flat allocations. Applications are received directly by the Commissariat for Housing.</p>
+          </div>
+          <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
+            <strong style="color:var(--soviet-red);">DECREE № 105:</strong> <em>On Open Candidate Registries</em>
+            <p style="margin-top:6px; font-size:0.88rem;">Electoral commissions are instructed to maintain open candidate registries across all 15 Union Republics without discrimination.</p>
+          </div>
+          <div>
+            <strong style="color:var(--soviet-red);">DECREE № 106:</strong> <em>On Stakhanovite Production and Server Activity</em>
+            <p style="margin-top:6px; font-size:0.88rem;">Citizens contributing exceptional organizational, creative, or legislative work are awarded the Order of the Red Banner of Labor role.</p>
+          </div>
+        `;
+      }
       openModal('docModal');
     }
 
     function openBenefitsModal() {
-      document.getElementById('docModalTitle').textContent = 'Citizen Entitlements &amp; Sanatorium Bureau';
-      document.getElementById('docModalSub').textContent = 'State Social Security &amp; Welfare';
-      document.getElementById('docModalBody').innerHTML = `
-        <p style="margin-bottom:12px;">Every registered citizen in our mock government has access to state welfare channels:</p>
-        <ul style="margin-left:20px; line-height:1.7;">
-          <li><strong>Sanatorium &amp; Resort Passes</strong>: Vouchers for Black Sea and Crimean resort club lounges in Discord.</li>
-          <li><strong>Dispensary Healthcare</strong>: Free mock clinic checkups and rest permits in #clinic-hospital.</li>
-          <li><strong>Maternity &amp; Family Allowances</strong>: Child stipends and family apartment expansions.</li>
-          <li><strong>Veteran Pensions</strong>: Honorific ranks for long-term server participants.</li>
-        </ul>
-      `;
+      if (isRussian) {
+        document.getElementById('docModalTitle').textContent = 'Государственные льготы и Санаторное бюро';
+        document.getElementById('docModalSub').textContent = 'Социальное обеспечение трудящихся Союза';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">Каждый гражданин в нашем ролевом государстве имеет право на доступ к системе льгот:</p>
+          <ul style="margin-left:20px; line-height:1.7;">
+            <li><strong>Санаторно-курортные путёвки</strong>: Направление в дома отдыха и на курорты Чёрного моря и Крыма в ролевых каналах Discord.</li>
+            <li><strong>Диспансерное обслуживание</strong>: Обращения в амбулатории и получение больничных листов в канале #clinic-hospital.</li>
+            <li><strong>Пособия на детей и семью</strong>: Дополнительные стипендии и расширение жилплощади.</li>
+            <li><strong>Ветеранские звания</strong>: Почётные роли для давних участников сервера.</li>
+          </ul>
+        `;
+      } else {
+        document.getElementById('docModalTitle').textContent = 'Citizen Entitlements &amp; Sanatorium Bureau';
+        document.getElementById('docModalSub').textContent = 'State Social Security &amp; Welfare';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">Every registered citizen in our mock government has access to state welfare channels:</p>
+          <ul style="margin-left:20px; line-height:1.7;">
+            <li><strong>Sanatorium &amp; Resort Passes</strong>: Vouchers for Black Sea and Crimean resort club lounges in Discord.</li>
+            <li><strong>Dispensary Healthcare</strong>: Free mock clinic checkups and rest permits in #clinic-hospital.</li>
+            <li><strong>Maternity &amp; Family Allowances</strong>: Child stipends and family apartment expansions.</li>
+            <li><strong>Veteran Pensions</strong>: Honorific ranks for long-term server participants.</li>
+          </ul>
+        `;
+      }
       openModal('docModal');
     }
 
     function openLaborModal() {
-      document.getElementById('docModalTitle').textContent = 'Gosplan &amp; Labor Bureau (ВЦСПС)';
-      document.getElementById('docModalSub').textContent = 'Employment, Production Quotas, and Trade Unions';
-      document.getElementById('docModalBody').innerHTML = `
-        <p style="margin-bottom:12px;">The Five-Year Plan coordinates our community's creative output and server activities:</p>
-        <ul style="margin-left:20px; line-height:1.7;">
-          <li><strong>Trudovaya Knizhka (Labor Book)</strong>: Your recorded career history from apprentice to Commissariat Deputy.</li>
-          <li><strong>Production Quotas</strong>: Weekly community events, trivia challenges, and debate sessions.</li>
-          <li><strong>Stakhanovite Movement</strong>: Earn honorary roles by surpassing community participation targets.</li>
-        </ul>
-      `;
+      if (isRussian) {
+        document.getElementById('docModalTitle').textContent = 'Госплан и Отдел труда (ВЦСПС)';
+        document.getElementById('docModalSub').textContent = 'Трудоустройство, производственные нормы и профсоюзы';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">Пятилетний план координирует активность и творческую деятельность нашего сообщества:</p>
+          <ul style="margin-left:20px; line-height:1.7;">
+            <li><strong>Трудовая книжка</strong>: История карьеры гражданина от стажёра до заместителя Наркома.</li>
+            <li><strong>Плановые задания</strong>: Еженедельные мероприятия, дебаты и тематические викторины.</li>
+            <li><strong>Стахановское движение</strong>: Присвоение почётных ролей за перевыполнение нормативов участия.</li>
+          </ul>
+        `;
+      } else {
+        document.getElementById('docModalTitle').textContent = 'Gosplan &amp; Labor Bureau (ВЦСПС)';
+        document.getElementById('docModalSub').textContent = 'Employment, Production Quotas, and Trade Unions';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">The Five-Year Plan coordinates our community's creative output and server activities:</p>
+          <ul style="margin-left:20px; line-height:1.7;">
+            <li><strong>Trudovaya Knizhka (Labor Book)</strong>: Your recorded career history from apprentice to Commissariat Deputy.</li>
+            <li><strong>Production Quotas</strong>: Weekly community events, trivia challenges, and debate sessions.</li>
+            <li><strong>Stakhanovite Movement</strong>: Earn honorary roles by surpassing community participation targets.</li>
+          </ul>
+        `;
+      }
       openModal('docModal');
     }
 
     function openTravelModal() {
-      document.getElementById('docModalTitle').textContent = 'Inter-Republic Travel Permit Bureau (ОВИР)';
-      document.getElementById('docModalSub').textContent = 'Transit Across the 15 Soviet Republics';
-      document.getElementById('docModalBody').innerHTML = `
-        <p style="margin-bottom:12px;">Citizens traveling between constituent republics (e.g. Russian SFSR to Kazakh SSR or Georgian SSR) may obtain official transit passes for inter-regional roleplay channels.</p>
-        <p>Visit <strong>#passport-desk</strong> on Discord with your internal passport serial number to receive express transit authorization.</p>
-      `;
+      if (isRussian) {
+        document.getElementById('docModalTitle').textContent = 'Отдел виз и разрешений (ОВИР)';
+        document.getElementById('docModalSub').textContent = 'Поездки между 15 союзными республиками';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">Граждане, совершающие поездки между республиками (например, из РСФСР в Казахскую ССР или Грузинскую ССР), могут получить официальный маршрутный лист для межрегиональных каналов.</p>
+          <p>Посетите канал <strong>#passport-desk</strong> в Discord с серией и номером вашего паспорта для получения пропуска.</p>
+        `;
+      } else {
+        document.getElementById('docModalTitle').textContent = 'Inter-Republic Travel Permit Bureau (ОВИР)';
+        document.getElementById('docModalSub').textContent = 'Transit Across the 15 Soviet Republics';
+        document.getElementById('docModalBody').innerHTML = `
+          <p style="margin-bottom:12px;">Citizens traveling between constituent republics (e.g. Russian SFSR to Kazakh SSR or Georgian SSR) may obtain official transit passes for inter-regional roleplay channels.</p>
+          <p>Visit <strong>#passport-desk</strong> on Discord with your internal passport serial number to receive express transit authorization.</p>
+        `;
+      }
       openModal('docModal');
     }
 
