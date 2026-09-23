@@ -318,28 +318,41 @@
     top: 0;
     z-index: 50;
     box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .nav-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     align-items: center;
-    padding: 0 8px;
+    padding: 0 12px;
     gap: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--usagov-gray-mid) transparent;
+  }
+  .nav-inner::-webkit-scrollbar {
+    height: 3px;
+  }
+  .nav-inner::-webkit-scrollbar-thumb {
+    background-color: var(--usagov-gray-mid);
+    border-radius: 3px;
   }
   .nav-link {
     color: var(--usagov-navy);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
-    padding: 11px 12px;
+    padding: 10px 11px;
     white-space: nowrap;
     border-bottom: 3px solid transparent;
     transition: all 0.15s;
     border-radius: 2px 2px 0 0;
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .nav-link:hover, .nav-link.active {
     color: var(--usagov-blue);
@@ -348,14 +361,11 @@
   }
   @media (max-width: 860px) {
     .nav-inner {
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      scrollbar-width: thin;
-      padding: 0 4px;
+      padding: 0 8px;
     }
     .nav-link {
-      padding: 10px 10px;
-      font-size: 0.84rem;
+      padding: 9px 8px;
+      font-size: 0.82rem;
     }
   }
 
@@ -1068,21 +1078,9 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="#" class="brand-group" aria-label="Union Civic Portal Home">
-        <div class="brand-logo-circle" title="State Emblem of the USSR">
+        <div class="brand-logo-circle" title="Union of Soviet Socialist Republics">
           <svg viewBox="0 0 100 100" class="brand-emblem-svg" aria-hidden="true">
-            <!-- Five-pointed Gold Star -->
-            <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-            <!-- Hammer Handle -->
-            <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-            <!-- Hammer Head -->
-            <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-            <polygon points="77,39 80,36 84,40 81,43" fill="#e5ad1e" stroke="#d49b10" stroke-width="0.5" />
-            <polygon points="56,28 53,31 49,27 52,24" fill="#e5ad1e" stroke="#d49b10" stroke-width="0.5" />
-            <!-- Sickle Blade -->
-            <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-            <!-- Sickle Handle -->
-            <rect x="42.5" y="72" width="6" height="3" rx="0.5" fill="#d49b10" stroke="#b37e00" stroke-width="0.5" />
-            <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
+            <polygon points="50,6 63,35 95,38 72,61 77,93 50,78 23,93 28,61 5,38 37,35" fill="#ffc72c" stroke="#d49b10" stroke-width="1.5" />
           </svg>
           <span class="abbr">СССР</span>
         </div>
@@ -1095,7 +1093,7 @@
       <div class="header-actions">
         <div class="header-top-row">
           <span class="helpline-text"><span data-i18n="header_helpline">Citizen Praesidium Desk:</span> <strong>#citizen-appeals</strong></span>
-          <button type="button" class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">Русский / English</button>
+          <button type="button" class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">Русский</button>
         </div>
         <form class="search-form" role="search" onsubmit="handleSearch(event)">
           <input type="search" id="searchInput" class="search-input" placeholder="Search Soviet civic services, decrees, benefits..." aria-label="Search services" data-i18n-placeholder="search_placeholder">
@@ -1125,18 +1123,7 @@
        ============================================================= -->
   <div class="hero-container">
     <svg class="hero-flag-graphic" viewBox="0 0 100 100" fill="#ffc72c" aria-hidden="true">
-      <!-- Authentic Soviet Gold Star -->
-      <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" />
-      <!-- Hammer -->
-      <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" />
-      <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" />
-      <polygon points="77,39 80,36 84,40 81,43" />
-      <polygon points="56,28 53,31 49,27 52,24" />
-      <!-- Sickle Blade -->
-      <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" />
-      <!-- Sickle Handle -->
-      <rect x="42.5" y="72" width="6" height="3" rx="0.5" />
-      <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" />
+      <polygon points="50,8 62,35 92,39 70,61 75,91 50,76 25,91 30,61 8,39 38,35" />
     </svg>
 
     <div class="hero-inner">
@@ -1187,7 +1174,7 @@
           <div class="how-item" onclick="openAppealsModal()" role="button" tabindex="0">
             <div>
               <div class="how-item-badge" data-i18n="how_item_4_badge">★ Appeals</div>
-              <div class="how-item-text" data-i18n="how_item_4_text">File a petition or grievance with a Commissariat</div>
+              <div class="how-item-text"><span data-i18n="how_item_4_text">File a petition or grievance with a Ministry</span> <span class="status-pill status-wip" style="font-size:0.65rem; padding:2px 5px; margin-left:4px;">WIP</span></div>
             </div>
             <div class="how-item-arrow" data-i18n="how_item_4_btn">File appeal &rarr;</div>
           </div>
@@ -1262,9 +1249,9 @@
       <!-- Card 4 -->
       <div class="service-card" data-category="passports">
         <div class="service-card-top">
-          <div class="service-card-num" data-i18n="card_4_num">Topic 04 · Bureau</div>
+          <div class="service-card-num" data-i18n="card_4_num">Topic 04 · Interior</div>
           <h3 data-i18n="card_4_title">Internal Passports &amp; Propiska</h3>
-          <p data-i18n="card_4_desc">Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.</p>
+          <p data-i18n="card_4_desc">Issuance of the internal citizen passport, registration of domicile, and civil records under the Ministry of Soviet Interior (Internal Affairs).</p>
         </div>
         <div class="service-card-footer">
           <a href="#services" class="service-card-link" onclick="openPassportModal()" data-i18n="card_4_link">Generate passport &rarr;</a>
@@ -1302,8 +1289,8 @@
       <div class="service-card" data-category="benefits">
         <div class="service-card-top">
           <div class="service-card-num" data-i18n="card_7_num">Topic 07 · Housing</div>
-          <h3 data-i18n="card_7_title">Communal Housing &amp; Urban Allocations</h3>
-          <p data-i18n="card_7_desc">Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.</p>
+          <h3 data-i18n="card_7_title">Ministry of Municipal Housing &amp; Allocations</h3>
+          <p data-i18n="card_7_desc">Queue for state-provided residential flats. Server activity is checked and verified. To get housing a ticket must be made in the server.</p>
         </div>
         <div class="service-card-footer">
           <a href="#services" class="service-card-link" onclick="openHousingModal()" data-i18n="card_7_link">Housing queue &rarr;</a>
@@ -1315,8 +1302,8 @@
       <div class="service-card" data-category="gov">
         <div class="service-card-top">
           <div class="service-card-num" data-i18n="card_8_num">Topic 08 · Petitions</div>
-          <h3 data-i18n="card_8_title">Praesidium Citizen Appeals Bureau</h3>
-          <p data-i18n="card_8_desc">Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.</p>
+          <h3 data-i18n="card_8_title">Praesidium Citizen Appeals Bureau <span class="status-pill status-wip" style="font-size:0.65rem; padding:2px 5px; margin-left:4px; vertical-align:middle;">WIP</span></h3>
+          <p data-i18n="card_8_desc">Submit formal grievances and petitions to ministers. (Work in progress: Discord webhook integration coming soon).</p>
         </div>
         <div class="service-card-footer">
           <a href="#services" class="service-card-link" onclick="openAppealsModal()" data-i18n="card_8_link">Submit petition &rarr;</a>
@@ -1355,9 +1342,9 @@
         </div>
 
         <div class="bulletin-item">
-          <div class="bulletin-tag" data-i18n="bulletin_2_tag">★ Commissariat of Housing</div>
+          <div class="bulletin-tag" data-i18n="bulletin_2_tag">★ Ministry of Municipal Housing</div>
           <h4 data-i18n="bulletin_2_title">Spring Housing Allocation Cycle Active</h4>
-          <p data-i18n="bulletin_2_desc">Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.</p>
+          <p data-i18n="bulletin_2_desc">Notice: Server activity is checked and verified by ministers. To apply for state housing or room elevation, open a ticket on the Discord server.</p>
         </div>
 
         <div class="bulletin-item">
@@ -1406,8 +1393,8 @@
   <div class="modal-overlay" id="passportModal" onclick="handleOverlayClick(event, 'passportModal')">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" onclick="closeModal('passportModal')" aria-label="Close">✕</button>
-      <h3 class="modal-title">Internal Passport Bureau (Паспортный Стол)</h3>
-      <div class="modal-subtitle">Generate and verify your official citizen identification for Discord roleplay.</div>
+      <h3 class="modal-title" id="passportModalTitle">Ministry of Soviet Interior · Passport Desk</h3>
+      <div class="modal-subtitle" id="passportModalSub">Internal Affairs (МВД СССР) citizen identification and propiska domicile registry.</div>
 
       <div class="form-group">
         <label class="form-label" for="passDiscordName">Discord Username / Tag</label>
@@ -1460,7 +1447,7 @@
             <div class="passport-title-ru">ПАСПОРТ ГРАЖДАНИНА СССР</div>
             <div style="font-size:0.75rem; color:#5b2828;">UNION OF SOVIET SOCIALIST REPUBLICS</div>
           </div>
-          <div class="passport-stamp">ОВИР · МВД<br>ПРОПИСКА</div>
+          <div class="passport-stamp">ОВИР · МВД СССР<br>ПРОПИСКА</div>
         </div>
         <div class="passport-row">
           <span class="passport-label">Full Name:</span>
@@ -1498,8 +1485,8 @@
   <div class="modal-overlay" id="voterModal" onclick="handleOverlayClick(event, 'voterModal')">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" onclick="closeModal('voterModal')" aria-label="Close">✕</button>
-      <h3 class="modal-title">Central Electoral Commission</h3>
-      <div class="modal-subtitle">Verify your voter roll eligibility for the Supreme Soviet of Workers' Deputies.</div>
+      <h3 class="modal-title" id="voterModalTitle">Central Electoral Commission</h3>
+      <div class="modal-subtitle" id="voterModalSub">Verify your voter roll eligibility for the Supreme Soviet of Workers' Deputies.</div>
 
       <div class="form-group">
         <label class="form-label" for="voterSearchInput">Enter your Discord username</label>
@@ -1521,8 +1508,23 @@
   <div class="modal-overlay" id="housingModal" onclick="handleOverlayClick(event, 'housingModal')">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" onclick="closeModal('housingModal')" aria-label="Close">✕</button>
-      <h3 class="modal-title">Commissariat for Municipal Housing</h3>
-      <div class="modal-subtitle">Regulations, communal apartment square-meter allowances, and waiting list tier lookup.</div>
+      <h3 class="modal-title" id="housingModalTitle">Ministry of Municipal Housing</h3>
+      <div class="modal-subtitle" id="housingModalSub">Regulations, communal apartment square-meter allowances, and waiting list tier lookup.</div>
+
+      <div style="background:#eef6fc; border:1px solid #b6d4fe; border-left:4px solid var(--usagov-blue); padding:14px 16px; border-radius:4px; margin-bottom:16px;">
+        <strong style="color:var(--usagov-navy); font-size:0.95rem; display:flex; align-items:center; gap:6px;">📌 Notice on Municipal Housing Allocations:</strong>
+        <p id="housingNoteText" style="margin:6px 0 10px 0; font-size:0.9rem; color:#222; line-height:1.5;">
+          Server activity is checked and verified. To get housing a ticket must be made in the server.
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="https://discord.gg/XUcX9tgc5u" target="_blank" rel="noopener noreferrer" class="btn-submit" style="display:inline-flex; align-items:center; gap:6px; background:var(--usagov-blue); text-decoration:none; padding:8px 14px; font-size:0.85rem; width:auto;">
+            <span>🎫 Open Ticket on Discord Server &rarr;</span>
+          </a>
+          <button type="button" class="btn-submit" style="background:#fff; color:var(--usagov-navy); border:1px solid #b6d4fe; padding:8px 12px; font-size:0.85rem; width:auto;" onclick="copyDiscordLinkDirect('https://discord.gg/XUcX9tgc5u')">
+            Copy Discord Invite
+          </button>
+        </div>
+      </div>
 
       <div style="background:#fff7e6; border:1px solid #ffd591; padding:14px; border-radius:4px; margin-bottom:18px; font-size:0.9rem;">
         <strong>Official Housing Norm:</strong> Standard allocation is 9 m² living space per family member. Priority is awarded to Stakhanovite workers, Supreme Soviet deputies, and large families.
@@ -1561,17 +1563,39 @@
   <div class="modal-overlay" id="appealsModal" onclick="handleOverlayClick(event, 'appealsModal')">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" onclick="closeModal('appealsModal')" aria-label="Close">✕</button>
-      <h3 class="modal-title">Praesidium Citizen Appeals Bureau</h3>
-      <div class="modal-subtitle">Submit an official petition or grievance to be reviewed by the Council of Ministers.</div>
+      <h3 class="modal-title" id="appealsModalTitle">Praesidium Citizen Appeals Bureau</h3>
+      <div class="modal-subtitle" id="appealsModalSub">Submit an official petition or grievance to be reviewed by ministers.</div>
+
+      <!-- Work In Progress Callout Banner -->
+      <div style="background:#fffbe6; border:1px solid #ffe58f; border-left:4px solid #faad14; padding:14px 16px; border-radius:4px; margin-bottom:16px;">
+        <div style="display:flex; align-items:center; gap:8px; font-weight:700; color:#d48806; font-size:0.95rem; margin-bottom:6px;">
+          <span style="font-size:1.15rem;">🚧</span>
+          <span id="appealsWipTitle">Work in Progress · Webhook Integration Pending</span>
+          <span class="status-pill status-wip" style="margin-left:auto; font-size:0.7rem;">WIP</span>
+        </div>
+        <p id="appealsWipDesc" style="margin:0 0 10px 0; font-size:0.88rem; color:#444; line-height:1.5;">
+          The citizen petition and grievance automated filing maker is currently a <strong>Work in Progress</strong>. In the future, filings made here will be directly connected with a Discord Webhook to automatically dispatch to ministers and the Praesidium.<br>
+          For now, you can draft your grievance below or submit your petition directly in <strong>#citizen-appeals</strong> on the Discord server.
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="https://discord.gg/XUcX9tgc5u" target="_blank" rel="noopener noreferrer" class="btn-submit" style="background:#5865F2; text-decoration:none; display:inline-flex; align-items:center; gap:6px; padding:8px 14px; font-size:0.85rem; width:auto;">
+            <span>Submit in #citizen-appeals on Discord &rarr;</span>
+          </a>
+          <button type="button" class="btn-submit" style="background:#fff; color:var(--usagov-navy); border:1px solid #d9d9d9; padding:8px 12px; font-size:0.85rem; width:auto;" onclick="copyDiscordLinkDirect('https://discord.gg/XUcX9tgc5u')">
+            Copy Invite Link
+          </button>
+        </div>
+      </div>
 
       <div class="form-group">
-        <label class="form-label" for="appealTarget">Addressing Commissariat</label>
+        <label class="form-label" for="appealTarget">Addressing Ministry</label>
         <select id="appealTarget" class="form-select">
-          <option>Commissariat of Internal Affairs (MVD)</option>
-          <option>Commissariat of Justice &amp; Courts</option>
-          <option>Commissariat of Heavy Industry</option>
-          <option>Commissariat of Healthcare &amp; Sanatoriums</option>
-          <option>Praesidium of the Supreme Soviet (Direct)</option>
+          <option>Ministry of Soviet Interior (Internal Affairs / МВД СССР)</option>
+          <option>Ministry of Municipal Housing</option>
+          <option>Ministry of Justice &amp; Courts</option>
+          <option>Ministry of Heavy Industry &amp; Gosplan</option>
+          <option>Ministry of Healthcare &amp; Sanatoriums</option>
+          <option>Council of Ministers &amp; Supreme Soviet Praesidium</option>
         </select>
       </div>
 
@@ -1587,10 +1611,11 @@
 
       <button type="button" class="btn-submit" onclick="submitAppeal()">Generate Discord Appeal Format</button>
 
-      <div id="appealResultBox" style="display:none; margin-top:16px; padding:16px; background:#e6f7ff; border:1px solid #91d5ff; border-radius:4px;">
-        <strong>Official Discord Dispatch Ready:</strong>
-        <textarea id="appealFormattedOutput" class="form-textarea" rows="4" style="margin-top:8px; font-family:monospace; font-size:0.85rem;" readonly></textarea>
-        <button type="button" class="btn-submit" style="margin-top:8px;" onclick="copyAppeal()">Copy to Clipboard</button>
+      <div id="appealResultBox" style="display:none; margin-top:16px; padding:16px; background:#fffbe6; border:1px solid #ffe58f; border-left:4px solid #faad14; border-radius:4px;">
+        <div style="font-weight:700; color:#d48806; margin-bottom:4px;">🚧 Automated Webhook Dispatch in Progress</div>
+        <p style="font-size:0.85rem; color:#555; margin:0 0 8px 0;">Direct server webhook transmission will be active in an upcoming release. In the meantime, your petition draft is formatted below so you can copy and post it into Discord #citizen-appeals or open a ticket:</p>
+        <textarea id="appealFormattedOutput" class="form-textarea" rows="4" style="margin-top:4px; font-family:monospace; font-size:0.85rem;" readonly></textarea>
+        <button type="button" class="btn-submit" style="margin-top:8px; background:var(--usagov-blue);" onclick="copyAppeal()">Copy Appeal to Clipboard for Discord</button>
       </div>
     </div>
   </div>
@@ -1599,8 +1624,8 @@
   <div class="modal-overlay" id="discordModal" onclick="handleOverlayClick(event, 'discordModal')">
     <div class="modal-box">
       <button type="button" class="modal-close-btn" onclick="closeModal('discordModal')" aria-label="Close">✕</button>
-      <h3 class="modal-title">USSR Discord Mock Government</h3>
-      <div class="modal-subtitle">Join the premier political roleplay simulation on Discord.</div>
+      <h3 class="modal-title" id="discordModalTitle">USSR Discord Mock Government</h3>
+      <div class="modal-subtitle" id="discordModalSub">Join the premier political roleplay simulation on Discord.</div>
 
       <div style="font-size:0.95rem; line-height:1.6; color:#333;">
         <p style="margin-bottom:12px;">Our community simulates the governance, elections, economic planning, and everyday civic life of the Union. Features include:</p>
@@ -1645,14 +1670,7 @@
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
           <div class="brand-logo-circle" style="width:46px; height:46px; padding:2px;">
             <svg viewBox="0 0 100 100" style="width:26px; height:26px; display:block;" aria-hidden="true">
-              <polygon points="50,4 52.6,11.8 61,11.8 54.2,16.5 56.8,24 50,19.5 43.2,24 45.8,16.5 39,11.8 47.4,11.8" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-              <rect x="47" y="22" width="6" height="56" rx="2" transform="rotate(45 50 50)" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-              <path d="M 61,23 L 77,39 L 72,44 L 56,28 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-              <polygon points="77,39 80,36 84,40 81,43" fill="#e5ad1e" />
-              <polygon points="56,28 53,31 49,27 52,24" fill="#e5ad1e" />
-              <path d="M 44,74 C 25,72 16,59 17,45 C 18,29 31,16 51,14 C 63,13 73,21 77,32 C 77.8,33.8 75.8,34.8 74.8,33.2 C 70.5,25 61.5,20.5 51,21.5 C 37.5,22.5 28,33.5 27,47 C 26,58 33,67 44,68 C 47.5,68.5 48,73.5 44,74 Z" fill="#ffc72c" stroke="#d49b10" stroke-width="0.75" />
-              <rect x="42.5" y="72" width="6" height="3" rx="0.5" fill="#d49b10" />
-              <path d="M 44,75 L 36,90 C 35,92 37,94 39.5,94 L 42,94 C 44.5,94 45.5,92 47.5,87 L 47,75 Z" fill="#ffc72c" />
+              <polygon points="50,6 63,35 95,38 72,61 77,93 50,78 23,93 28,61 5,38 37,35" fill="#ffc72c" stroke="#d49b10" stroke-width="1.5" />
             </svg>
             <span class="abbr" style="font-size:0.55rem; margin-top:0;">СССР</span>
           </div>
@@ -1732,269 +1750,265 @@
 
     const translations = {
       en: {
-        official_banner_badge: "★ Official Mock Government Website",
-        official_banner_text: "An official website of the USSR Mock Government on Discord",
-        how_you_know_btn: "Here's how you know",
-        how_you_know_panel_bold: "Official Mock Government Simulation Server:",
-        how_you_know_panel_text: "This portal is attached to our active Discord political roleplay community. State services, internal identification documents, and decrees correspond to active roleplay channels in the server.",
-        how_you_know_panel_invite: "Discord Invite:",
-        brand_title: "Union Civic Portal",
-        brand_sub: "Union of Soviet Socialist Republics · Mock Government",
-        nav_all: "All Topics",
-        nav_constitution: "Constitution & Law",
-        nav_social: "Benefits & Social",
-        nav_passports: "Passports & Propiska",
-        nav_republics: "Republics & Travel",
-        nav_labor: "Labor & Gosplan",
-        nav_bulletin: "Praesidium Bulletin",
-        nav_discord: "Discord Server",
-        hero_flag_alt: "State Flag of the USSR",
-        hero_tag: "★ USSR CENTRAL CIVIC PORTAL",
-        hero_title: "Official information and services of the Soviet State",
-        hero_subtitle: "The central civic registry for the USSR Discord mock government: internal passports, propiska domicile records, Supreme Soviet decrees, labor books, and sanatorium vouchers.",
-        search_input_placeholder: "Search services, commissariats, rights, forms, or decrees...",
-        search_btn: "Search",
-        popular_label: "Popular topics:",
-        how_item_1_badge: "★ Constitution",
-        how_item_1_text: "Fundamental law, civil rights, and republic sovereignty",
-        how_item_1_btn: "Read articles &rarr;",
-        how_item_2_badge: "★ Internal Passport",
-        how_item_2_text: "Generate an official citizen propiska and identification card",
-        how_item_2_btn: "Generate passport &rarr;",
-        how_item_3_badge: "★ Housing",
-        how_item_3_text: "Request a municipal housing or flat allocation",
-        how_item_3_btn: "Check queue &rarr;",
-        how_item_4_badge: "★ Appeals",
-        how_item_4_text: "File a petition or grievance with a Commissariat",
-        how_item_4_btn: "File appeal &rarr;",
-        jump_cue_text: "Jump to all topics and services",
-        services_heading: "All Topics and Services",
-        services_subheading: "Browse state departments, public registries, decrees, and roleplay procedures.",
-        filtering_prefix: "Filtering:",
-        card_1_num: "Topic 01 · State",
-        card_1_title: "Constitution & Fundamental Law",
-        card_1_desc: "Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.",
-        card_1_link: "Read Constitution &rarr;",
-        card_1_btn: "View Articles",
-        card_2_num: "Topic 02 · Social",
-        card_2_title: "State Benefits & Sanatorium Vouchers",
-        card_2_desc: "Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.",
-        card_2_link: "View entitlements &rarr;",
-        card_2_btn: "Calculator",
-        card_3_num: "Topic 03 · Congress",
-        card_3_title: "Supreme Soviet of Workers' Deputies",
-        card_3_desc: "Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.",
-        card_3_link: "Inspect Decrees &rarr;",
-        card_3_btn: "Roll Calls",
-        card_4_num: "Topic 04 · Bureau",
-        card_4_title: "Internal Passports & Propiska",
-        card_4_desc: "Issuance of the internal citizen passport, registration of domicile, marital records at ZAGS, and republic identification numbers.",
-        card_4_link: "Generate passport &rarr;",
-        card_4_btn: "Bureau Desk",
-        card_5_num: "Topic 05 · Labor",
-        card_5_title: "Labor Book & Gosplan Economy",
-        card_5_desc: "Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.",
-        card_5_link: "View labor ranks &rarr;",
-        card_5_btn: "Gosplan",
-        card_6_num: "Topic 06 · Transit",
-        card_6_title: "Travel Permits & Republic Visas",
-        card_6_desc: "Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.",
-        card_6_link: "Apply for permit &rarr;",
-        card_6_btn: "Transit Desk",
-        card_7_num: "Topic 07 · Housing",
-        card_7_title: "Communal Housing & Urban Allocations",
-        card_7_desc: "Queue for state-provided residential flats, square-meter per capita standards, and Commissariat for Municipal Economy inspections.",
-        card_7_link: "Housing queue &rarr;",
-        card_7_btn: "Inquire",
-        card_8_num: "Topic 08 · Petitions",
-        card_8_title: "Praesidium Citizen Appeals Bureau",
-        card_8_desc: "Submit formal grievances, reports on administrative irregularities, and official petitions directly to the Council of Ministers.",
-        card_8_link: "Submit petition &rarr;",
-        card_8_btn: "File Grievance",
-        card_9_num: "Topic 09 · Archives",
-        card_9_title: "Central Electoral Commission & Roll",
-        card_9_desc: "Candidate verification, electoral precincts, secret ballot procedures, and voter rolls across RSFSR, Ukrainian SSR, and all republics.",
-        card_9_link: "Check registration &rarr;",
-        card_9_btn: "Voter Roll",
-        bulletin_title: "Official Praesidium Bulletin",
-        bulletin_1_tag: "★ Civic Intake Notice",
-        bulletin_1_title: "Citizen Registry & Passport Desk Open",
-        bulletin_1_desc: "All new arrivals on Discord are invited to establish internal passports, register their domicile propiska, and select a constituent Soviet Republic.",
-        bulletin_2_tag: "★ Commissariat of Housing",
-        bulletin_2_title: "Spring Housing Allocation Cycle Active",
-        bulletin_2_desc: "Citizens with 3+ registered weeks on Discord may petition for private room elevation in Moscow and Leningrad municipal districts.",
-        bulletin_3_tag: "★ Roleplay Notice",
-        bulletin_3_title: "Notice of Server Realism & Fair Participation",
-        bulletin_3_desc: "Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.",
-        roadmap_title: "Union Network Sites",
-        roadmap_sub: "This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:",
-        site_1_name: "Civic Portal",
-        site_1_desc: "(General Services)",
-        status_live: "Live",
-        site_2_name: "Ministry of Defense",
-        site_2_desc: "(Interactive Drill)",
-        status_wip: "In Progress",
-        site_3_name: "State Archive & Constitution",
-        status_plan: "Planned",
-        site_4_name: "Supreme Soviet Voting Ledger",
-        site_5_name: "Gosplan Economic Dashboard",
-        discord_disclaimer_title: "Important Roleplay Disclaimer:",
-        discord_disclaimer_text: "This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.",
-        discord_join_btn: "Join Discord Server",
-        discord_copy_btn: "📋 Copy Discord Invite Link",
-        footer_sub: "USSR Mock Government",
-        footer_desc: "An official public information and civic services hub serving citizens of the USSR Discord roleplay simulation.",
-        footer_col1_title: "Public Services",
-        footer_col1_1: "Internal Passports",
-        footer_col1_2: "Communal Housing",
-        footer_col1_3: "Sanatorium Vouchers",
-        footer_col1_4: "Republic Travel Passes",
-        footer_col2_title: "The Soviet State",
-        footer_col2_1: "1936/1977 Constitution",
-        footer_col2_2: "Supreme Soviet Decrees",
-        footer_col2_3: "Electoral Roll Archive",
-        footer_col2_4: "Gosplan Economic Targets",
-        footer_col3_title: "Discord Government",
-        footer_col3_1: "Discord Server Directory",
-        footer_col3_2: "#citizen-appeals",
-        footer_col3_3: "Rules of Roleplay",
-        footer_col3_4: "Язык / Language",
-        disclaimer_badge: "MOCK GOVERNMENT DISCLAIMER",
-        disclaimer_bold: "Strictly a Fictional Roleplay Project:",
-        disclaimer_text: "This website is an amateur, fan-made interactive prop built for a Discord \"mock government\" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines."
-      },
+        "banner_title": "An official website of the <strong>USSR Discord Mock Government</strong>",
+        "banner_tag": "Roleplay Project",
+        "banner_know_btn": "Here's how you know",
+        "know_1_title": "Fictional Roleplay Community",
+        "know_1_body": "This website is an interactive prop crafted for a Discord mock government community. It does not represent any real-world government, political entity, or state. All offices, decrees, and passports are fictional.",
+        "know_2_title": "Official Discord Mock Government Server",
+        "know_2_body": "Official citizen decrees, voting ballots, housing allocations, and ministerial appointments take place inside our verified Discord server community.",
+        "header_helpline": "Citizen Praesidium Desk:",
+        "brand_title": "Union Civic Portal",
+        "brand_tagline": "Official Public Services · Supreme Soviet Mock Government",
+        "nav_all": "All topics and services",
+        "nav_gov": "The Union &amp; Supreme Soviet",
+        "nav_benefits": "Citizen Benefits &amp; Housing",
+        "nav_passports": "Internal Passports &amp; Propiska",
+        "nav_economy": "Labor &amp; Five-Year Plan",
+        "nav_travel": "Republics &amp; Travel Permits",
+        "nav_discord": "Discord Community",
+        "hero_title": "Serving the Union, serving the people",
+        "hero_subtitle": "The central civic registry for the USSR Discord mock government: internal passports, propiska domicile records, Supreme Soviet decrees, labor books, and sanatorium vouchers.",
+        "hero_cta": "Enter Discord Mock Government &rarr;",
+        "how_do_i_heading": "How do I ...",
+        "how_item_1_badge": "★ Directives",
+        "how_item_1_text": "Read Supreme Soviet decrees &amp; legislative acts",
+        "how_item_1_btn": "Read decrees &rarr;",
+        "how_item_2_badge": "★ Documents",
+        "how_item_2_text": "Get or renew an internal passport (Propiska)",
+        "how_item_2_btn": "Generate passport &rarr;",
+        "how_item_3_badge": "★ Housing",
+        "how_item_3_text": "Request a municipal housing or flat allocation",
+        "how_item_3_btn": "Check queue &rarr;",
+        "how_item_4_badge": "★ Appeals",
+        "how_item_4_text": "File a petition or grievance with a Ministry",
+        "how_item_4_btn": "File appeal &rarr;",
+        "jump_cue_text": "Jump to all topics and services",
+        "services_heading": "All Topics and Services",
+        "services_subheading": "Browse state departments, public registries, decrees, and roleplay procedures.",
+        "filtering_prefix": "Filtering:",
+        "card_1_num": "Topic 01 · State",
+        "card_1_title": "Constitution & Fundamental Law",
+        "card_1_desc": "Read the founding statutes of the Union, guaranteed rights to work, rest, free healthcare, and the sovereignty of the 15 Union Republics.",
+        "card_1_link": "Read Constitution &rarr;",
+        "card_1_btn": "View Articles",
+        "card_2_num": "Topic 02 · Social",
+        "card_2_title": "State Benefits & Sanatorium Vouchers",
+        "card_2_desc": "Free healthcare dispensary access, maternity allowances, disability pensions, and trade union holiday passes to Black Sea sanatoriums.",
+        "card_2_link": "View entitlements &rarr;",
+        "card_2_btn": "Calculator",
+        "card_3_num": "Topic 03 · Congress",
+        "card_3_title": "Supreme Soviet of Workers' Deputies",
+        "card_3_desc": "Legislative calendar of the Soviet of the Union and Soviet of Nationalities, floor debates, recorded voting rolls, and draft decrees.",
+        "card_3_link": "Inspect Decrees &rarr;",
+        "card_3_btn": "Roll Calls",
+        "card_4_num": "Topic 04 · Interior",
+        "card_4_title": "Internal Passports & Propiska (Ministry of Soviet Interior)",
+        "card_4_desc": "Issuance of the internal citizen passport, registration of domicile, and civil records under the Ministry of Soviet Interior (Internal Affairs).",
+        "card_4_link": "Generate passport &rarr;",
+        "card_4_btn": "Bureau Desk",
+        "card_5_num": "Topic 05 · Labor",
+        "card_5_title": "Labor Book & Gosplan Economy",
+        "card_5_desc": "Employment registration, factory and collective farm placement, Stakhanovite production medals, and Five-Year Plan targets.",
+        "card_5_link": "View labor ranks &rarr;",
+        "card_5_btn": "Gosplan",
+        "card_6_num": "Topic 06 · Transit",
+        "card_6_title": "Travel Permits & Republic Visas",
+        "card_6_desc": "Inter-republic transit permits across the 15 Soviet Republics, railway passes, and visitor regulations for foreign socialist delegations.",
+        "card_6_link": "Apply for permit &rarr;",
+        "card_6_btn": "Transit Desk",
+        "card_7_num": "Topic 07 · Housing",
+        "card_7_title": "Ministry of Municipal Housing & Allocations",
+        "card_7_desc": "Queue for state-provided residential flats. Server activity is checked and verified. To get housing a ticket must be made in the server.",
+        "card_7_link": "Housing queue &rarr;",
+        "card_7_btn": "Inquire",
+        "card_8_num": "Topic 08 · Petitions",
+        "card_8_title": "Praesidium Citizen Appeals Bureau",
+        "card_8_desc": "Submit formal grievances and petitions to ministers. (Work in progress: Discord webhook integration coming soon).",
+        "card_8_link": "Submit petition &rarr;",
+        "card_8_btn": "File Grievance",
+        "card_9_num": "Topic 09 · Archives",
+        "card_9_title": "Central Electoral Commission & Roll",
+        "card_9_desc": "Candidate verification, electoral precincts, secret ballot procedures, and voter rolls across RSFSR, Ukrainian SSR, and all republics.",
+        "card_9_link": "Check registration &rarr;",
+        "card_9_btn": "Voter Roll",
+        "bulletin_title": "Official Praesidium Bulletin",
+        "bulletin_1_tag": "★ Civic Intake Notice",
+        "bulletin_1_title": "Citizen Registry & Passport Desk Open",
+        "bulletin_1_desc": "All new arrivals on Discord are invited to establish internal passports, register their domicile propiska, and select a constituent Soviet Republic.",
+        "bulletin_2_tag": "★ Ministry of Municipal Housing",
+        "bulletin_2_title": "Housing Allocations & Server Activity Notice",
+        "bulletin_2_desc": "Notice: Server activity is checked and verified by ministers. To apply for state housing or room elevation, open a ticket on the Discord server.",
+        "bulletin_3_tag": "★ Roleplay Notice",
+        "bulletin_3_title": "Notice of Server Realism & Fair Participation",
+        "bulletin_3_desc": "Citizens are reminded that political discourse, elections, and ministerial appointments operate strictly within our server's mock government rules of conduct.",
+        "roadmap_title": "Union Network Sites",
+        "roadmap_sub": "This Civic Portal is the central hub for the Discord mock government. As our server grows, interconnected sister portals are launching:",
+        "site_1_name": "Civic Portal",
+        "site_1_desc": "(General Services)",
+        "status_live": "Live",
+        "site_2_name": "Ministry of Defense",
+        "site_2_desc": "(Interactive Drill)",
+        "status_wip": "In Progress",
+        "site_3_name": "State Archive & Constitution",
+        "status_plan": "Planned",
+        "site_4_name": "Supreme Soviet Voting Ledger",
+        "site_5_name": "Gosplan Economic Dashboard",
+        "discord_disclaimer_title": "Important Roleplay Disclaimer:",
+        "discord_disclaimer_text": "This is an entirely fictional hobby roleplay server. No real-world hate speech, modern political extremism, or genuine state representation is permitted.",
+        "discord_join_btn": "Join Discord Server",
+        "discord_copy_btn": "📋 Copy Discord Invite Link",
+        "footer_sub": "USSR Mock Government",
+        "footer_desc": "An official public information and civic services hub serving citizens of the USSR Discord roleplay simulation.",
+        "footer_col1_title": "Public Services",
+        "footer_col1_1": "Internal Passports",
+        "footer_col1_2": "Communal Housing",
+        "footer_col1_3": "Sanatorium Vouchers",
+        "footer_col1_4": "Republic Travel Passes",
+        "footer_col2_title": "The Soviet State",
+        "footer_col2_1": "1936/1977 Constitution",
+        "footer_col2_2": "Supreme Soviet Decrees",
+        "footer_col2_3": "Electoral Roll Archive",
+        "footer_col2_4": "Gosplan Economic Targets",
+        "footer_col3_title": "Discord Government",
+        "footer_col3_1": "Discord Server Directory",
+        "footer_col3_2": "#citizen-appeals",
+        "footer_col3_3": "Rules of Roleplay",
+        "footer_col3_4": "Язык / Language",
+        "disclaimer_badge": "MOCK GOVERNMENT DISCLAIMER",
+        "disclaimer_bold": "Strictly a Fictional Roleplay Project:",
+        "disclaimer_text": "This website is an amateur, fan-made interactive prop built for a Discord \"mock government\" political roleplay server. It is NOT affiliated with, endorsed by, or representative of any real-world country, past regime, government agency, or real political party. All materials, forms, and documents are designed solely for creative simulation within the Discord roleplay guidelines."
+},
       ru: {
-        official_banner_badge: "★ Официальный портал",
-        official_banner_text: "Официальный веб-сайт ролевого правительства СССР в Discord",
-        how_you_know_btn: "Как проверить подлинность",
-        how_you_know_panel_bold: "Официальный сервер моделирования государственного управления:",
-        how_you_know_panel_text: "Данный портал привязан к нашему сообществу в Discord. Все государственные услуги, удостоверения личности и указы синхронизированы с ролевыми каналами сервера.",
-        how_you_know_panel_invite: "Приглашение в Discord:",
-        brand_title: "Государственный Гражданский Портал",
-        brand_sub: "Союз Советских Социалистических Республик · Ролевое Правительство",
-        nav_all: "Все темы",
-        nav_constitution: "Конституция и право",
-        nav_social: "Льготы и путёвки",
-        nav_passports: "Паспорта и прописка",
-        nav_republics: "Республики и поездки",
-        nav_labor: "Госплан и труд",
-        nav_bulletin: "Вестник Президиума",
-        nav_discord: "Сервер Discord",
-        hero_flag_alt: "Государственный флаг СССР",
-        hero_tag: "★ ЕДИНЫЙ ЦЕНТР ГОСУДАРСТВЕННЫХ УСЛУГ СССР",
-        hero_title: "Официальные услуги и сведения органов государственной власти",
-        hero_subtitle: "Центральный гражданский реестр для ролевого моделирования СССР в Discord: внутренние паспорта, прописка, указы Верховного Совета, трудовые книжки и путёвки.",
-        search_input_placeholder: "Поиск услуг, наркоматов, прав, бланков или указов...",
-        search_btn: "Поиск",
-        popular_label: "Частые запросы:",
-        how_item_1_badge: "★ Конституция",
-        how_item_1_text: "Основные законы, права трудящихся и суверенитет союзных республик",
-        how_item_1_btn: "Читать статьи &rarr;",
-        how_item_2_badge: "★ Паспортный стол",
-        how_item_2_text: "Оформить удостоверение личности гражданина и прописку",
-        how_item_2_btn: "Оформить паспорт &rarr;",
-        how_item_3_badge: "★ Жильё",
-        how_item_3_text: "Подать запрос на получение квартиры или муниципальной комнаты",
-        how_item_3_btn: "Проверить очередь &rarr;",
-        how_item_4_badge: "★ Жалобы",
-        how_item_4_text: "Направить петицию или обращение в Народный Комиссариат",
-        how_item_4_btn: "Подать обращение &rarr;",
-        jump_cue_text: "Перейти ко всем темам и услугам",
-        services_heading: "Все темы и государственные услуги",
-        services_subheading: "Перечень народных комиссариатов, реестров, декретов и ролевых процедур.",
-        filtering_prefix: "Фильтр:",
-        card_1_num: "Тема 01 · Государство",
-        card_1_title: "Конституция и Основной Закон",
-        card_1_desc: "Основополагающие законы Союза: гарантированные права на труд, отдых, бесплатное здравоохранение и суверенитет 15 союзных республик.",
-        card_1_link: "Читать Конституцию &rarr;",
-        card_1_btn: "Статьи закона",
-        card_2_num: "Тема 02 · Социальная сфера",
-        card_2_title: "Государственные льготы и путёвки",
-        card_2_desc: "Бесплатное диспансерное обслуживание, пособия на детей, пенсии по нетрудоспособности и профсоюзные путёвки на курорты Чёрного моря.",
-        card_2_link: "Посмотреть льготы &rarr;",
-        card_2_btn: "Расчёт льгот",
-        card_3_num: "Тема 03 · Верховный Совет",
-        card_3_title: "Верховный Совет депутатов трудящихся",
-        card_3_desc: "Законодательный календарь Совета Союза и Совета Национальностей, стенограммы прений, поимённые голосования и проекты указов.",
-        card_3_link: "Изучить указы &rarr;",
-        card_3_btn: "Протоколы",
-        card_4_num: "Тема 04 · Паспортный стол",
-        card_4_title: "Внутренние паспорта и прописка",
-        card_4_desc: "Выдача общегражданского внутреннего паспорта, оформление постоянной прописки, записи актов гражданского состояния (ЗАГС) и учёт граждан.",
-        card_4_link: "Оформить паспорт &rarr;",
-        card_4_btn: "Стол прописки",
-        card_5_num: "Тема 05 · Труд",
-        card_5_title: "Трудовая книжка и Госплан",
-        card_5_desc: "Учёт трудового стажа, распределение на заводы и в колхозы, стахановские знаки отличия и плановые задания пятилетки.",
-        card_5_link: "Посмотреть разряды &rarr;",
-        card_5_btn: "Госплан",
-        card_6_num: "Тема 06 · Сообщение",
-        card_6_title: "Проездные документы и разрешения ОВИР",
-        card_6_desc: "Межреспубликанские проездные документы по 15 союзным республикам, железнодорожные билеты и правила приёма делегаций соцстран.",
-        card_6_link: "Запросить пропуск &rarr;",
-        card_6_btn: "Отдел ОВИР",
-        card_7_num: "Тема 07 · Жильё",
-        card_7_title: "Коммунальное жильё и городские ордера",
-        card_7_desc: "Очередь на государственное жильё, санитарная норма жилой площади на человека и инспекции наркомата коммунального хозяйства.",
-        card_7_link: "Очередь на жильё &rarr;",
-        card_7_btn: "Запрос ордера",
-        card_8_num: "Тема 08 · Обращения",
-        card_8_title: "Бюро приёма жалоб и петиций Президиума",
-        card_8_desc: "Подача официальных заявлений, сообщений о нарушениях на местах и персональных жалоб непосредственно в Совет Министров.",
-        card_8_link: "Подать заявление &rarr;",
-        card_8_btn: "Подать жалобу",
-        card_9_num: "Тема 09 · Архивы",
-        card_9_title: "Центральная избирательная комиссия и реестр",
-        card_9_desc: "Проверка списков избирателей, участковые комиссии, процедура тайного голосования и учёт явки по РСФСР, УССР и другим союзным республикам.",
-        card_9_link: "Проверить регистрацию &rarr;",
-        card_9_btn: "Список избирателей",
-        bulletin_title: "Официальный вестник Президиума",
-        bulletin_1_tag: "★ Гражданский приём",
-        bulletin_1_title: "Регистрация граждан и паспортный стол открыты",
-        bulletin_1_desc: "Всем новым участникам в Discord предлагается оформить внутренний паспорт, зарегистрировать прописку и выбрать союзную республику.",
-        bulletin_2_tag: "★ Наркомат коммунального хозяйства",
-        bulletin_2_title: "Весеннее распределение жилого фонда открыто",
-        bulletin_2_desc: "Граждане со стажем на сервере более 3 недель могут подавать заявления на предоставление отдельной комнаты в Москве и Ленинграде.",
-        bulletin_3_tag: "★ Правила моделирования",
-        bulletin_3_title: "Соблюдение реализма и правил сервера",
-        bulletin_3_desc: "Напоминаем, что политические дебаты, выборы и назначения на посты осуществляются строго по правилам ролевого правительства сервера.",
-        roadmap_title: "Сайты государственной сети",
-        roadmap_sub: "Данный Гражданский портал — центральный узел моделирования правительства СССР. По мере развития сервера запускаются смежные порталы:",
-        site_1_name: "Гражданский портал",
-        site_1_desc: "(Общие услуги)",
-        status_live: "Работает",
-        site_2_name: "Министерство обороны",
-        site_2_desc: "(Интерактивные учения)",
-        status_wip: "В разработке",
-        site_3_name: "Государственный архив и Конституция",
-        status_plan: "В планах",
-        site_4_name: "Книга голосований Верховного Совета",
-        site_5_name: "Экономический дашборд Госплана",
-        discord_disclaimer_title: "Важное уведомление о ролевом проекте:",
-        discord_disclaimer_text: "Это исключительно вымышленный творческий сервер для политического моделирования. Не допускаются враждебные высказывания, экстремизм и претензии на реальные государственные полномочия.",
-        discord_join_btn: "Присоединиться к серверу Discord",
-        discord_copy_btn: "📋 Скопировать приглашение в Discord",
-        footer_sub: "Ролевое правительство в Discord",
-        footer_desc: "Официальный портал общественной информации и государственных услуг для участников ролевого моделирования СССР в Discord.",
-        footer_col1_title: "Государственные услуги",
-        footer_col1_1: "Внутренние паспорта",
-        footer_col1_2: "Коммунальное жильё",
-        footer_col1_3: "Санаторные путёвки",
-        footer_col1_4: "Проездные билеты",
-        footer_col2_title: "Советское государство",
-        footer_col2_1: "Конституция 1936/1977 гг.",
-        footer_col2_2: "Указы Верховного Совета",
-        footer_col2_3: "Архив списков избирателей",
-        footer_col2_4: "Плановые показатели Госплана",
-        footer_col3_title: "Правительство Discord",
-        footer_col3_1: "Каталог каналов сервера",
-        footer_col3_2: "Приёмная жалоб (#citizen-appeals)",
-        footer_col3_3: "Правила ролевой игры",
-        footer_col3_4: "Язык / Language",
-        disclaimer_badge: "УВЕДОМЛЕНИЕ О РОЛЕВОМ МОДЕЛИРОВАНИИ",
-        disclaimer_bold: "Исключительно творческий проект:",
-        disclaimer_text: "Данный сайт является любительским интерактивным реквизитом, созданным специально для ролевого сообщества «mock government» в Discord. Он НЕ связан и НЕ представляет какие-либо реальные страны, прошлые режимы, государственные органы или действующие политические партии. Все материалы, бланки и документы служат исключительно целям творческой симуляции."
-      }
+        "banner_title": "Официальный веб-сайт <strong>ролевого правительства СССР в Discord</strong>",
+        "banner_tag": "Ролевой проект",
+        "banner_know_btn": "Как проверить подлинность",
+        "know_1_title": "Игровое ролевое сообщество",
+        "know_1_body": "Данный сайт — интерактивный реквизит для ролевого моделирования правительства СССР в Discord. Он не представляет реальные органы власти или государства. Все документы и указы являются вымышленными.",
+        "know_2_title": "Официальный сервер ролевого моделирования в Discord",
+        "know_2_body": "Все гражданские указы, бланки голосований, распределение жилья и назначения министров осуществляются на нашем верифицированном сервере Discord.",
+        "header_helpline": "Приёмная Президиума:",
+        "brand_title": "Государственный Гражданский Портал",
+        "brand_tagline": "Единый центр госуслуг · Ролевое правительство Верховного Совета",
+        "nav_all": "Все темы и услуги",
+        "nav_gov": "Союз и Верховный Совет",
+        "nav_benefits": "Льготы и жильё",
+        "nav_passports": "Паспорта и прописка",
+        "nav_economy": "Труд и Госплан",
+        "nav_travel": "Республики и поездки",
+        "nav_discord": "Сообщество Discord",
+        "hero_title": "На службе Союзу, на службе народу",
+        "hero_subtitle": "Центральный гражданский реестр для ролевого моделирования СССР в Discord: внутренние паспорта, прописка, указы Верховного Совета, трудовые книжки и путёвки.",
+        "hero_cta": "Войти на сервер Discord &rarr;",
+        "how_do_i_heading": "Как получить услугу ...",
+        "how_item_1_badge": "★ Директивы",
+        "how_item_1_text": "Изучить указы и законодательные акты Верховного Совета",
+        "how_item_1_btn": "Читать указы &rarr;",
+        "how_item_2_badge": "★ Документы",
+        "how_item_2_text": "Оформить или продлить внутренний паспорт (прописку)",
+        "how_item_2_btn": "Оформить паспорт &rarr;",
+        "how_item_3_badge": "★ Жильё",
+        "how_item_3_text": "Подать запрос на получение квартиры или комнаты",
+        "how_item_3_btn": "Проверить очередь &rarr;",
+        "how_item_4_badge": "★ Жалобы",
+        "how_item_4_text": "Направить петицию или обращение в Министерство",
+        "how_item_4_btn": "Подать обращение &rarr;",
+        "jump_cue_text": "Перейти ко всем темам и услугам",
+        "services_heading": "Все темы и государственные услуги",
+        "services_subheading": "Перечень министерств, реестров, декретов и ролевых процедур.",
+        "filtering_prefix": "Фильтр:",
+        "card_1_num": "Тема 01 · Государство",
+        "card_1_title": "Конституция и Основной Закон",
+        "card_1_desc": "Основополагающие законы Союза: гарантированные права на труд, отдых, бесплатное здравоохранение и суверенитет 15 союзных республик.",
+        "card_1_link": "Читать Конституцию &rarr;",
+        "card_1_btn": "Статьи закона",
+        "card_2_num": "Тема 02 · Социальная сфера",
+        "card_2_title": "Государственные льготы и путёвки",
+        "card_2_desc": "Бесплатное диспансерное обслуживание, пособия на детей, пенсии по нетрудоспособности и профсоюзные путёвки на курорты Чёрного моря.",
+        "card_2_link": "Посмотреть льготы &rarr;",
+        "card_2_btn": "Расчёт льгот",
+        "card_3_num": "Тема 03 · Верховный Совет",
+        "card_3_title": "Верховный Совет депутатов трудящихся",
+        "card_3_desc": "Законодательный календарь Совета Союза и Совета Национальностей, стенограммы прений, поимённые голосования и проекты указов.",
+        "card_3_link": "Изучить указы &rarr;",
+        "card_3_btn": "Протоколы",
+        "card_4_num": "Тема 04 · Внутренние дела",
+        "card_4_title": "Внутренние паспорта и прописка (Министерство советских внутренних дел)",
+        "card_4_desc": "Выдача внутреннего паспорта гражданина, оформление прописки и актов состояния под ведомством Министерства советских внутренних дел (МВД СССР).",
+        "card_4_link": "Оформить паспорт &rarr;",
+        "card_4_btn": "Стол прописки",
+        "card_5_num": "Тема 05 · Труд",
+        "card_5_title": "Трудовая книжка и Госплан",
+        "card_5_desc": "Учёт трудового стажа, распределение на заводы и в колхозы, стахановские знаки отличия и плановые задания пятилетки.",
+        "card_5_link": "Посмотреть разряды &rarr;",
+        "card_5_btn": "Госплан",
+        "card_6_num": "Тема 06 · Сообщение",
+        "card_6_title": "Проездные документы и разрешения ОВИР",
+        "card_6_desc": "Межреспубликанские проездные документы по 15 союзным республикам, железнодорожные билеты и правила приёма делегаций соцстран.",
+        "card_6_link": "Запросить пропуск &rarr;",
+        "card_6_btn": "Отдел ОВИР",
+        "card_7_num": "Тема 07 · Жильё",
+        "card_7_title": "Министерство коммунального хозяйства и ордера",
+        "card_7_desc": "Очередь на государственное жильё. Активность на сервере проверяется и подтверждается. Для получения жилья необходимо создать тикет на сервере.",
+        "card_7_link": "Очередь на жильё &rarr;",
+        "card_7_btn": "Запрос ордера",
+        "card_8_num": "Тема 08 · Обращения",
+        "card_8_title": "Бюро приёма жалоб и петиций Президиума",
+        "card_8_desc": "Подача официальных заявлений и персональных жалоб министрам. (В разработке: подключение Discord Webhook).",
+        "card_8_link": "Подать заявление &rarr;",
+        "card_8_btn": "Подать жалобу",
+        "card_9_num": "Тема 09 · Архивы",
+        "card_9_title": "Центральная избирательная комиссия и реестр",
+        "card_9_desc": "Проверка списков избирателей, участковые комиссии, процедура тайного голосования и учёт явки по РСФСР, УССР и другим союзным республикам.",
+        "card_9_link": "Проверить регистрацию &rarr;",
+        "card_9_btn": "Список избирателей",
+        "bulletin_title": "Официальный вестник Президиума",
+        "bulletin_1_tag": "★ Гражданский приём",
+        "bulletin_1_title": "Регистрация граждан и паспортный стол открыты",
+        "bulletin_1_desc": "Всем новым участникам в Discord предлагается оформить внутренний паспорт, зарегистрировать прописку и выбрать союзную республику.",
+        "bulletin_2_tag": "★ Министерство коммунального хозяйства",
+        "bulletin_2_title": "Распределение жилого фонда и учёт активности",
+        "bulletin_2_desc": "Уведомление: Активность на сервере проверяется и подтверждается министрами. Для получения жилья необходимо создать тикет на сервере.",
+        "bulletin_3_tag": "★ Правила моделирования",
+        "bulletin_3_title": "Соблюдение реализма и правил сервера",
+        "bulletin_3_desc": "Напоминаем, что политические дебаты, выборы и назначения министров осуществляются строго по правилам ролевого правительства сервера.",
+        "roadmap_title": "Сайты государственной сети",
+        "roadmap_sub": "Данный Гражданский портал — центральный узел моделирования правительства СССР. По мере развития сервера запускаются смежные порталы:",
+        "site_1_name": "Гражданский портал",
+        "site_1_desc": "(Общие услуги)",
+        "status_live": "Работает",
+        "site_2_name": "Министерство обороны",
+        "site_2_desc": "(Интерактивные учения)",
+        "status_wip": "В разработке",
+        "site_3_name": "Государственный архив и Конституция",
+        "status_plan": "В планах",
+        "site_4_name": "Книга голосований Верховного Совета",
+        "site_5_name": "Экономический дашборд Госплана",
+        "discord_disclaimer_title": "Важное уведомление о ролевом проекте:",
+        "discord_disclaimer_text": "Это исключительно вымышленный творческий сервер для политического моделирования. Не допускаются враждебные высказывания, экстремизм и претензии на реальные государственные полномочия.",
+        "discord_join_btn": "Присоединиться к серверу Discord",
+        "discord_copy_btn": "📋 Скопировать приглашение в Discord",
+        "footer_sub": "Ролевое правительство в Discord",
+        "footer_desc": "Официальный портал общественной информации и государственных услуг для участников ролевого моделирования СССР в Discord.",
+        "footer_col1_title": "Государственные услуги",
+        "footer_col1_1": "Внутренние паспорта",
+        "footer_col1_2": "Коммунальное жильё",
+        "footer_col1_3": "Санаторные путёвки",
+        "footer_col1_4": "Проездные билеты",
+        "footer_col2_title": "Советское государство",
+        "footer_col2_1": "Конституция 1936/1977 гг.",
+        "footer_col2_2": "Указы Верховного Совета",
+        "footer_col2_3": "Архив списков избирателей",
+        "footer_col2_4": "Плановые показатели Госплана",
+        "footer_col3_title": "Правительство Discord",
+        "footer_col3_1": "Каталог каналов сервера",
+        "footer_col3_2": "Приёмная жалоб (#citizen-appeals)",
+        "footer_col3_3": "Правила ролевой игры",
+        "footer_col3_4": "Язык / Language",
+        "disclaimer_badge": "УВЕДОМЛЕНИЕ О РОЛЕВОМ МОДЕЛИРОВАНИИ",
+        "disclaimer_bold": "Исключительно творческий проект:",
+        "disclaimer_text": "Данный сайт является любительским интерактивным реквизитом, созданным специально для ролевого сообщества «mock government» в Discord. Он НЕ связан и НЕ представляет какие-либо реальные страны, прошлые режимы, государственные органы или действующие политические партии. Все материалы, бланки и документы служат исключительно целям творческой симуляции."
+}
     };
 
     function applyLanguage(lang) {
@@ -2011,10 +2025,17 @@
         }
       });
 
+      // Update document title
+      document.title = (lang === 'ru') 
+        ? 'Государственный Гражданский Портал СССР | Официальные госуслуги ролевого правительства'
+        : 'Union Civic Portal | USSR Mock Government Official Public Services';
+
       // Update search input placeholder
       const searchInput = document.getElementById('searchInput');
-      if (searchInput && dict.search_input_placeholder) {
-        searchInput.placeholder = dict.search_input_placeholder;
+      if (searchInput) {
+        searchInput.placeholder = (lang === 'ru')
+          ? 'Поиск услуг СССР, министерств, прав, бланков или указов...'
+          : 'Search Soviet civic services, decrees, benefits...';
       }
 
       // Update flag alt attribute
@@ -2028,6 +2049,42 @@
       if (langBtn) {
         langBtn.textContent = lang === 'ru' ? 'English' : 'Русский';
       }
+
+      // Update modal titles, subtitles, and notices
+      const pTitle = document.getElementById('passportModalTitle');
+      const pSub = document.getElementById('passportModalSub');
+      if (pTitle) pTitle.textContent = lang === 'ru' ? 'Министерство советских внутренних дел · Паспортный стол' : 'Ministry of Soviet Interior · Passport Desk';
+      if (pSub) pSub.textContent = lang === 'ru' ? 'Реестр идентификации граждан и прописки МВД СССР.' : 'Internal Affairs (МВД СССР) citizen identification and propiska domicile registry.';
+
+      const vTitle = document.getElementById('voterModalTitle');
+      const vSub = document.getElementById('voterModalSub');
+      if (vTitle) vTitle.textContent = lang === 'ru' ? 'Центральная избирательная комиссия' : 'Central Electoral Commission';
+      if (vSub) vSub.textContent = lang === 'ru' ? 'Проверка статуса в списках избирателей Верховного Совета депутатов трудящихся.' : "Verify your voter roll eligibility for the Supreme Soviet of Workers' Deputies.";
+
+      const hTitle = document.getElementById('housingModalTitle');
+      const hSub = document.getElementById('housingModalSub');
+      const hNote = document.getElementById('housingNoteText');
+      if (hTitle) hTitle.textContent = lang === 'ru' ? 'Министерство коммунального хозяйства' : 'Ministry of Municipal Housing';
+      if (hSub) hSub.textContent = lang === 'ru' ? 'Нормативы жилплощади, учёт ордеров и проверка очереди на жильё.' : 'Regulations, communal apartment square-meter allowances, and waiting list tier lookup.';
+      if (hNote) hNote.textContent = lang === 'ru' ? 'Активность на сервере проверяется и подтверждается. Для получения жилья необходимо создать тикет на сервере.' : 'Server activity is checked and verified. To get housing a ticket must be made in the server.';
+
+      const aTitle = document.getElementById('appealsModalTitle');
+      const aSub = document.getElementById('appealsModalSub');
+      const aWipTitle = document.getElementById('appealsWipTitle');
+      const aWipDesc = document.getElementById('appealsWipDesc');
+      if (aTitle) aTitle.textContent = lang === 'ru' ? 'Бюро приёма жалоб и петиций Президиума' : 'Praesidium Citizen Appeals Bureau';
+      if (aSub) aSub.textContent = lang === 'ru' ? 'Подача официальных заявлений и жалоб на рассмотрение министрам.' : 'Submit an official petition or grievance to be reviewed by ministers.';
+      if (aWipTitle) aWipTitle.textContent = lang === 'ru' ? 'В разработке · Ожидается подключение Webhook' : 'Work in Progress · Webhook Integration Pending';
+      if (aWipDesc) {
+        aWipDesc.innerHTML = lang === 'ru'
+          ? 'Автоматическая подача петиций и жалоб в настоящее время находится в <strong>разработке</strong>. В будущем обращения будут напрямую отправляться через Discord Webhook министрам и в Президиум.<br>Сейчас вы можете составить черновик ниже или подать обращение напрямую в канал <strong>#citizen-appeals</strong> на сервере Discord.'
+          : 'The citizen petition and grievance automated filing maker is currently a <strong>Work in Progress</strong>. In the future, filings made here will be directly connected with a Discord Webhook to automatically dispatch to ministers and the Praesidium.<br>For now, you can draft your grievance below or submit your petition directly in <strong>#citizen-appeals</strong> on the Discord server.';
+      }
+
+      const dTitle = document.getElementById('discordModalTitle');
+      const dSub = document.getElementById('discordModalSub');
+      if (dTitle) dTitle.textContent = lang === 'ru' ? 'Ролевое правительство СССР в Discord' : 'USSR Discord Mock Government';
+      if (dSub) dSub.textContent = lang === 'ru' ? 'Присоединяйтесь к политическому ролевому симулятору в Discord.' : 'Join the premier political roleplay simulation on Discord.';
     }
 
     function toggleLanguage() {
@@ -2068,7 +2125,10 @@
     function openPassportModal() { openModal('passportModal'); }
     function openVoterModal() { openModal('voterModal'); }
     function openHousingModal() { openModal('housingModal'); }
-    function openAppealsModal() { openModal('appealsModal'); }
+    function openAppealsModal() { 
+      openModal('appealsModal');
+      showToast(isRussian ? 'Форма обращений: в разработке (подключение Webhook)' : 'Citizen Appeals: Work in Progress (Webhook integration pending)');
+    }
     function openDiscordInfoModal() { openModal('discordModal'); }
 
     // Toast message
@@ -2120,7 +2180,7 @@
       const occ = document.getElementById('previewClass').textContent;
       const serial = document.getElementById('previewSerial').textContent;
 
-      const text = `**USSR INTERNAL PASSPORT (MOCK GOV)**\n• **Name:** ${name}\n• **Discord:** ${discord}\n• **Republic:** ${republic}\n• **Class/Role:** ${occ}\n• **Serial:** ${serial}\n• **Status:** Verified Citizen (#citizen-records)`;
+      const text = `**USSR INTERNAL PASSPORT (MINISTRY OF SOVIET INTERIOR)**\n• **Name:** ${name}\n• **Discord:** ${discord}\n• **Republic:** ${republic}\n• **Class/Role:** ${occ}\n• **Serial:** ${serial}\n• **Status:** Verified Citizen (#citizen-records)`;
       navigator.clipboard.writeText(text).then(() => {
         showToast(isRussian ? 'Данные паспорта скопированы! Вставьте в биографию или в #citizen-records.' : 'Passport details copied! Paste into Discord bio or #citizen-records.');
       }).catch(() => {
@@ -2160,17 +2220,21 @@
       const msg = document.getElementById('housingResultMsg');
 
       box.style.display = 'block';
+      const serverNote = isRussian 
+        ? '<br><br>📌 <strong>Важно:</strong> Активность на сервере проверяется и подтверждается министрами. Для получения жилья необходимо создать тикет на сервере.'
+        : '<br><br>📌 <strong>Notice:</strong> Server activity is checked and verified. To get housing a ticket must be made in the server.';
+
       if (activity.includes('Priority')) {
         title.textContent = isRussian ? 'Статус: Предоставлено внеочередное распределение' : 'Status: Expedited State Allocation Granted';
-        msg.textContent = isRussian ? 'В связи с подтверждённой ударной (стахановской) активностью на сервере, вашей семье предоставляется приоритетное право на отдельную благоустроенную квартиру.' : 'Due to verified Stakhanovite activity in Discord, your household is queued in the 1st Priority echelon for a modern multi-room flat.';
+        msg.innerHTML = (isRussian ? 'В связи с подтверждённой ударной (стахановской) активностью на сервере, вашей семье предоставляется приоритетное право на отдельную благоустроенную квартиру.' : 'Due to verified Stakhanovite activity in Discord, your household is queued in the 1st Priority echelon for a modern multi-room flat.') + serverNote;
       } else if (activity.includes('Standard')) {
         title.textContent = isRussian ? 'Статус: Включён в общую городскую очередь' : 'Status: Active on Municipal Waiting Roll';
-        msg.textContent = isRussian ? 'Ориентировочный срок предоставления: следующий сессионный цикл. Право на комнату по норме 9 кв. м на человека.' : 'Estimated allocation timeframe: Next Congressional cycle. Eligible for communal flat with standard 9 m² per person allotment.';
+        msg.innerHTML = (isRussian ? 'Ориентировочный срок предоставления: следующий сессионный цикл. Право на комнату по норме 9 кв. м на человека.' : 'Estimated allocation timeframe: Next Congressional cycle. Eligible for communal flat with standard 9 m² per person allotment.') + serverNote;
       } else {
         title.textContent = isRussian ? 'Статус: Предоставлено место в общежитии' : 'Status: Temporary Worker Dormitory Assigned';
-        msg.textContent = isRussian ? 'Вновь прибывшим гражданам предоставляется койко-место в ведомственном общежитии до завершения вводного периода (2 недели активности).' : 'New arrivals are assigned to the district municipal hostel until full citizen tenure (2 weeks active server roleplay) is completed.';
+        msg.innerHTML = (isRussian ? 'Вновь прибывшим гражданам предоставляется койко-место в ведомственном общежитии до завершения вводного периода (2 недели активности).' : 'New arrivals are assigned to the district municipal hostel until full citizen tenure (2 weeks active server roleplay) is completed.') + serverNote;
       }
-      showToast(isRussian ? 'Заявление на жильё рассмотрено.' : 'Housing allocation evaluated.');
+      showToast(isRussian ? 'Заявление на жильё рассмотрено. Создайте тикет в Discord!' : 'Housing allocation evaluated. Open a ticket in Discord!');
     }
 
     // Appeals form
@@ -2184,16 +2248,16 @@
         return;
       }
 
-      const formatted = `[CITIZEN GRIEVANCE - PRAESIDIUM DESK]\nTO: ${target}\nSUBJECT: ${subject}\nSTATEMENT: ${text}\nDISPATCH: Formatted via Union Civic Portal for #citizen-appeals`;
+      const formatted = `[CITIZEN GRIEVANCE - PRAESIDIUM DESK]\nTO: ${target}\nSUBJECT: ${subject}\nSTATEMENT: ${text}\nSTATUS: Work in Progress (Automated Webhook transmission coming soon)\nDISPATCH: Formatted via Union Civic Portal for #citizen-appeals or Discord Ticket`;
       document.getElementById('appealFormattedOutput').value = formatted;
       document.getElementById('appealResultBox').style.display = 'block';
-      showToast(isRussian ? 'Обращение сформировано. Нажмите «Скопировать в Discord».' : 'Appeal dispatch generated. Click Copy to Discord.');
+      showToast(isRussian ? 'В разработке (WIP): интеграция с Webhook в процессе! Текст обращения готов.' : 'Work in Progress: Webhook integration coming soon! Draft prepared to copy.');
     }
 
     function copyAppeal() {
       const formatted = document.getElementById('appealFormattedOutput').value;
       navigator.clipboard.writeText(formatted).then(() => {
-        showToast(isRussian ? 'Скопировано! Вставьте в канал #citizen-appeals в Discord.' : 'Copied to clipboard! Paste into Discord #citizen-appeals.');
+        showToast(isRussian ? 'Скопировано! Вставьте в канал #citizen-appeals или в тикет в Discord.' : 'Copied to clipboard! Paste into Discord #citizen-appeals or open a ticket.');
       });
     }
 
@@ -2242,7 +2306,7 @@
         document.getElementById('docModalBody').innerHTML = `
           <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
             <strong style="color:var(--soviet-red);">УКАЗ № 104:</strong> <em>О порядке распределения жилого фонда</em>
-            <p style="margin-top:6px; font-size:0.88rem;">Все граждане с подтверждёнными внутренними паспортами имеют право на постановку на городской учёт. Заявления принимаются непосредственно Наркоматом коммунального хозяйства.</p>
+            <p style="margin-top:6px; font-size:0.88rem;">Все граждане с подтверждёнными внутренними паспортами имеют право на постановку на городской учёт. Заявления принимаются непосредственно Министерством коммунального хозяйства после проверки активности на сервере и создания тикета.</p>
           </div>
           <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
             <strong style="color:var(--soviet-red);">УКАЗ № 105:</strong> <em>Об открытых списках избирателей</em>
@@ -2259,7 +2323,7 @@
         document.getElementById('docModalBody').innerHTML = `
           <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
             <strong style="color:var(--soviet-red);">DECREE № 104:</strong> <em>On the Reorganization of Municipal Housing Queues</em>
-            <p style="margin-top:6px; font-size:0.88rem;">All citizens holding internal passports are granted access to municipal flat allocations. Applications are received directly by the Commissariat for Housing.</p>
+            <p style="margin-top:6px; font-size:0.88rem;">All citizens holding internal passports are granted access to municipal flat allocations. Applications are received directly by the Ministry of Municipal Housing following verified server activity and a Discord ticket.</p>
           </div>
           <div style="border-bottom:1px solid #ddd; padding-bottom:12px; margin-bottom:12px;">
             <strong style="color:var(--soviet-red);">DECREE № 105:</strong> <em>On Open Candidate Registries</em>
@@ -2310,7 +2374,7 @@
         document.getElementById('docModalBody').innerHTML = `
           <p style="margin-bottom:12px;">Пятилетний план координирует активность и творческую деятельность нашего сообщества:</p>
           <ul style="margin-left:20px; line-height:1.7;">
-            <li><strong>Трудовая книжка</strong>: История карьеры гражданина от стажёра до заместителя Наркома.</li>
+            <li><strong>Трудовая книжка</strong>: История карьеры гражданина от стажёра до заместителя Министра.</li>
             <li><strong>Плановые задания</strong>: Еженедельные мероприятия, дебаты и тематические викторины.</li>
             <li><strong>Стахановское движение</strong>: Присвоение почётных ролей за перевыполнение нормативов участия.</li>
           </ul>
@@ -2321,7 +2385,7 @@
         document.getElementById('docModalBody').innerHTML = `
           <p style="margin-bottom:12px;">The Five-Year Plan coordinates our community's creative output and server activities:</p>
           <ul style="margin-left:20px; line-height:1.7;">
-            <li><strong>Trudovaya Knizhka (Labor Book)</strong>: Your recorded career history from apprentice to Commissariat Deputy.</li>
+            <li><strong>Trudovaya Knizhka (Labor Book)</strong>: Your recorded career history from apprentice to Deputy Minister.</li>
             <li><strong>Production Quotas</strong>: Weekly community events, trivia challenges, and debate sessions.</li>
             <li><strong>Stakhanovite Movement</strong>: Earn honorary roles by surpassing community participation targets.</li>
           </ul>
